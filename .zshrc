@@ -58,9 +58,6 @@ bindkey '^N' history-beginning-search-forward
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 
-# homebrew
-export HOMEBREW_GITHUB_API_TOKEN="{HOMEBREW_GITHUB_API_TOKEN}"
-
 # nvm
 export NVM_DIR="$HOME/.nvm"
     . "/usr/local/opt/nvm/nvm.sh"
