@@ -1,0 +1,4 @@
+.vim/undo/*
+.vim/bundle/*
+!.gitkeep
+

@@ -1,0 +1,50 @@
+[core]
+	excludesfile = ~/.gitignore_global
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[user]
+	name = sh0e1
+	email = sh0e1@users.noreply.github.com
+
+[alias]
+	c = checkout
+	st = status
+	f = fetch -p origin
+	l = log
+	lg = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
+	d = diff
+	ds = diff --stat
+	p = push origin HEAD
+
+	syncmaster = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v staging | grep -v develop)
+	syncstaging = !git checkout staging && git pull origin staging && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v develop)
+	synctest = !git checkout test && git pull origin test && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v develop)
+	syncdevelop = !git checkout develop && git pull origin develop && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v staging)
+
+[init]
+	templatedir = ~/.git-templates/git-secrets
+
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = [A-Z0-9]{20}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[commit]
+	template = ~/.gitmessage.txt
+

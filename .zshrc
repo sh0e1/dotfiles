@@ -1,0 +1,122 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_history
+HISTSIZE=1000
+SAVEHIST=100000
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '$HOME/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' ignore-parents parent pwd ..
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+
+# color
+autoload -Uz colors
+colors
+export LSCOLORS=exfxcxdxbxegedabagacad
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
+# prompt
+PROMPT='%m:%c %n$ '
+
+# options
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt hist_ignore_all_dups
+setopt no_beep
+setopt interactive_comments
+setopt ignore_eof
+setopt hist_reduce_blanks
+setopt print_eight_bit
+setopt no_flow_control
+setopt extended_glob
+setopt EXTENDED_HISTORY
+setopt hist_verify
+setopt hist_save_no_dups
+setopt hist_no_store
+setopt hist_expand
+setopt inc_append_history
+
+# alias
+alias ls='ls -GF'
+alias ll='ls -GFla'
+alias vi='gvim'
+#alias golint='golint $(go list ./... | grep -v vendor)'
+#alias govet='go vet $(go list ./... | grep -v vendor)'
+alias kube='kubectl'
+
+# key bind
+bindkey -v
+bindkey 'jj' vi-cmd-mode
+bindkey '^P' history-beginning-search-backward
+bindkey '^N' history-beginning-search-forward
+bindkey "^R" history-incremental-search-backward
+bindkey "^S" history-incremental-search-forward
+
+# homebrew
+export HOMEBREW_GITHUB_API_TOKEN="{HOMEBREW_GITHUB_API_TOKEN}"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+    . "/usr/local/opt/nvm/nvm.sh"
+
+# goenv
+#export GOENV_ROOT="$HOME/.goenv"
+#export PATH="$GOENV_ROOT/bin:$PATH"
+#eval "$(goenv init -)"
+
+# GOPATH
+export GOPATH=$HOME/workspace/gopath
+export PATH=$PATH:$GOPATH/bin
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+# google-cloud-sdk
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+if [ $commands[kubectl] ]; then
+  source <(kubectl completion zsh)
+fi
+
+# MacVIm
+export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
+
+# direnv
+export EDITOR=vim
+eval "$(direnv hook zsh)"
+
+function peco-select-history {
+    BUFFER=`history -n -r 1 | peco --query "$LBUFFER"`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-select-history
+bindkey '^r' peco-select-history
+
+if [[ ! -n $TMUX && $- == *l* ]]; then
+    # get the IDs
+    ID="`tmux list-sessions`"
+    if [[ -z "$ID" ]]; then
+        tmux new-session
+    fi
+    create_new_session="Create New Session"
+    ID="$ID\n${create_new_session}:"
+    ID="`echo $ID | peco | cut -d: -f1`"
+    if [[ "$ID" = "${create_new_session}" ]]; then
+        tmux new-session
+    elif [[ -n "$ID" ]]; then
+        tmux attach-session -t "$ID"
+    else
+        :  # Start terminal normally
+    fi
+fi
+
