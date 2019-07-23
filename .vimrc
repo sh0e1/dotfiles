@@ -3,6 +3,7 @@
 " Vundle.vim
 set nocompatible
 filetype off
+set rtp+=/Users/sh0e1/.pyenv/versions/2.7.14/lib/python2.7/site-packages/powerline/bindings/vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -41,6 +42,8 @@ set helplang=ja                " Display help in Japanese
 set guifont=Monaco:h12         " GUI font
 set linespace=2                " Set line spacing
 set cursorline                 " Show cursor line
+set showtabline=2              " Always display the tabline, even if there is only one tab
+set noshowmode                 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 " Show Invisible character
 set list
 set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
@@ -166,3 +169,4 @@ endfunction
 nmap <C-n><C-t> :NERDTreeToggle<CR>
 
 " unite.vim
+

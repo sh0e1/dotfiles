@@ -117,3 +117,6 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
     fi
 fi
 
+# powerline
+#. /Users/sh0e1/.pyenv/versions/2.7.14/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
