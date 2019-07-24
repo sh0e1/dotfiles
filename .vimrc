@@ -1,9 +1,12 @@
 " ~/.vimrc
 
+python3 from powerline.vim import setup as powerline_setup
+python3 powerline_setup()
+python3 del powerline_setup
+
 " Vundle.vim
 set nocompatible
 filetype off
-set rtp+=/Users/sh0e1/.pyenv/versions/2.7.14/lib/python2.7/site-packages/powerline/bindings/vim
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
@@ -39,7 +42,7 @@ set autowrite                  " Automatically save before :next, :make etc
 set autoindent                 " Enable auto indent
 set backspace=indent,eol,start " Makes backspace key more powerful
 set helplang=ja                " Display help in Japanese
-set guifont=Monaco:h12         " GUI font
+set guifont=RobotoMonoForPowerline-Regular:h12         " GUI font
 set linespace=2                " Set line spacing
 set cursorline                 " Show cursor line
 set showtabline=2              " Always display the tabline, even if there is only one tab

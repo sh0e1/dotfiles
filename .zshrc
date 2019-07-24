@@ -48,7 +48,6 @@ alias ll='ls -GFla'
 alias vi='gvim'
 #alias golint='golint $(go list ./... | grep -v vendor)'
 #alias govet='go vet $(go list ./... | grep -v vendor)'
-alias kube='kubectl'
 
 # key bind
 bindkey -v
@@ -71,6 +70,9 @@ export NVM_DIR="$HOME/.nvm"
 export GOPATH=$HOME/workspace/gopath
 export PATH=$PATH:$GOPATH/bin
 
+# powerline
+PATH=$PATH:$HOME/Library/Python/3.7/bin
+
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -80,6 +82,7 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 # google-cloud-sdk
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+
 if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
@@ -116,7 +119,4 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
         :  # Start terminal normally
     fi
 fi
-
-# powerline
-#. /Users/sh0e1/.pyenv/versions/2.7.14/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
