@@ -5,7 +5,7 @@
 		"information:additional":   { "fg": "gray9", "bg": "gray4", "attrs": [] },
 		"background":               { "fg": "white", "bg": "gray2", "attrs": [] },
 		"background:divider":       { "fg": "gray6", "bg": "gray2", "attrs": [] },
-		"mode":                     { "fg": "darkestcyan", "bg": "brightcyan", "attrs": ["bold"] },
+		"mode":                     { "fg": "darkestgreen", "bg": "brightgreen", "attrs": ["bold"] },
 		"visual_range":             { "fg": "brightestorange", "bg": "darkorange", "attrs": ["bold"] },
 		"modified_indicator":       { "fg": "brightyellow", "bg": "gray4", "attrs": ["bold"] },
 		"paste_indicator":          { "fg": "white", "bg": "mediumorange", "attrs": ["bold"] },

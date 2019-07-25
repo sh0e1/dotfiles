@@ -1,14 +1,21 @@
 {
 	"segments": {
-    "left": [
-      {
-        "function": "powerline.segments.common.env.cwd",
-        "priority": 50
-      }
-    ],
-		"right": [
+		"left": [
 			{
 				"function": "powerline.segments.common.vcs.branch",
+				"priority": 50
+			},
+			{
+				"function": "powerline.segments.common.env.cwd",
+				"args": {
+					"dir_shorten_len": 1
+				},
+				"priority": 50
+			}
+		],
+		"right": [
+			{
+				"function": "powerline_kubernetes.kubernetes",
 				"priority": 50
 			},
 			{
@@ -17,7 +24,7 @@
 			},
 			{
 				"function": "powerline.segments.common.sys.system_load",
-				"priority": 50
+				"priority": 10
 			},
 			{
 				"function": "powerline.segments.common.time.date"

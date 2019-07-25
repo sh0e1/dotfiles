@@ -22,7 +22,8 @@
 			"local_themes": {
 				"continuation": "continuation",
 				"select": "select"
-			}
+			},
+			"components": ["tmux"]
 		},
 		"tmux": {
 			"colorscheme": "default",

@@ -45,9 +45,8 @@ setopt inc_append_history
 # alias
 alias ls='ls -GF'
 alias ll='ls -GFla'
-alias vi='gvim'
-#alias golint='golint $(go list ./... | grep -v vendor)'
-#alias govet='go vet $(go list ./... | grep -v vendor)'
+alias vi='vim'
+alias mkdir='mkdir -p'
 
 # key bind
 bindkey -v
@@ -86,9 +85,6 @@ source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.
 if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
-
-# MacVIm
-export PATH="$PATH:/Applications/MacVim.app/Contents/bin"
 
 # direnv
 export EDITOR=vim
