@@ -1,6 +1,6 @@
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_history
-HISTSIZE=1000
+HISTSIZE=10000
 SAVEHIST=100000
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
@@ -13,12 +13,14 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+zstyle ':completion::complete:*' use-cache true
 
 # color
 autoload -Uz colors
 colors
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+zstyle ':completion:*' list-colors "${LS_COLORS}"
 
 # prompt
 PROMPT='%m:%c %n$ '
@@ -43,9 +45,14 @@ setopt hist_expand
 setopt inc_append_history
 
 # alias
-alias ls='ls -GF'
-alias ll='ls -GFla'
+alias lst='ls -ltrFG'
+alias ls='ls -FG'
+alias la='ls -laFG'
+alias ll='ls -lFG'
 alias vi='vim'
+alias c='cdr'
+alias cp='cp -i'
+alias rm='rm -i'
 alias mkdir='mkdir -p'
 
 # key bind
