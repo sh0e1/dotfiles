@@ -47,6 +47,10 @@ set linespace=2                " Set line spacing
 set cursorline                 " Show cursor line
 set showtabline=2              " Always display the tabline, even if there is only one tab
 set noshowmode                 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set hlsearch
+set ignorecase
+set incsearch
+set smartcase
 " Show Invisible character
 set list
 set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
