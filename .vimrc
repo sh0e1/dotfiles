@@ -1,9 +1,5 @@
 " ~/.vimrc
 
-python3 from powerline.vim import setup as powerline_setup
-python3 powerline_setup()
-python3 del powerline_setup
-
 " Vundle.vim
 set nocompatible
 filetype off
@@ -17,6 +13,8 @@ Plugin 'prabirshrestha/vim-lsp'
 Plugin 'SirVer/ultisnips'
 Plugin 'Shougo/unite.vim'
 Plugin 'cohama/lexima.vim'
+Plugin 'justmao945/vim-clang'
+Plugin 'itchyny/lightline.vim'
 call vundle#end()
 filetype plugin indent on
 
