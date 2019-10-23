@@ -22,9 +22,6 @@ export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 zstyle ':completion:*' list-colors "${LS_COLORS}"
 
-# prompt
-PROMPT='%m:%c %n$ '
-
 # options
 setopt auto_cd
 setopt auto_pushd
@@ -97,6 +94,7 @@ fi
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 
+# peco
 function peco-select-history {
     BUFFER=`history -n -r 1 | peco --query "$LBUFFER"`
     CURSOR=$#BUFFER
@@ -105,6 +103,7 @@ function peco-select-history {
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+# tmux
 if [[ ! -n $TMUX && $- == *l* ]]; then
     # get the IDs
     ID="`tmux list-sessions`"
@@ -122,4 +121,18 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
         :  # Start terminal normally
     fi
 fi
+
+# vcs
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+
+# prompt
+PROMPT='%n@%m %c$ '
+RPROMPT='${vcs_info_msg_0_}'
 
