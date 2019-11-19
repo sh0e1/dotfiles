@@ -66,3 +66,18 @@ bind generic ca !?@git commit --amend --no-edit
 
 bind generic K view-help
 bind generic <C-w><C-w> view-next
+
+set main-view  = id date author:email-user commit-title:graph=yes,refs=yes
+set blame-view = date:default author:email-user id:yes,color line-number:yes,interval=1 text
+set pager-view = line-number:yes,interval=1 text
+set stage-view = line-number:yes,interval=1 text
+set log-view   = line-number:yes,interval=1 text
+set blob-view  = line-number:yes,interval=1 text
+set diff-view  = line-number:yes,interval=1 text
+
+set line-graphics = utf-8
+set tab-size = 4
+set ignore-space = at-eol
+set ignore-case = true
+set mouse = true
+
