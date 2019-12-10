@@ -19,7 +19,6 @@
 	lg = log --graph --date=short --decorate=short --pretty=format:'%Cgreen%h %Creset%cd %Cblue%cn %Cred%d %Creset%s'
 	d = diff
 	ds = diff --stat
-	p = push origin HEAD
 
 	syncmaster = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v staging | grep -v develop)
 	syncstaging = !git checkout staging && git pull origin staging && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v develop)
@@ -39,4 +38,16 @@
 
 [commit]
 	template = ~/.gitmessage.txt
+
+[diff]
+	tool = vimdiff
+
+[difftool]
+	prompt = false
+
+[merge]
+	tool = vimdiff
+
+[mergetool]
+	prompt = false
 
