@@ -17,13 +17,10 @@ if dein#load_state($HOME . '/.cache/dein')
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
   "call dein#add('Shougo/neosnippet-snippets')
-  "call dein#add('fatih/vim-go', {'lazy': 1})
-
+  call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/deoplete.nvim')
-  let g:deoplete#enable_at_startup = 1
-
   call dein#add('itchyny/lightline.vim')
-  let g:lightline = {'colorscheme': 'wombat'}
+  call dein#add('scrooloose/nerdtree')
 
   " Required:
   call dein#end()
@@ -106,4 +103,19 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
+
+" lightline
+let g:lightline = {'colorscheme': 'wombat'}
+
+" NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['\.git$']
 
