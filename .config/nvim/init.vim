@@ -99,10 +99,8 @@ augroup END
 
 " color scheme
 set termguicolors
-colorscheme falcon
 let g:falcon_lightline = 1
-let g:falcon_background = 0
-let g:falcon_inactive = 1
+colorscheme falcon
 
 " key mapping
 let mapleader = "\<Space>"
@@ -128,7 +126,8 @@ let g:LanguageClient_serverCommands = {
   \ }
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_useVirtualText = 0
+set signcolumn=yes
 
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
