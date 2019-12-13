@@ -17,13 +17,18 @@ if dein#load_state($HOME . '/.cache/dein')
   " Add or remove your plugins here like this:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/denite.nvim')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('fatih/vim-go')
   call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('fenetikm/falcon')
+  call dein#add('autozimu/LanguageClient-neovim', {
+    \ 'rev': 'next',
+    \ 'build': 'bash install.sh',
+    \ })
+  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 
   " Required:
   call dein#end()
@@ -40,7 +45,6 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
-
 set number
 set noerrorbells
 set noshowmatch
@@ -117,6 +121,14 @@ if has("autocmd")
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 endif
+
+" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+  \ 'go': ['gopls']
+  \ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+let g:LanguageClient_diagnosticsEnable = 0
 
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
