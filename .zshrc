@@ -94,15 +94,6 @@ fi
 export EDITOR=vim
 eval "$(direnv hook zsh)"
 
-# peco
-function peco-select-history {
-    BUFFER=`history -n -r 1 | peco --query "$LBUFFER"`
-    CURSOR=$#BUFFER
-    zle reset-prompt
-}
-zle -N peco-select-history
-bindkey '^r' peco-select-history
-
 # tmux
 if [[ ! -n $TMUX && $- == *l* ]]; then
     # get the IDs
@@ -112,7 +103,7 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
     fi
     create_new_session="Create New Session"
     ID="$ID\n${create_new_session}:"
-    ID="`echo $ID | peco | cut -d: -f1`"
+    ID="`echo $ID | fzf | cut -d: -f1`"
     if [[ "$ID" = "${create_new_session}" ]]; then
         tmux new-session
     elif [[ -n "$ID" ]]; then
@@ -135,4 +126,7 @@ precmd () { vcs_info }
 # prompt
 PROMPT='%c %# '
 RPROMPT='${vcs_info_msg_0_}'
+
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
