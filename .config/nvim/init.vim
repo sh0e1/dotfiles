@@ -105,6 +105,12 @@ let g:falcon_background = 0
 let g:falcon_inactive = 1
 colorscheme falcon
 
+" this enables us to undo files even if you exit Vim.
+if has('persistent_undo')
+  set undofile
+  set undodir=~/.vim/undo//
+endif
+
 " key mapping
 let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
@@ -215,3 +221,38 @@ function! s:build_go_files()
   endif
 endfunction
 
+" fzf.vim
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+let $FZF_DEFAULT_OPTS = '--reverse --inline-info'
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_tags_command = 'ctags -R'
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --hidden --glob "!.git/*" %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
