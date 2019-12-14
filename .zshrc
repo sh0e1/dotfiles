@@ -60,6 +60,17 @@ bindkey '^N' history-beginning-search-forward
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 
+# fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_TMUX=1
+export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_OPTS="--reverse --inline-info"
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
+export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+bindkey '^D' fzf-cd-widget
+
 # nvm
 export NVM_DIR="$HOME/.nvm"
     . "/usr/local/opt/nvm/nvm.sh"
@@ -72,9 +83,6 @@ export NVM_DIR="$HOME/.nvm"
 # GOPATH
 export GOPATH=$HOME/workspace/gopath
 export PATH=$PATH:$GOPATH/bin
-
-# powerline
-PATH=$PATH:$HOME/Library/Python/3.7/bin
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -126,7 +134,4 @@ precmd () { vcs_info }
 # prompt
 PROMPT='%c %# '
 RPROMPT='${vcs_info_msg_0_}'
-
-# fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
