@@ -29,6 +29,7 @@ if dein#load_state($HOME . '/.cache/dein')
     \ })
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+  call dein#add('cohama/lexima.vim')
 
   " Required:
   call dein#end()
