@@ -76,6 +76,7 @@ set incsearch
 set list
 set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
 set clipboard+=unnamedplus
+set mouse=a
 
 function! DoubleBytesSpace()
     highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#990000
