@@ -66,7 +66,7 @@ export FZF_TMUX=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 export FZF_DEFAULT_OPTS="--reverse --inline-info"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--preview 'head -100 {}'"
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {} | head -500'"
 export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 bindkey '^D' fzf-cd-widget
