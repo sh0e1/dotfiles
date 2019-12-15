@@ -6,57 +6,60 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'Shougo/deoplete.nvim'
+if !has('nvim')
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif
+Plugin 'Shougo/neosnippet.vim'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'autozimu/languageclient-neovim'
 Plugin 'fatih/vim-go'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'prabirshrestha/async.vim'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'SirVer/ultisnips'
-Plugin 'Shougo/unite.vim'
 Plugin 'cohama/lexima.vim'
-Plugin 'justmao945/vim-clang'
 Plugin 'itchyny/lightline.vim'
+Plugin 'fenetikm/falcon'
+Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install --all'}
+Plugin 'junegunn/fzf.vim'
 call vundle#end()
 filetype plugin indent on
 
-set ttyfast                    " Indicate fast terminal conn for faster redraw
-set ttymouse=xterm2            " Indicate terminal type for mouse codes
-set ttyscroll=3                " Speedup scrolling
-set number                     " Show line numbers
-set noerrorbells               " No beeps
-set noshowmatch                " Do not show matching brackets by flickering
-set laststatus=2               " Show status line always
-set title                      " Show title
-set spell                      " Spelling checker set spelllang=en,cjk Language to check spelling
-set encoding=utf-8             " Set default encoding to UTF-8
-set ambiwidth=double           " Ambiguous character width
-set confirm                    " If there are unstored files, save before saving
-set hidden                     " Buffer should still exist if window is closed
-set autoread                   " Automatically read changed files
-set nobackup                   " Don't create annoying backup files
-set noswapfile                 " Don't use swapfile
-set wildmode=list:longest,full " Complement mode
-set showcmd                    " Show me what I'm typing
-set autowrite                  " Automatically save before :next, :make etc
-set autoindent                 " Enable auto indent
-set backspace=indent,eol,start " Makes backspace key more powerful
-set helplang=ja                " Display help in Japanese
-set guifont=RobotoMonoForPowerline-Regular:h12         " GUI font
-set linespace=2                " Set line spacing
-set cursorline                 " Show cursor line
-set showtabline=2              " Always display the tabline, even if there is only one tab
-set noshowmode                 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+set number
+set noerrorbells
+set noshowmatch
+set laststatus=2
+set title
+set spell
+set encoding=utf-8
+set ambiwidth=double
+set confirm
+set hidden
+set autoread
+set nobackup
+set noswapfile
+set wildmode=list:longest,full
+set showcmd
+set autowrite
+set autoindent
+set backspace=indent,eol,start
+set helplang=ja
+set linespace=2
+set cursorline
+set showtabline=2
+set noshowmode
 set hlsearch
 set ignorecase
-set incsearch
 set smartcase
-" Show Invisible character
+set wrapscan
+set incsearch
 set list
 set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
-set clipboard+=unnamed " clipboard
+set clipboard+=unnamed
+set mouse=a
 
-" color scheme
-syntax on
-" Show double bytes space
+syntax enable
+
 function! DoubleBytesSpace()
     highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#990000
 endfunction
@@ -77,7 +80,21 @@ augroup highlight
                       \ | highlight SpellBad cterm=underline gui=underline
 augroup END
 
-colorscheme darcula
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+let g:falcon_lightline = 1
+let g:falcon_background = 0
+let g:falcon_inactive = 1
+colorscheme falcon
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " This enables us to undo files even if you exit Vim.
 if has('persistent_undo')
@@ -85,14 +102,17 @@ if has('persistent_undo')
     set undodir=~/.vim/undo//
 endif
 
-" key bind
+" key mappings
 let mapleader = "\<Space>"
-map <C-n> :cnext<CR>
-map <C-m> :cprevious<CR>
-nnoremap <leader>a :cclose<CR>
 inoremap <silent> jj <ESC>
 noremap j gj
 noremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " Indent by file type
 if has("autocmd")
@@ -101,14 +121,32 @@ if has("autocmd")
     autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
-" go-langserver
-if executable('go-langserver')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'go-langserver',
-        \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-endif
+" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+  \ 'go': ['gopls']
+  \ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+let g:LanguageClient_useVirtualText = 0
+set signcolumn=yes
+
+" neosnippet.vim
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+
+" deoplete
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
+
+" lightline
+let g:lightline = {'colorscheme': 'falcon'}
+
+" NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeShowHidden=1
+let g:NERDTreeIgnore=['\.git$']
 
 " vim-go
 let g:go_fmt_command = "goimports"
@@ -126,6 +164,13 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_generate_tags = 1
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
+let g:go_referrers_mode = 'gopls'
+let g:go_gopls_enabled = 1
+let g:go_snippet_engine = "neosnippet"
+let g:go_gopls_complete_unimported = 1
 
 " Open :GoDeclsDir with ctrl-g
 nmap <C-g> :GoDeclsDir<cr>
@@ -170,8 +215,38 @@ function! s:build_go_files()
     endif
 endfunction
 
-" NERDTree
-nmap <C-n><C-t> :NERDTreeToggle<CR>
+" fzf.vim
+let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
+let $FZF_DEFAULT_OPTS = '--reverse --inline-info'
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit' }
+let g:fzf_buffers_jump = 1
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+let g:fzf_tags_command = 'ctags -R'
+let g:fzf_commands_expect = 'alt-enter,ctrl-x'
 
-" unite.vim
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case --hidden --glob "!.git/*" %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
+
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
