@@ -46,6 +46,7 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
+
 set number
 set noerrorbells
 set noshowmatch
@@ -182,6 +183,10 @@ let g:go_referrers_mode = 'gopls'
 let g:go_gopls_enabled = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_gopls_complete_unimported = 1
+
+" Open :GoDeclsDir with ctrl-g
+nmap <C-g> :GoDeclsDir<cr>
+imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
 
 augroup go
   autocmd!
