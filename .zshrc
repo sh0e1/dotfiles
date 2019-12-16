@@ -71,24 +71,9 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 bindkey '^D' fzf-cd-widget
 
-# nvm
-export NVM_DIR="$HOME/.nvm"
-    . "/usr/local/opt/nvm/nvm.sh"
-
-# goenv
-#export GOENV_ROOT="$HOME/.goenv"
-#export PATH="$GOENV_ROOT/bin:$PATH"
-#eval "$(goenv init -)"
-
 # GOPATH
 export GOPATH=$HOME/workspace/gopath
 export PATH=$PATH:$GOPATH/bin
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 # google-cloud-sdk
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
