@@ -283,20 +283,54 @@ inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
 
 " lightline
 function! CocCurrentFunction()
-  return get(b:, 'coc_current_function', '')
+  let f = get(b:, 'coc_current_function', '')
+  return f == '' ? '' : f . '()'
+endfunction
+
+" Helper function for LightlineCoc*() functions.
+function! s:lightline_coc_diagnostic(kind, sign) abort
+  let info = get(b:, 'coc_diagnostic_info', 0)
+  if empty(info) || get(info, a:kind, 0) == 0
+    return ''
+  endif
+  return printf("%s %d", a:sign, info[a:kind])
+endfunction
+
+" Used in LightLine config to show diagnostic messages.
+function! LightlineCocErrors() abort
+  return s:lightline_coc_diagnostic('error', '●')
+endfunction
+function! LightlineCocWarnings() abort
+    return s:lightline_coc_diagnostic('warning', "●")
+endfunction
+function! LightlineCocInfos() abort
+  return s:lightline_coc_diagnostic('information', "●")
+endfunction
+function! LightlineCocHints() abort
+  return s:lightline_coc_diagnostic('hints', "●")
 endfunction
 
 let g:lightline = {
   \ 'colorscheme': 'falcon',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-  \ },
+  \             [ 'readonly', 'relativepath', 'modified' ],
+  \             [ 'coc_error', 'coc_warning', 'coc_info', 'coc_hint' ], ] },
+  \ 'component_expand': {
+  \   'coc_error': 'LightlineCocErrors',
+  \   'coc_warning': 'LightlineCocWarnings',
+  \   'coc_info': 'LightlineCocInfos',
+  \   'coc_hint': 'LightlineCocHints' },
+  \ 'component_type': {
+  \   'coc_error': 'error',
+  \   'coc_warning': 'warning',
+  \   'coc_info': 'tabsel',
+  \   'coc_hint': 'middle' },
   \ 'component_function': {
-  \   'cocstatus': 'coc#status',
-  \   'currentfunction': 'CocCurrentFunction'
-  \ },
+  \   'currentfunction': 'CocCurrentFunction' },
   \ }
+
+autocmd User CocDiagnosticChange call lightline#update()
 
 " NERDTree
 autocmd StdinReadPre * let s:std_in=1
