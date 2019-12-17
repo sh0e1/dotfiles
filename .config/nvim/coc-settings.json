@@ -4,6 +4,17 @@
   "diagnostic.warningSign": "●",
   "diagnostic.infoSign": "●",
   "diagnostic.hintSign": "●",
+  "diagnostic.signOffset": 9999999,
+  "diagnostic.locationlist": true,
+  "diagnostic.messageTarget": "echo",
+  // suggest
+  "suggest.floatEnable": false,
+  // signature
+  "signature.target": "echo",
+  // coc
+  "coc.preferences.colorSupport": true,
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.hoverTarget": "echo",
   // languageserver
   "languageserver": {
     "golang": {
