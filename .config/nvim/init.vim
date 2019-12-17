@@ -17,7 +17,7 @@ if dein#load_state($HOME . '/.cache/dein')
   " Add or remove your plugins here like this:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('Shougo/deoplete.nvim')
+  "call dein#add('Shougo/deoplete.nvim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('fatih/vim-go')
@@ -277,9 +277,9 @@ smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " deoplete
-let g:deoplete#enable_at_startup = 1
-inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
+"let g:deoplete#enable_at_startup = 1
+"inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
+"inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
 
 " lightline
 function! CocCurrentFunction()
