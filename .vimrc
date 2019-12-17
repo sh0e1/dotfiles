@@ -146,7 +146,7 @@ let g:lightline = {'colorscheme': 'falcon'}
 " NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeShowHidden=1
-let g:NERDTreeIgnore=['\.git$']
+let g:NERDTreeIgnore=['\.git$', '\.idea$']
 
 " vim-go
 let g:go_fmt_command = "goimports"
