@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
@@ -48,14 +51,16 @@ endif
 
 "End dein Scripts-------------------------
 
+set fileencoding=utf-8
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932
+set fileformats=unix,dos,mac
+set ambiwidth=double
 set number
 set noerrorbells
 set noshowmatch
 set laststatus=2
 set title
 set spell
-set encoding=utf-8
-set ambiwidth=double
 set confirm
 set hidden
 set autoread
@@ -64,7 +69,6 @@ set noswapfile
 set wildmode=list:longest,full
 set showcmd
 set autowrite
-set autoindent
 set backspace=indent,eol,start
 set helplang=ja
 set linespace=2
@@ -79,7 +83,36 @@ set incsearch
 set list
 set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
 set clipboard+=unnamedplus
-set mouse=a
+set expandtab
+set tabstop=4
+set softtabstop=4
+set autoindent
+set smartindent
+set shiftwidth=4
+
+if has('mouse')
+  set mouse=a
+  if has('mouse_sgr')
+    set ttymouse=sgr
+  elseif v:version > 703 || v:version is 703 && has('patch632')
+    set ttymouse=sgr
+  else
+    set ttymouse=xterm2
+  endif
+endif
+
+if &term =~ "xterm"
+  let &t_SI .= "\e[?2004h"
+  let &t_EI .= "\e[?2004l"
+  let &pastetoggle = "\e[201~"
+
+  function XTermPasteBegin(ret)
+    set paste
+    return a:ret
+  endfunction
+
+  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
 
 function! DoubleBytesSpace()
     highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#990000
@@ -125,6 +158,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 if has("autocmd")
   " sw=softtabstop, sts=shiftwidth, ts=tabstop, et=expandtab
