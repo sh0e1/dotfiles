@@ -368,7 +368,10 @@ let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
 "let g:go_auto_type_info = 1
 "let g:go_auto_sameids = 1
+let g:go_metalinter_command = "golangci-lint"
+let g:go_metalinter_enabled = ["govet", "errcheck", "staticcheck", "unused", "gosimple", "structcheck", "varcheck", "ineffassign", "deadcode"]
 let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ["govet", "errcheck", "staticcheck", "unused", "gosimple", "structcheck", "varcheck", "ineffassign", "deadcode"]
 let g:go_term_mode = 'split'
 
 let g:go_highlight_types = 1
@@ -385,6 +388,8 @@ let g:go_referrers_mode = 'gopls'
 let g:go_gopls_enabled = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_gopls_complete_unimported = 1
+
+"let g:go_debug = ["shell-commands"]
 
 " Open :GoDeclsDir with ctrl-g
 nmap <C-g> :GoDeclsDir<cr>
