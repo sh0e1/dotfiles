@@ -1,6 +1,5 @@
 {
   // diagnostic
-  "diagnostic.signOffset": 9999999,
   "diagnostic.locationlist": true,
   "diagnostic.messageTarget": "echo",
   "diagnostic.refreshOnInsertMode": true,

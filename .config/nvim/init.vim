@@ -472,5 +472,5 @@ endfunction
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 " vim-gitgutter
-nmap ]h <Plug>(GitGutterNextHunk)
 nmap [h <Plug>(GitGutterPrevHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
