@@ -100,7 +100,7 @@ if &term =~ "xterm"
 endif
 
 function! DoubleBytesSpace()
-    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#990000
+    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#bf616a
 endfunction
 
 if has('syntax')

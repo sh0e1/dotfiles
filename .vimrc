@@ -14,25 +14,31 @@ endif
 Plugin 'Shougo/neosnippet.vim'
 Plugin 'Shougo/neosnippet-snippets'
 Plugin 'autozimu/languageclient-neovim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/nerdtree'
 Plugin 'fatih/vim-go'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'cohama/lexima.vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'fenetikm/falcon'
-Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do':'./install --all'}
+Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plugin 'junegunn/fzf.vim'
+Plugin 'cohama/lexima.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'arcticicestudio/nord-vim'
 call vundle#end()
 filetype plugin indent on
+syntax enable
 
+set encoding=utf-8
+scriptencoding utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932
+set fileformats=unix,dos,mac
+set ambiwidth=double
 set number
 set noerrorbells
 set noshowmatch
 set laststatus=2
 set title
 set spell
-set encoding=utf-8
-set ambiwidth=double
 set confirm
 set hidden
 set autoread
@@ -41,7 +47,6 @@ set noswapfile
 set wildmode=list:longest,full
 set showcmd
 set autowrite
-set autoindent
 set backspace=indent,eol,start
 set helplang=ja
 set linespace=2
@@ -55,13 +60,17 @@ set wrapscan
 set incsearch
 set list
 set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
-set clipboard+=unnamed
+set clipboard+=unnamedplus
+set expandtab
+set tabstop=4
+set softtabstop=4
+set autoindent
+set smartindent
+set shiftwidth=4
 set mouse=a
 
-syntax enable
-
 function! DoubleBytesSpace()
-    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#990000
+    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#bf616a
 endfunction
 
 if has('syntax')
@@ -80,13 +89,16 @@ augroup highlight
                       \ | highlight SpellBad cterm=underline gui=underline
 augroup END
 
+" colorscheme
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let g:falcon_lightline = 1
-let g:falcon_background = 0
-let g:falcon_inactive = 1
-colorscheme falcon
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+colorscheme nord
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -113,6 +125,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 " Indent by file type
 if has("autocmd")
@@ -141,9 +154,11 @@ inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
 
 " lightline
-let g:lightline = {'colorscheme': 'falcon'}
+let g:lightline = {'colorscheme': 'nord'}
 
 " NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 let g:NERDTreeShowHidden=1
 let g:NERDTreeIgnore=['\.git$', '\.idea$']
@@ -154,7 +169,10 @@ let g:go_autodetect_gopath = 1
 let g:go_list_type = "quickfix"
 "let g:go_auto_type_info = 1
 "let g:go_auto_sameids = 1
+let g:go_metalinter_command = "golangci-lint"
+let g:go_metalinter_enabled = ["govet", "errcheck", "staticcheck", "unused", "gosimple", "structcheck", "varcheck", "ineffassign", "deadcode"]
 let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ["govet", "errcheck", "staticcheck", "unused", "gosimple", "structcheck", "varcheck", "ineffassign", "deadcode"]
 let g:go_term_mode = 'split'
 
 let g:go_highlight_types = 1
@@ -172,6 +190,8 @@ let g:go_gopls_enabled = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_gopls_complete_unimported = 1
 
+"let g:go_debug = ["shell-commands"]
+"
 " Open :GoDeclsDir with ctrl-g
 nmap <C-g> :GoDeclsDir<cr>
 imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
@@ -250,3 +270,7 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+
+" vim-gitgutter
+nmap [h <Plug>(GitGutterPrevHunk)
+nmap ]h <Plug>(GitGutterNextHunk)
