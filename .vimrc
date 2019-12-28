@@ -60,7 +60,7 @@ set wrapscan
 set incsearch
 set list
 set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
-set clipboard+=unnamedplus
+set clipboard+=unnamed
 set expandtab
 set tabstop=4
 set softtabstop=4
