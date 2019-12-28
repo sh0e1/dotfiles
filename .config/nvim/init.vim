@@ -17,21 +17,16 @@ if dein#load_state($HOME . '/.cache/dein')
   " Add or remove your plugins here like this:
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
-  "call dein#add('Shougo/deoplete.nvim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('fatih/vim-go')
   call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('fenetikm/falcon')
-  "call dein#add('autozimu/LanguageClient-neovim', {
-  "  \ 'rev': 'next',
-  "  \ 'build': 'bash install.sh',
-  "  \ })
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
   call dein#add('cohama/lexima.vim')
   call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('arcticicestudio/nord-vim')
 
   " Required:
   call dein#end()
@@ -126,10 +121,12 @@ augroup END
 
 " color scheme
 set termguicolors
-let g:falcon_lightline = 1
-let g:falcon_background = 0
-let g:falcon_inactive = 1
-colorscheme falcon
+let g:nord_cursor_line_number_background = 1
+let g:nord_bold = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+colorscheme nord
 
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
@@ -286,24 +283,10 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" LanguageClient-neovim
-"let g:LanguageClient_serverCommands = {
-"  \ 'go': ['gopls']
-"  \ }
-"nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-"let g:LanguageClient_useVirtualText = 0
-"set signcolumn=yes
-
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" deoplete
-"let g:deoplete#enable_at_startup = 1
-"inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
-"inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
 
 " lightline
 function! CocCurrentFunction()
@@ -335,7 +318,7 @@ function! LightlineCocHints() abort
 endfunction
 
 let g:lightline = {
-  \ 'colorscheme': 'falcon',
+  \ 'colorscheme': 'nord',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'relativepath', 'modified' ],
