@@ -128,6 +128,21 @@ let g:nord_italic_comments = 1
 let g:nord_underline = 1
 colorscheme nord
 
+" Background colors for active vs inactive windows
+hi ActiveWindow guibg=#2e3440
+hi InactiveWindow guibg=#292e39
+
+" Call method on window enter
+augroup WindowManagement
+  autocmd!
+  autocmd WinEnter * call Handle_Win_Enter()
+augroup END
+
+" Change highlight group of active/inactive windows
+function! Handle_Win_Enter()
+  setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+endfunction
+
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
