@@ -27,6 +27,8 @@ if dein#load_state($HOME . '/.cache/dein')
   call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
   call dein#add('airblade/vim-gitgutter')
   call dein#add('arcticicestudio/nord-vim')
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('previm/previm')
 
   " Required:
   call dein#end()
@@ -472,3 +474,10 @@ command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 " vim-gitgutter
 nmap [h <Plug>(GitGutterPrevHunk)
 nmap ]h <Plug>(GitGutterNextHunk)
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+" previm/previm
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Google\ Chrome'

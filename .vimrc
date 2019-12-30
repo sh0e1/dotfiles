@@ -23,6 +23,8 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'cohama/lexima.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'previm/previm'
 call vundle#end()
 filetype plugin indent on
 syntax enable
@@ -274,3 +276,10 @@ command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 " vim-gitgutter
 nmap [h <Plug>(GitGutterPrevHunk)
 nmap ]h <Plug>(GitGutterNextHunk)
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+
+" previm/previm
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Google\ Chrome'
