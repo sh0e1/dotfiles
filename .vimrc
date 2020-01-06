@@ -17,7 +17,6 @@ Plugin 'autozimu/languageclient-neovim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'fatih/vim-go'
-Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plugin 'junegunn/fzf.vim'
 Plugin 'cohama/lexima.vim'
@@ -110,6 +109,10 @@ else
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
+" Background colors for active vs inactive windows
+hi ActiveWindow guibg=#2e3440
+hi InactiveWindow guibg=#292e39
+
 " This enables us to undo files even if you exit Vim.
 if has('persistent_undo')
     set undofile
@@ -189,8 +192,9 @@ let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_referrers_mode = 'gopls'
 let g:go_gopls_enabled = 1
-let g:go_snippet_engine = "neosnippet"
 let g:go_gopls_complete_unimported = 1
+let g:go_decls_mode = "fzf"
+let g:go_snippet_engine = "neosnippet"
 
 "let g:go_debug = ["shell-commands"]
 "
