@@ -1,4 +1,4 @@
 .vim/undo/*
 .vim/bundle/*
+.tmux/plugins/*
 !.gitkeep
-
