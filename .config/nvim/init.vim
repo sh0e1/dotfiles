@@ -20,7 +20,6 @@ if dein#load_state($HOME . '/.cache/dein')
   call dein#add('itchyny/lightline.vim')
   call dein#add('scrooloose/nerdtree')
   call dein#add('fatih/vim-go', {'lazy': 1, 'on_ft': 'go'})
-  call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
   call dein#add('cohama/lexima.vim')
@@ -387,8 +386,9 @@ let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 let g:go_referrers_mode = 'gopls'
 let g:go_gopls_enabled = 1
-let g:go_snippet_engine = "neosnippet"
 let g:go_gopls_complete_unimported = 1
+let g:go_decls_mode = "fzf"
+let g:go_snippet_engine = "neosnippet"
 
 "let g:go_debug = ["shell-commands"]
 
