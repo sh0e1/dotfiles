@@ -144,7 +144,7 @@ inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
 
 " lightline
-let g:lightline = {'colorscheme': 'nord'}
+let g:lightline = {'colorscheme': 'materia'}
 
 " NERDTree
 autocmd StdinReadPre * let s:std_in=1
