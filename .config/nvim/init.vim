@@ -28,6 +28,7 @@ if dein#load_state($HOME . '/.cache/dein')
   call dein#add('arcticicestudio/nord-vim')
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('previm/previm', {'lazy': 1, 'on_ft': 'md'})
+  call dein#add('kristijanhusak/vim-hybrid-material')
 
   " Required:
   call dein#end()
@@ -101,7 +102,7 @@ if &term =~ "xterm"
 endif
 
 function! DoubleBytesSpace()
-    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#bf616a
+    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#e53935
 endfunction
 
 if has('syntax')
@@ -122,27 +123,9 @@ augroup END
 
 " color scheme
 set termguicolors
-let g:nord_cursor_line_number_background = 1
-let g:nord_bold = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
-colorscheme nord
-
-" Background colors for active vs inactive windows
-hi ActiveWindow guibg=#2e3440
-hi InactiveWindow guibg=#292e39
-
-" Call method on window enter
-augroup WindowManagement
-  autocmd!
-  autocmd WinEnter * call Handle_Win_Enter()
-augroup END
-
-" Change highlight group of active/inactive windows
-function! Handle_Win_Enter()
-  setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-endfunction
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+colorscheme hybrid_material
 
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
@@ -334,7 +317,7 @@ function! LightlineCocHints() abort
 endfunction
 
 let g:lightline = {
-  \ 'colorscheme': 'nord',
+  \ 'colorscheme': 'materia',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'relativepath', 'modified' ],
