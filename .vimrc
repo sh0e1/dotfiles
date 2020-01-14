@@ -21,9 +21,9 @@ Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plugin 'junegunn/fzf.vim'
 Plugin 'cohama/lexima.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'arcticicestudio/nord-vim'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'previm/previm'
+Plugin 'kristijanhusak/vim-hybrid-material'
 call vundle#end()
 filetype plugin indent on
 syntax enable
@@ -71,7 +71,7 @@ set shiftwidth=4
 set mouse=a
 
 function! DoubleBytesSpace()
-    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#bf616a
+    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#e53935
 endfunction
 
 if has('syntax')
@@ -94,24 +94,9 @@ augroup END
 set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-let g:nord_cursor_line_number_background = 1
-let g:nord_bold = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
-colorscheme nord
-
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-" Background colors for active vs inactive windows
-hi ActiveWindow guibg=#2e3440
-hi InactiveWindow guibg=#292e39
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+colorscheme hybrid_material
 
 " This enables us to undo files even if you exit Vim.
 if has('persistent_undo')
