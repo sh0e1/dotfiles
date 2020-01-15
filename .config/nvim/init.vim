@@ -102,7 +102,7 @@ if &term =~ "xterm"
 endif
 
 function! DoubleBytesSpace()
-    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#e53935
+    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#cc6666
 endfunction
 
 if has('syntax')
@@ -125,7 +125,7 @@ augroup END
 set termguicolors
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
-colorscheme hybrid_material
+colorscheme hybrid_reverse
 
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
@@ -317,7 +317,7 @@ function! LightlineCocHints() abort
 endfunction
 
 let g:lightline = {
-  \ 'colorscheme': 'materia',
+  \ 'colorscheme': 'wombat',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ],
   \             [ 'readonly', 'relativepath', 'modified' ],
