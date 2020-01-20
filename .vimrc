@@ -24,6 +24,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'previm/previm'
 Plugin 'kristijanhusak/vim-hybrid-material'
+Plugin 'tpope/vim-surround'
 call vundle#end()
 filetype plugin indent on
 syntax enable

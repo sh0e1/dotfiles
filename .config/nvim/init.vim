@@ -29,6 +29,7 @@ if dein#load_state($HOME . '/.cache/dein')
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('previm/previm', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('kristijanhusak/vim-hybrid-material')
+  call dein#add('tpope/vim-surround')
 
   " Required:
   call dein#end()
