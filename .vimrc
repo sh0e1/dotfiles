@@ -99,6 +99,13 @@ let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 colorscheme hybrid_reverse
 
+" cursor style
+if has('vim_starting')
+    let &t_SI .= "\e[6 q"
+    let &t_EI .= "\e[2 q"
+    let &t_SR .= "\e[4 q"
+endif
+
 " This enables us to undo files even if you exit Vim.
 if has('persistent_undo')
     set undofile
