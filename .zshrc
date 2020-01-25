@@ -49,7 +49,8 @@ alias lst='ls -ltrFG'
 alias ls='ls -FG'
 alias la='ls -laFG'
 alias ll='ls -lFG'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 alias c='cdr'
 alias cp='cp -i'
 alias rm='rm -i'
@@ -120,6 +121,6 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 
 # prompt
-PROMPT='%c %# '
+PROMPT='%c > '
 RPROMPT='${vcs_info_msg_0_}'
 
