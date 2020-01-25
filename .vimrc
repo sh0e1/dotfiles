@@ -71,19 +71,6 @@ set smartindent
 set shiftwidth=4
 set mouse=a
 
-function! DoubleBytesSpace()
-    highlight DoubleBytesSpace ctermfg=15 ctermbg=88 guifg=#ffffff guibg=#cc6666
-endfunction
-
-if has('syntax')
-    augroup DoubleBytesSpace
-        autocmd!
-        autocmd ColorScheme       * call DoubleBytesSpace()
-        autocmd VimEnter,WinEnter * match DoubleBytesSpace /　/
-    augroup END
-    call DoubleBytesSpace()
-endif
-
 augroup highlight
     autocmd!
     autocmd ColorScheme * highlight SpecialKey ctermfg=244 ctermbg=NONE guifg=#8e9292 guibg=NONE gui=none
