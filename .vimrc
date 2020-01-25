@@ -92,9 +92,11 @@ augroup highlight
 augroup END
 
 " colorscheme
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 colorscheme hybrid_reverse
