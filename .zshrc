@@ -15,6 +15,9 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 zstyle ':completion::complete:*' use-cache true
 
+# lang
+export LANG=ja_JP.UTF-8
+
 # color
 autoload -Uz colors
 colors
