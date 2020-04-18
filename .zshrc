@@ -124,3 +124,7 @@ precmd () { vcs_info }
 PROMPT='%c > '
 RPROMPT='${vcs_info_msg_0_}'
 
+# openjdk
+if [ -d /usr/local/opt/openjdk/bin ]; then
+    export PATH="/usr/local/opt/openjdk/bin:$PATH"
+fi
