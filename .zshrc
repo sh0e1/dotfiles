@@ -74,9 +74,10 @@ export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap 
 export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
 bindkey '^D' fzf-cd-widget
 
-# GOPATH
+# Go
 export GOPATH=$HOME/workspace/gopath
-export PATH=$PATH:$GOPATH/bin
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOPATH:$GOBIN
 
 # google-cloud-sdk
 source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
