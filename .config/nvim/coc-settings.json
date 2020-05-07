@@ -22,6 +22,11 @@
       "command": "docker-langserver",
       "filetypes": ["dockerfile"],
       "args": ["--stdio"]
+    },
+    "terraform": {
+      "command": "terraform-lsp",
+      "filetypes": ["tf"],
+      "initializationOptions": {}
     }
   }
 }
