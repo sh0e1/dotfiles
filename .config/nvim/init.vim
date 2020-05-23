@@ -30,6 +30,7 @@ if dein#load_state($HOME . '/.cache/dein')
   call dein#add('previm/previm', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('kristijanhusak/vim-hybrid-material')
   call dein#add('tpope/vim-surround')
+  call dein#add('bfredl/nvim-miniyank')
 
   " Required:
   call dein#end()
@@ -137,6 +138,10 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+" nvim-miniyank
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
 
 if has("autocmd")
   " sw=softtabstop, sts=shiftwidth, ts=tabstop, et=expandtab
