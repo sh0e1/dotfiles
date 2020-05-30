@@ -121,8 +121,7 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 
 # prompt
-PROMPT='%c > '
-RPROMPT='${vcs_info_msg_0_}'
+PROMPT='%c ${vcs_info_msg_0_} > '
 
 # openjdk
 if [ -d /usr/local/opt/openjdk/bin ]; then
