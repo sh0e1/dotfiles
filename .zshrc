@@ -87,6 +87,11 @@ if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
 fi
 
+# krew
+if [ -d ${HOME}/.krew/bin ]; then
+    export PATH="${PATH}:${HOME}/.krew/bin"
+fi
+
 # direnv
 export EDITOR=vim
 eval "$(direnv hook zsh)"
