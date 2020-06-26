@@ -128,3 +128,9 @@ RPROMPT='${vcs_info_msg_0_}'
 if [ -d /usr/local/opt/openjdk/bin ]; then
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
 fi
+
+# Rust
+if [ -d $HOME/.cargo ]; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+    source $HOME/.cargo/env
+fi
