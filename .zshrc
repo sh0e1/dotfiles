@@ -143,5 +143,5 @@ fi
 # rbenv
 if [ -e /usr/local/bin/rbenv ]; then
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-    export PATH=~/.rbenv/shims:$PATH
+    eval "$(rbenv init -)"
 fi
