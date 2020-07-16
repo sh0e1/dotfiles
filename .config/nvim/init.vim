@@ -31,6 +31,7 @@ if dein#load_state($HOME . '/.cache/dein')
   call dein#add('kristijanhusak/vim-hybrid-material')
   call dein#add('tpope/vim-surround')
   call dein#add('bfredl/nvim-miniyank')
+  call dein#add('easymotion/vim-easymotion')
 
   " Required:
   call dein#end()
@@ -461,3 +462,19 @@ let g:vim_markdown_folding_disabled = 1
 " previm/previm
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 let g:previm_open_cmd = 'open -a Google\ Chrome'
+
+" vim-easymotion
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
