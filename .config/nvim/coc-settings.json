@@ -24,7 +24,7 @@
       "args": ["--stdio"]
     },
     "terraform": {
-      "command": "terraform-lsp",
+      "command": "terraform-ls",
       "filetypes": ["tf"],
       "initializationOptions": {}
     }
