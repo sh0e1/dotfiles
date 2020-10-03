@@ -12,7 +12,5 @@ do
   ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
 done
 
-go get -u github.com/sourcegraph/go-langserver
-
 echo "Install dotfiles complate."
 
