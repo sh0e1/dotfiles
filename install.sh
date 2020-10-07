@@ -1,16 +1,20 @@
 #!/bin/bash
+
 set -e
 
-DOT_DIRECTORY=`pwd`
+dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
 
-for f in .??*
-do
+for f in .??*; do
   [[ "$f" == ".git" ]] && continue
   [[ "$f" == ".DS_Store" ]] && continue
   [[ "$f" == ".gitignore" ]] && continue
-
-  ln -snfv ${DOT_DIRECTORY}/${f} ${HOME}/${f}
+  [[ "$f" == ".config" ]] && continue
+  ln -snfv ${dir}/${f} ${HOME}/${f}
 done
 
-echo "Install dotfiles complate."
+for f in .config/??*; do
+  ln -snfv ${dir}/${f} ${HOME}/${f}
+done
+
+echo "The dotfiles have been copied."
 
