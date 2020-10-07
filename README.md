@@ -3,7 +3,7 @@
 ## Usage
 
 ```bash
-$ ./install.sh
+./install.sh
 ```
 
 ### nvim
