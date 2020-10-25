@@ -1,6 +1,5 @@
 {
   // diagnostic
-  "diagnostic.locationlist": true,
   "diagnostic.messageTarget": "echo",
   "diagnostic.refreshOnInsertMode": true,
   // suggest
