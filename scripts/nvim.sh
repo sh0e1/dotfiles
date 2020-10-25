@@ -12,3 +12,4 @@ rm -f ${dir}/installer.sh
 # textlint
 npm install -g textlint
 npm install -g textlint-rule-preset-ja-technical-writing
+go get github.com/mattn/efm-langserver
