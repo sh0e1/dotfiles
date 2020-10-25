@@ -27,6 +27,11 @@
       "command": "terraform-ls",
       "filetypes": ["tf"],
       "initializationOptions": {}
+    },
+    "efm": {
+      "command": "efm-langserver",
+      "args": [],
+      "filetypes": ["markdown"]
     }
   }
 }
