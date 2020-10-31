@@ -16,6 +16,7 @@ brew "terraform-ls"
 brew "tig"
 brew "tmux"
 brew "zsh"
+brew "jq"
 
 # cask
 brew "alacritty"
