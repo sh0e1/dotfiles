@@ -17,6 +17,8 @@ brew "tig"
 brew "tmux"
 brew "zsh"
 brew "jq"
+brew "tree"
+brew "bat"
 
 # cask
 brew "alacritty"
