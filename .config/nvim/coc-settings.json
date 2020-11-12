@@ -24,8 +24,13 @@
     },
     "terraform": {
       "command": "terraform-ls",
-      "filetypes": ["tf"],
-      "initializationOptions": {}
+      "args": ["serve"],
+      "filetypes": [
+        "terraform",
+        "tf"
+      ],
+      "initializationOptions": {},
+      "settings": {}
     },
     "efm": {
       "command": "efm-langserver",
