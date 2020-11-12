@@ -54,6 +54,7 @@ alias c='cdr'
 alias cp='cp -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
+alias vimdiff='nvim -d'
 
 # key bind
 bindkey -v
