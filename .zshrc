@@ -37,7 +37,7 @@ setopt hist_reduce_blanks
 setopt print_eight_bit
 setopt no_flow_control
 setopt extended_glob
-setopt EXTENDED_HISTORY
+setopt extended_history
 setopt hist_verify
 setopt hist_save_no_dups
 setopt hist_no_store
