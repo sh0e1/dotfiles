@@ -139,6 +139,10 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
+map [c :cprevious<CR>
+map ]c :cnext<CR>
 
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
