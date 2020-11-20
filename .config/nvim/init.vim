@@ -483,7 +483,7 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " defx.nvim
-nnoremap <silent> <Leader>d :<C-u>silent call <SID>open_defx()<CR>
+nnoremap <silent> <Leader>e :<C-u>silent call <SID>open_defx()<CR>
 autocmd FileType defx call s:defx_map_settings()
 autocmd FileType defx call defx#custom#column('mark', {
   \   'length': 1,
