@@ -155,9 +155,6 @@ if has("autocmd")
 endif
 
 " coc.nvim
-" if hidden is not set, TextEdit might fail.
-set hidden
-
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
