@@ -152,6 +152,8 @@ if has("autocmd")
   " sw=softtabstop, sts=shiftwidth, ts=tabstop, et=expandtab
   autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType js   setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType vue  setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
 " coc.nvim
