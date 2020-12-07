@@ -29,6 +29,9 @@
 	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
 	allowed = AKIAIOSFODNN7EXAMPLE
 	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    # For GCP. See https://cloud.google.com/blog/ja/products/gcp/help-keep-your-google-cloud-service-account-keys-safe
+	patterns = private_key
+	patterns = private_key_id
 
 [commit]
 	template = ~/.gitmessage.txt
