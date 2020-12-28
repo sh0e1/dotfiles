@@ -9,7 +9,6 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('itchyny/lightline.vim')
@@ -150,9 +149,6 @@ if has("autocmd")
   autocmd FileType js   setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType vue  setlocal ts=2 sts=2 sw=2 expandtab
 endif
-
-" deoplete.nvim
-let g:deoplete#enable_at_startup = 1
 
 " coc.nvim
 " Some servers have issues with backup files, see #649
