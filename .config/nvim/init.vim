@@ -9,8 +9,6 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
   call dein#add('itchyny/lightline.vim')
   call dein#add('fatih/vim-go')
   call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
@@ -148,7 +146,6 @@ if has("autocmd")
   autocmd FileType js   setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType vue  setlocal ts=2 sts=2 sw=2 expandtab
 endif
-
 
 " vim-go
 let g:go_version_warning = 1
