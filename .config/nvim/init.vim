@@ -233,6 +233,11 @@ set cmdheight=2
 let g:echodoc#enable_at_startup = 1
 let g:echodoc#type = 'signature'
 
+" lightline.vim
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ }
+
 " vim-go
 let g:go_version_warning = 1
 let g:go_code_completion_enabled = 0
