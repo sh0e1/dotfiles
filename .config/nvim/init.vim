@@ -25,6 +25,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
   call dein#add('SirVer/ultisnips')
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/echodoc.vim')
 
   call dein#end()
   call dein#save_state()
@@ -210,7 +211,7 @@ let g:LanguageClient_codeLensDisplay = {
 let g:LanguageClient_hoverMarginSize = 1
 let g:LanguageClient_restartOnCrash = 1
 let g:LanguageClient_maxRestartRetries = 5
-let g:LanguageClient_showCompletionDocs = 1
+let g:LanguageClient_showCompletionDocs = 0
 
 function! s:map_language_client_functions() abort
   if has_key(g:LanguageClient_serverCommands, &filetype)
@@ -218,10 +219,18 @@ function! s:map_language_client_functions() abort
     nnoremap <silent> gr  :<C-u>call LanguageClient#textDocument_references()<CR>
     nnoremap <silent> grn :<C-u>call LanguageClient#textDocument_rename()<CR>
     nnoremap <silent> gd  :<C-u>call LanguageClient#textDocument_definition()<CR>
+    nnoremap <silent> gs  :<C-u>call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+    nnoremap <silent> gv  :<C-u>call LanguageClient#textDocument_definition({'gotoCmd': 'vsplit'})<CR>
+    nnoremap <silent> K   :<C-u>call LanguageClient#textDocument_hover()<CR>
   endif
 endfunction
 
 autocmd FileType * call s:map_language_client_functions()
+
+" echodoc.vim
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
 
 " vim-go
 let g:go_version_warning = 1
