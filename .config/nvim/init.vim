@@ -22,6 +22,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('bfredl/nvim-miniyank')
   call dein#add('easymotion/vim-easymotion')
   call dein#add('Shougo/defx.nvim')
+  call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+  call dein#add('SirVer/ultisnips')
+  call dein#add('Shougo/deoplete.nvim')
 
   call dein#end()
   call dein#save_state()
@@ -147,6 +150,9 @@ if has("autocmd")
   autocmd FileType vue  setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
+" deoplete.nvim
+let g:deoplete#enable_at_startup = 1
+
 " vim-go
 let g:go_version_warning = 1
 let g:go_code_completion_enabled = 0
@@ -180,7 +186,7 @@ let g:go_def_mapping_enabled = 0
 let g:go_def_reuse_buffer = 0
 let g:go_bin_path = ''
 let g:go_search_bin_path_first = 1
-let g:go_snippet_engine = "neosnippet"
+let g:go_snippet_engine = "ultisnips"
 let g:go_get_update = 1
 let g:go_guru_scope = []
 let g:go_build_tags = ''
