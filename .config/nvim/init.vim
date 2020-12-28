@@ -86,6 +86,7 @@ set smartindent
 set shiftwidth=4
 set mouse=a
 set signcolumn=yes
+set completeopt-=preview
 
 if &term =~ "xterm"
   let &t_SI .= "\e[?2004h"
