@@ -84,6 +84,7 @@ set autoindent
 set smartindent
 set shiftwidth=4
 set mouse=a
+set signcolumn=yes
 
 if &term =~ "xterm"
   let &t_SI .= "\e[?2004h"
@@ -152,6 +153,75 @@ endif
 
 " deoplete.nvim
 let g:deoplete#enable_at_startup = 1
+
+" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+  \ 'go': {
+  \   'name': 'gopls',
+  \   'command': ['gopls'],
+  \   'initializationOptions': {
+  \     'usePlaceholders': v:true,
+  \   },
+  \ },
+  \ }
+" let g:LanguageClient_diagnosticsDisplay = {}
+let g:LanguageClient_diagnosticsSignsMax = v:null
+let g:LanguageClient_changeThrottle = v:null
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStop = 1
+let g:LanguageClient_selectionUI = 'fzf'
+let g:LanguageClient_selectionUI_autoOpen = 0
+let g:LanguageClient_trace = 'off'
+let g:LanguageClient_diagnosticsList = 'Quickfix'
+let g:LanguageClient_diagnosticsEnable = 1
+let g:LanguageClient_windowLogMessageLevel = 'Warning'
+let g:LanguageClient_settingsPath = '.vim/settings.json'
+let g:LanguageClient_loadSettings = 1
+" let g:LanguageClient_loggingFile = 'null'
+" let g:LanguageClient_loggingLevel = 'WARN'
+" let g:LanguageClient_serverStderr = 'None'
+let g:LanguageClient_rootMarkers = v:null
+let g:LanguageClient_fzfOptions = v:null
+let g:LanguageClient_hasSnippetSupport = 1
+let g:LanguageClient_waitOutputTimeout = 100
+let g:LanguageClient_hoverPreview = 'Always'
+let g:LanguageClient_fzfContextMenu = 1
+let g:LanguageClient_completionPreferTextEdit = 0
+" let g:LanguageClient_documentHighlightDisplay = {}
+let g:LanguageClient_useVirtualText = 'Diagnostics'
+let g:LanguageClient_useFloatingHover = 1
+let g:LanguageClient_floatingHoverHighlight = 'Normal:Pmenu'
+let g:LanguageClient_usePopupHover = 1
+let g:LanguageClient_virtualTextPrefix = '>> '
+let g:LanguageClient_diagnosticsMaxSeverity = 'Hint'
+let g:LanguageClient_diagnosticsIgnoreSources = ['go mod tidy']
+let g:LanguageClient_echoProjectRoot = 0
+" let g:LanguageClient_semanticHighlightMaps = {}
+let g:LanguageClient_applyCompletionAdditionalTextEdits = 1
+let g:LanguageClient_preferredMarkupKind = ['plaintext', 'markdown']
+let g:LanguageClient_floatingWindowStyle = 'minimal'
+let g:LanguageClient_hideVirtualTextsOnInsert = 1
+let g:LanguageClient_setOmnifunc = v:true
+" let g:LanguageClient_binaryPath = 'bin/languageclient'
+let g:LanguageClient_enableExtensions = v:null
+let g:LanguageClient_codeLensDisplay = {
+  \ 'virtualTexthl': 'LanguageClientCodeLens',
+  \ }
+let g:LanguageClient_hoverMarginSize = 1
+let g:LanguageClient_restartOnCrash = 1
+let g:LanguageClient_maxRestartRetries = 5
+let g:LanguageClient_showCompletionDocs = 1
+
+function! s:map_language_client_functions() abort
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <silent> gi  :<C-u>call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <silent> gr  :<C-u>call LanguageClient#textDocument_references()<CR>
+    nnoremap <silent> grn :<C-u>call LanguageClient#textDocument_rename()<CR>
+    nnoremap <silent> gd  :<C-u>call LanguageClient#textDocument_definition()<CR>
+  endif
+endfunction
+
+autocmd FileType * call s:map_language_client_functions()
 
 " vim-go
 let g:go_version_warning = 1
