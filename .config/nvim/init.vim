@@ -182,6 +182,9 @@ let g:LanguageClient_serverCommands = {
   \     'usePlaceholders': v:true,
   \   },
   \ },
+  \ 'dockerfile': ['docker-langserver', '--stdio'],
+  \ 'terraform': ['terraform-ls', 'serve'],
+  \ 'markdown': ['efm-langserver'],
   \ }
 " let g:LanguageClient_diagnosticsDisplay = {}
 let g:LanguageClient_diagnosticsSignsMax = v:null
