@@ -23,9 +23,10 @@ if dein#load_state('~/.cache/dein')
   call dein#add('easymotion/vim-easymotion')
   call dein#add('Shougo/defx.nvim')
   call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
-  call dein#add('SirVer/ultisnips')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/echodoc.vim')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
   call dein#end()
   call dein#save_state()
@@ -155,6 +156,14 @@ endif
 
 " deoplete.nvim
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_delay = 0
+imap <expr><TAB> pumvisible() ? "\<C-n>" : (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+
+" neosnippet.vim
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " LanguageClient-neovim
 let g:LanguageClient_serverCommands = {
@@ -271,7 +280,7 @@ let g:go_def_mapping_enabled = 0
 let g:go_def_reuse_buffer = 0
 let g:go_bin_path = ''
 let g:go_search_bin_path_first = 1
-let g:go_snippet_engine = "ultisnips"
+let g:go_snippet_engine = "neosnippet"
 let g:go_get_update = 1
 let g:go_guru_scope = []
 let g:go_build_tags = ''
