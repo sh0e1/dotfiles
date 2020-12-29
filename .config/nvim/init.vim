@@ -1,28 +1,19 @@
-"dein Scripts-----------------------------
+" dein
 if &compatible
-  set nocompatible               " Be iMproved
+  set nocompatible
 endif
+" Add the dein installation directory into runtimepath
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Required:
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
-" Required:
-if dein#load_state($HOME . '/.cache/dein')
-  call dein#begin($HOME . '/.cache/dein')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add($HOME . '/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here like this:
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('fatih/vim-go')
   call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
   call dein#add('cohama/lexima.vim')
-  call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
   call dein#add('airblade/vim-gitgutter')
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('previm/previm', {'lazy': 1, 'on_ft': 'md'})
@@ -31,22 +22,28 @@ if dein#load_state($HOME . '/.cache/dein')
   call dein#add('bfredl/nvim-miniyank')
   call dein#add('easymotion/vim-easymotion')
   call dein#add('Shougo/defx.nvim')
+  call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': 'bash install.sh'})
+  call dein#add('Shougo/deoplete.nvim')
+  call dein#add('Shougo/echodoc.vim')
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
 
-  " Required:
   call dein#end()
   call dein#save_state()
 endif
 
-" Required:
 filetype plugin indent on
 syntax enable
 
-" If you want to install not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
+let s:removed_plugins = dein#check_clean()
+if len(s:removed_plugins) > 0
+  call map(s:removed_plugins, "delete(v:val, 'rf')")
+  call dein#recache_runtimepath()
+endif
 
 set encoding=utf-8
 scriptencoding utf-8
@@ -89,6 +86,8 @@ set autoindent
 set smartindent
 set shiftwidth=4
 set mouse=a
+set signcolumn=yes
+set completeopt-=preview
 
 if &term =~ "xterm"
   let &t_SI .= "\e[?2004h"
@@ -155,218 +154,218 @@ if has("autocmd")
   autocmd FileType vue  setlocal ts=2 sts=2 sw=2 expandtab
 endif
 
-" coc.nvim
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" deoplete.nvim
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#option('auto_complete_delay', 0)
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ (neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>")
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 xmap <C-k> <Plug>(neosnippet_expand_target)
 
-" lightline
-function! CocCurrentFunction()
-  let f = get(b:, 'coc_current_function', '')
-  return f == '' ? '' : f . '()'
-endfunction
+" LanguageClient-neovim
+let g:LanguageClient_serverCommands = {
+  \ 'go': {
+  \   'name': 'gopls',
+  \   'command': ['gopls'],
+  \   'initializationOptions': {
+  \     'usePlaceholders': v:true,
+  \   },
+  \ },
+  \ 'dockerfile': ['docker-langserver', '--stdio'],
+  \ 'terraform': ['terraform-ls', 'serve'],
+  \ 'markdown': ['efm-langserver'],
+  \ }
+" let g:LanguageClient_diagnosticsDisplay = {}
+let g:LanguageClient_diagnosticsSignsMax = v:null
+let g:LanguageClient_changeThrottle = v:null
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStop = 1
+let g:LanguageClient_selectionUI = 'fzf'
+let g:LanguageClient_selectionUI_autoOpen = 0
+let g:LanguageClient_trace = 'off'
+let g:LanguageClient_diagnosticsList = 'Quickfix'
+let g:LanguageClient_diagnosticsEnable = 1
+let g:LanguageClient_windowLogMessageLevel = 'Warning'
+let g:LanguageClient_settingsPath = '.vim/settings.json'
+let g:LanguageClient_loadSettings = 1
+" let g:LanguageClient_loggingFile = 'null'
+" let g:LanguageClient_loggingLevel = 'WARN'
+" let g:LanguageClient_serverStderr = 'None'
+let g:LanguageClient_rootMarkers = v:null
+let g:LanguageClient_fzfOptions = v:null
+let g:LanguageClient_hasSnippetSupport = 1
+let g:LanguageClient_waitOutputTimeout = 100
+let g:LanguageClient_hoverPreview = 'Always'
+let g:LanguageClient_fzfContextMenu = 1
+let g:LanguageClient_completionPreferTextEdit = 0
+" let g:LanguageClient_documentHighlightDisplay = {}
+let g:LanguageClient_useVirtualText = 'Diagnostics'
+let g:LanguageClient_useFloatingHover = 1
+let g:LanguageClient_floatingHoverHighlight = 'Normal:Pmenu'
+let g:LanguageClient_usePopupHover = 1
+let g:LanguageClient_virtualTextPrefix = '>> '
+let g:LanguageClient_diagnosticsMaxSeverity = 'Hint'
+let g:LanguageClient_diagnosticsIgnoreSources = ['go mod tidy']
+let g:LanguageClient_echoProjectRoot = 0
+" let g:LanguageClient_semanticHighlightMaps = {}
+let g:LanguageClient_applyCompletionAdditionalTextEdits = 1
+let g:LanguageClient_preferredMarkupKind = ['plaintext', 'markdown']
+let g:LanguageClient_floatingWindowStyle = 'minimal'
+let g:LanguageClient_hideVirtualTextsOnInsert = 1
+let g:LanguageClient_setOmnifunc = v:true
+" let g:LanguageClient_binaryPath = 'bin/languageclient'
+let g:LanguageClient_enableExtensions = v:null
+let g:LanguageClient_codeLensDisplay = {
+  \ 'virtualTexthl': 'LanguageClientCodeLens',
+  \ }
+let g:LanguageClient_hoverMarginSize = 1
+let g:LanguageClient_restartOnCrash = 1
+let g:LanguageClient_maxRestartRetries = 5
+let g:LanguageClient_showCompletionDocs = 0
 
-" Helper function for LightlineCoc*() functions.
-function! s:lightline_coc_diagnostic(kind, sign) abort
-  let info = get(b:, 'coc_diagnostic_info', 0)
-  if empty(info) || get(info, a:kind, 0) == 0
-    return ''
+function! s:map_language_client_functions() abort
+  if has_key(g:LanguageClient_serverCommands, &filetype)
+    nnoremap <silent> gi  :<C-u>call LanguageClient#textDocument_implementation()<CR>
+    nnoremap <silent> gr  :<C-u>call LanguageClient#textDocument_references()<CR>
+    nnoremap <silent> grn :<C-u>call LanguageClient#textDocument_rename()<CR>
+    nnoremap <silent> gd  :<C-u>call LanguageClient#textDocument_definition()<CR>
+    nnoremap <silent> gs  :<C-u>call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
+    nnoremap <silent> gv  :<C-u>call LanguageClient#textDocument_definition({'gotoCmd': 'vsplit'})<CR>
+    nnoremap <silent> K   :<C-u>call LanguageClient#textDocument_hover()<CR>
   endif
-  return printf("%s %d", a:sign, info[a:kind])
 endfunction
 
-" Used in LightLine config to show diagnostic messages.
-function! LightlineCocErrors() abort
-  return s:lightline_coc_diagnostic('error', '●')
-endfunction
-function! LightlineCocWarnings() abort
-    return s:lightline_coc_diagnostic('warning', "●")
-endfunction
-function! LightlineCocInfos() abort
-  return s:lightline_coc_diagnostic('information', "●")
-endfunction
-function! LightlineCocHints() abort
-  return s:lightline_coc_diagnostic('hints', "●")
-endfunction
+autocmd FileType * call s:map_language_client_functions()
 
+" echodoc.vim
+set cmdheight=2
+let g:echodoc#enable_at_startup = 1
+let g:echodoc#type = 'signature'
+
+" lightline.vim
 let g:lightline = {
   \ 'colorscheme': 'wombat',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'relativepath', 'modified' ],
-  \             [ 'coc_error', 'coc_warning', 'coc_info', 'coc_hint' ], ] },
-  \ 'component_expand': {
-  \   'coc_error': 'LightlineCocErrors',
-  \   'coc_warning': 'LightlineCocWarnings',
-  \   'coc_info': 'LightlineCocInfos',
-  \   'coc_hint': 'LightlineCocHints' },
-  \ 'component_type': {
-  \   'coc_error': 'error',
-  \   'coc_warning': 'warning',
-  \   'coc_info': 'tabsel',
-  \   'coc_hint': 'middle' },
-  \ 'component_function': {
-  \   'currentfunction': 'CocCurrentFunction' },
   \ }
 
-autocmd User CocDiagnosticChange call lightline#update()
-
 " vim-go
-let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
-let g:go_list_type = "quickfix"
-"let g:go_auto_type_info = 1
-"let g:go_auto_sameids = 1
-let g:go_metalinter_command = "golangci-lint"
-let g:go_metalinter_enabled = ["govet", "errcheck", "staticcheck", "unused", "gosimple", "structcheck", "varcheck", "ineffassign", "deadcode"]
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ["govet", "errcheck", "staticcheck", "unused", "gosimple", "structcheck", "varcheck", "ineffassign", "deadcode"]
-let g:go_term_mode = 'split'
-
-let g:go_highlight_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_generate_tags = 1
-
-let g:go_def_mode='gopls'
-let g:go_info_mode='gopls'
+let g:go_version_warning = 1
+let g:go_code_completion_enabled = 0
+let g:go_code_completion_icase = 0
+let g:go_test_show_name = 1
+let g:go_test_timeout = '10s'
+let g:go_play_browser_command = ''
+let g:go_play_open_browser = 1
+let g:go_auto_type_info = 0
+let g:go_info_mode = 'gopls'
+let g:go_auto_sameids = 0
+let g:go_updatetime = 800
+let g:go_jump_to_error = 1
+let g:go_fmt_autosave = 1
+let g:go_fmt_command = 'goimports'
+let g:go_fmt_options = {}
+let g:go_fmt_fail_silently = 0
+let g:go_fmt_experimental = 0
+let g:go_imports_autosave = 0
+let g:go_imports_mode = 'goimports'
+let g:go_mod_fmt_autosave = 1
+let g:go_doc_keywordprg_enabled = 0
+let g:go_doc_max_height = 20
+let g:go_doc_url = 'https：//pkg.go.dev'
+let g:go_odc_popup_window = 0
+let g:go_def_mode = 'gopls'
+let g:go_fillstruct_mode = 'fillstruct'
 let g:go_referrers_mode = 'gopls'
-let g:go_gopls_enabled = 1
-let g:go_gopls_complete_unimported = 1
-let g:go_decls_mode = "fzf"
+let g:go_implements_mode = 'gopls'
+let g:go_def_mapping_enabled = 0
+let g:go_def_reuse_buffer = 0
+let g:go_bin_path = ''
+let g:go_search_bin_path_first = 1
 let g:go_snippet_engine = "neosnippet"
+let g:go_get_update = 1
+let g:go_guru_scope = []
+let g:go_build_tags = ''
+let g:go_textobj_enabled = 1
+let g:go_textobj_include_function_doc = 1
+let g:go_textobj_include_variable = 1
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_autosave_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode']
+let g:go_metalinter_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode']
+let g:go_metalinter_command = 'golangci-lint'
+let g:go_metalinter_deadline = "5s"
+let g:go_list_height = 0
+let g:go_list_type = 'quickfix'
+let g:go_list_type_commands = {}
+let g:go_list_autoclose = 1
+let g:go_asmfmt_autosave = 0
+let g:go_term_mode = 'split'
+let g:go_term_reuse = 1
+let g:go_term_height = 30
+let g:go_term_width = 30
+let g:go_term_enabled = 1
+let g:go_term_close_on_exit = 1
+let g:go_alternate_mode = "edit"
+let g:go_rename_command = 'gopls'
+let g:go_gorename_prefill = 'expand("<cword>") =~# "^[A-Z]"' .
+  \ '? go#util#pascalcase(expand("<cword>"))' .
+  \ ': go#util#camelcase(expand("<cword>"))'
+let g:go_gopls_enabled = 1
+let g:go_gopls_options = ['-remote = auto']
+let g:go_gopls_analyses = v:null
+let g:go_gopls_complete_unimported = v:null
+let g:go_gopls_deep_completion = v:null
+let g:go_gopls_matcher = v:null
+let g:go_gopls_staticcheck = v:null
+let g:go_gopls_use_placeholders = v:null
+let g:go_gopls_temp_modfile = v:null
+let g:go_gopls_local = v:null
+let g:go_gopls_gofumpt = v:null
+let g:go_gopls_settings = v:null
+let g:go_diagnostics_enabled = 0
+let g:go_diagnostics_level = 0
+let g:go_template_autocreate = 1
+let g:go_template_file = 'hello_world.go'
+let g:go_template_test_file = 'hello_world_test.go'
+let g:go_template_use_pkg = 0
+let g:go_decls_includes = 'func、type'
+let g:go_decls_mode = "fzf"
+let g:go_echo_command_info = 1
+let g:go_echo_go_info = 1
+let g:go_statusline_duration = 60000
+let g:go_addtags_transform = 'snakecase'
+let g:go_addtags_skip_unexported = 0
+let g:go_debug = []
 
-"let g:go_debug = ["shell-commands"]
+let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
+let g:go_highlight_array_whitespace_error = 0
+let g:go_highlight_chan_whitespace_error = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_space_tab_error = 0
+let g:go_highlight_trailing_whitespace_error = 0
+let g:go_highlight_operators = 0
+let g:go_highlight_functions = 0
+let g:go_highlight_function_parameters = 0
+let g:go_highlight_function_calls = 0
+let g:go_highlight_types = 0
+let g:go_highlight_fields = 0
+let g:go_highlight_build_constraints = 0
+let g:go_highlight_generate_tags = 0
+let g:go_highlight_string_spellcheck = 1
+let g:go_highlight_format_strings = 1
+let g:go_highlight_variable_declarations = 0
+let g:go_highlight_variable_assignments = 0
+let g:go_highlight_diagnostic_errors = 1
+let g:go_highlight_diagnostic_warnings = 1
 
 " Open :GoDeclsDir with ctrl-g
 nmap <C-g> :GoDeclsDir<cr>
