@@ -251,7 +251,7 @@ autocmd FileType * call s:map_language_client_functions()
 " echodoc.vim
 set cmdheight=2
 let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'signature'
+let g:echodoc#type = 'echo'
 
 " lightline.vim
 let g:lightline = {
