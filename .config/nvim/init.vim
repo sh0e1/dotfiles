@@ -27,6 +27,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/echodoc.vim')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('tpope/vim-repeat')
 
   call dein#end()
   call dein#save_state()
