@@ -28,6 +28,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('tpope/vim-repeat')
+  call dein#add('sheerun/vim-polyglot')
 
   call dein#end()
   call dein#save_state()
@@ -146,14 +147,6 @@ map ]c :cnext<CR>
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
 map P <Plug>(miniyank-autoPut)
-
-if has("autocmd")
-  " sw=softtabstop, sts=shiftwidth, ts=tabstop, et=expandtab
-  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType js   setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType vue  setlocal ts=2 sts=2 sw=2 expandtab
-endif
 
 " deoplete.nvim
 let g:deoplete#enable_at_startup = 1
@@ -374,8 +367,6 @@ imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
 
 augroup go
   autocmd!
-  " Show by default 4 spaces for a tab
-  autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
   " :GoBuild and :GoTestCompile
   autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
   " :GoRun
