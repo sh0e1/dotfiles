@@ -8,6 +8,9 @@
   "signature.target": "echo",
   // coc.preferences
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.formatOnSaveFiletypes": [
+    "dart"
+  ],
   // languageserver
   "languageserver": {
     "golang": {
