@@ -586,21 +586,8 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " defx.nvim
-nnoremap <silent> <Leader>e :<C-u>silent call <SID>open_defx()<CR>
 autocmd FileType defx call s:defx_map_settings()
-autocmd FileType defx call defx#custom#column('mark', {
-  \   'length': 1,
-  \   'readonly_icon': 'X',
-  \   'selected_icon': '*',
-  \ })
-autocmd FileType call defx#custom#column('indent', {
-  \   'indent': '  ',
-  \ })
-autocmd FileType call defx#custom#column('icon', {
-  \   'directory_icon': '▸',
-  \   'opened_icon':    '▾',
-  \   'root_icon':      '  ',
-  \ })
+autocmd BufLeave,BufWinLeave \[defx\]* silent call defx#call_action('add_session')
 
 function! s:defx_map_settings() abort
   " Define mappings
@@ -635,14 +622,59 @@ function! s:defx_map_settings() abort
   nnoremap <silent><buffer><expr> <C-l>   defx#do_action('redraw')
   nnoremap <silent><buffer><expr> <C-g>   defx#do_action('print')
   nnoremap <silent><buffer><expr> cd      defx#do_action('change_vim_cwd')
+
+  nnoremap <silent><buffer> D :<C-u>call <SID>defx_reload()<CR>
 endfunction
 
-autocmd BufWritePost * call defx#redraw()
+nnoremap <silent> <Leader>e :<C-u>silent call <SID>open_or_close_defx()<CR>
+
+function! s:defx_edit(...) abort
+  let args = defx#util#convert2list(get(a:000, 0, []))
+  let cmd = printf(":\<C-u>call DefxEditFile(%s)\<CR>", string(args))
+  return cmd
+endfunction
+
+function! DefxEditFile(args, ...) abort
+  " ...
+  call defx#call_action('open', a:args)
+endfunction
+
+function! s:open_or_close_defx() abort
+  if &filetype ==# 'defx'
+    bwipe
+  else
+    call s:open_defx()
+  end
+endfunction
 
 function! s:open_defx() abort
   let opts = [
     \   '-no-show-ignored-files',
-    \   '-ignored-files=.git',
+    \   '-ignored-files=.git,.nvimrc,.lc.*,_tmp,.defx_session.json',
+    \   '-sort=filename',
+    \   '-no-listed',
+    \   '-no-new',
+    \   '-buffer-name=defx',
+    \   '-split=no',
+    \   printf('-session-file=%s', '.defx_session.json'),
     \ ]
+
   call defx#util#call_defx('Defx', join(opts, ' '))
+endfunction
+
+function! s:defx_reload() abort
+  execute 'normal q'
+  call s:defx_delete_session()
+  call s:open_defx()
+endfunction
+
+function! s:defx_delete_session() abort
+  let jq_expression = printf(
+    \   '.sessions | map_values(select(.path != "%s")) | {version: "1.0", sessions: .}',
+    \   getcwd(),
+    \ )
+  let jq_cmd = printf("jq '%s'", jq_expression)
+  let cmd = printf('J=$(cat %s | %s) && echo $J > %s', '.defx_session.json', jq_cmd, '.defx_session.json')
+
+  call system(cmd)
 endfunction
