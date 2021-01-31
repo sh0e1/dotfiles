@@ -1,15 +1,13 @@
 {
-  // diagnostic
-  "diagnostic.messageTarget": "echo",
-  "diagnostic.refreshOnInsertMode": true,
   // suggest
   "suggest.floatEnable": false,
+  // diagnostic
+  "diagnostic.messageTarget": "echo",
+  "diagnostic.virtualText": true,
   // signature
   "signature.target": "echo",
-  // coc
-  "coc.preferences.colorSupport": true,
+  // coc.preferences
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "coc.preferences.hoverTarget": "echo",
   // languageserver
   "languageserver": {
     "golang": {
