@@ -27,6 +27,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('neoclide/coc.nvim', { 'merged': 0 })
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('kshenoy/vim-signature')
 
   call dein#end()
   call dein#save_state()
