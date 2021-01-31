@@ -37,6 +37,19 @@
       "command": "efm-langserver",
       "args": [],
       "filetypes": ["markdown"]
+    },
+    "dart": {
+      "command": "dart",
+      "args": [
+        "/usr/local/Caskroom/flutter/1.22.6/flutter/bin/cache/dart-sdk/bin/snapshots",
+        "--lsp",
+        "--client-id",
+        "vim",
+        "--client-version",
+        "coc.nvim"
+      ],
+      "filetypes": ["dart"],
+      "trace.server": "verbose"
     }
   }
 }
