@@ -11,7 +11,7 @@
 ```
 :UpdateRemotePlugins
 :GoInstallBinaries
-:CocInstall coc-json coc-yaml
+:CocInstall coc-dictionary coc-tag coc-word coc-syntax coc-neosnippet coc-json coc-yaml
 ```
 
 ### tmux
