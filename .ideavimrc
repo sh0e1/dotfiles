@@ -13,7 +13,7 @@ noremap j gj
 noremap k gk
 
 nnoremap gd :action GotoDeclaration<CR>
-nnoremap <C-t> :action Back<CR>
+nnoremap <C-o> :action Back<CR>
 nnoremap <C-g> :action FindInPath<CR>
 inoremap <C-g> <ESC>:<C-u>action FindInPath<CR>
 nnoremap gt :action NextTab<CR>
