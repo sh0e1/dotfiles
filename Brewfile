@@ -1,5 +1,6 @@
 # tap
 tap "sanemat/font"
+tap "homebrew/cask-versions"
 
 # brew
 brew "mas"
@@ -19,6 +20,7 @@ brew "zsh"
 brew "jq"
 brew "tree"
 brew "bat"
+brew "vim"
 
 # cask
 brew "alacritty"
