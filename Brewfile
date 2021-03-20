@@ -21,6 +21,7 @@ brew "jq"
 brew "tree"
 brew "bat"
 brew "vim"
+brew "zplug"
 
 # cask
 brew "alacritty"
