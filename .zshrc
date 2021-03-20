@@ -6,10 +6,8 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "tcnksm/docker-alias", use:zshrc
 zplug "plugins/git", from:oh-my-zsh
 zplug "modules/prompt", from:prezto
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
-zplug "b4b4r07/enhancd", use:init.sh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -27,12 +25,14 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
 # End of lines configured by zsh-newuser-install
+
 # The following lines were added by compinstall
 zstyle :compinstall filename '$HOME/.zshrc'
-
+fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 autoload -Uz compinit
-compinit
+compinit -u
 # End of lines added by compinstall
+
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
