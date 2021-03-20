@@ -35,6 +35,3 @@ brew "google-cloud-sdk"
 brew "google-japanese-ime"
 brew "slack"
 brew "spotify"
-
-# mas
-mas "1Password" id: 443987910
