@@ -2,10 +2,10 @@ export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug "zsh-users/zsh-history-substring-search"
-zplug "tcnksm/docker-alias", use:zshrc
-zplug "plugins/git", from:oh-my-zsh
-zplug "modules/prompt", from:prezto
+zplug 'zsh-users/zsh-history-substring-search'
+zplug 'tcnksm/docker-alias', use:zshrc
+zplug 'plugins/git', from:oh-my-zsh
+zplug 'modules/prompt', from:prezto
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 
