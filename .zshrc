@@ -10,6 +10,7 @@ zplug 'tcnksm/docker-alias', use:zshrc
 zplug 'plugins/docker', from:oh-my-zsh
 zplug 'plugins/git', from:oh-my-zsh
 zplug 'b4b4r07/enhancd', use:init.sh
+zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -143,20 +144,6 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
     fi
 fi
 
-# vcs
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-
-# prompt
-PROMPT='%c > '
-RPROMPT='${vcs_info_msg_0_}'
-
 # openjdk
 if [ -d /usr/local/opt/openjdk/bin ]; then
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
@@ -173,3 +160,21 @@ if [ -e /usr/local/bin/rbenv ]; then
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
     eval "$(rbenv init -)"
 fi
+
+# spaceship-prompt
+SPACESHIP_PROMPT_ORDER=(
+  dir           # Current directory section
+  git           # Git section (git_branch + git_status)
+  char          # Prompt character
+)
+SPACESHIP_PROMPT_ADD_NEWLINE=false
+SPACESHIP_PROMPT_SEPARATE_LINE=false
+SPACESHIP_CHAR_SYMBOL='> '
+SPACESHIP_CHAR_COLOR_SUCCESS=white
+SPACESHIP_DIR_COLOR=blue
+SPACESHIP_GIT_PREFIX=''
+SPACESHIP_GIT_BRANCH_PREFIX='['
+SPACESHIP_GIT_BRANCH_SUFFIX=']'
+SPACESHIP_GIT_BRANCH_COLOR=cyan
+SPACESHIP_GIT_STATUS_PREFIX=''
+SPACESHIP_GIT_STATUS_SUFFIX=''
