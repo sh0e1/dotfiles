@@ -9,6 +9,7 @@ zplug 'modules/prompt', from:prezto
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "b4b4r07/enhancd", use:init.sh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
