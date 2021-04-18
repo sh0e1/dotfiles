@@ -378,7 +378,7 @@ let g:go_auto_type_info = 0
 let g:go_info_mode = 'gopls'
 let g:go_auto_sameids = 0
 let g:go_updatetime = 800
-let g:go_jump_to_error = 1
+let g:go_jump_to_error = 0
 let g:go_fmt_autosave = 1
 let g:go_fmt_command = 'goimports'
 let g:go_fmt_options = {}
@@ -487,6 +487,8 @@ augroup go
   autocmd FileType go nmap <leader>r  <Plug>(go-run)
   " :GoTest
   autocmd FileType go nmap <leader>t  <Plug>(go-test)
+  " :GoTestFunc
+  autocmd FileType go nmap <leader>tt  <Plug>(go-test-func)
   " :GoMetaLinter
   autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
   " :GoDoc
