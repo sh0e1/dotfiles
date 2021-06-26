@@ -563,8 +563,26 @@ endfunction
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 " vim-gitgutter
-nmap [h <Plug>(GitGutterPrevHunk)
-nmap ]h <Plug>(GitGutterNextHunk)
+let g:gitgutter_preview_win_floating = 0
+
+nmap [h  <Plug>(GitGutterPrevHunk)
+nmap ]h  <Plug>(GitGutterNextHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+omap ih  <Plug>(GitGutterTextObjectInnerPending)
+omap ah  <Plug>(GitGutterTextObjectOuterPending)
+xmap ih  <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah  <Plug>(GitGutterTextObjectOuterVisual)
+
+function! GitGutterNextHunkCycle()
+  let line = line('.')
+  silent! GitGutterNextHunk
+  if line('.') == line
+    1
+    GitGutterNextHunk
+  endif
+endfunction
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
