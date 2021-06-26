@@ -491,17 +491,17 @@ augroup go
   " :GoTestFunc
   autocmd FileType go nmap <leader>tt  <Plug>(go-test-func)
   " :GoMetaLinter
-  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+  "autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
   " :GoDoc
-  autocmd FileType go nmap <Leader>d <Plug>(go-doc)
+  "autocmd FileType go nmap <Leader>d <Plug>(go-doc)
   " :GoInfo
-  autocmd FileType go nmap <Leader>i <Plug>(go-info)
+  "autocmd FileType go nmap <Leader>i <Plug>(go-info)
   " :GoCoverageToggle
-  autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <Leader>cc <Plug>(go-coverage-toggle)
   " :GoDef but opens in a vertical split
-  autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+  "autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
   " :GoDef but opens in a horizontal split
-  autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+  "autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
   " :GoAlternate  commands :A, :AV, :AS and :AT
   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
