@@ -29,6 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('kshenoy/vim-signature')
   call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('antoinemadec/coc-fzf', { 'rev': 'release' })
 
   call dein#end()
   call dein#save_state()
@@ -293,23 +294,24 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" coc-fzf
+let g:coc_fzf_preview = 'right:50%'
+let g:coc_fzf_opts = ['--reverse', '--inline-info']
+
+nmap <Leader>f [fzf-p]
+
+nnoremap <silent> [fzf-p]<space> :<C-u>CocFzfList<CR>
+nnoremap <silent> [fzf-p]a       :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> [fzf-p]b       :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> [fzf-p]c       :<C-u>CocFzfList commands<CR>
+nnoremap <silent> [fzf-p]e       :<C-u>CocFzfList extensions<CR>
+nnoremap <silent> [fzf-p]l       :<C-u>CocFzfList location<CR>
+nnoremap <silent> [fzf-p]o       :<C-u>CocFzfList outline<CR>
+nnoremap <silent> [fzf-p]s       :<C-u>CocFzfList symbols<CR>
+nnoremap <silent> [fzf-p]p       :<C-u>CocFzfListResume<CR>
+nnoremap <silent> [fzf-p]b       :<C-u>Buffers<CR>
+nnoremap <silent> [fzf-p]r       :<C-u>Rg<CR>
+nnoremap <silent> [fzf-p]f       :<C-u>Files<CR>
 
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
