@@ -631,7 +631,7 @@ function! s:defx_map_settings() abort
   nnoremap <silent><buffer> D :<C-u>call <SID>defx_reload()<CR>
 endfunction
 
-nnoremap <silent> <Leader>e :<C-u>silent call <SID>open_or_close_defx()<CR>
+nnoremap <silent> <Leader>d :<C-u>silent call <SID>open_or_close_defx()<CR>
 
 function! s:defx_edit(...) abort
   let args = defx#util#convert2list(get(a:000, 0, []))
