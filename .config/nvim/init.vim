@@ -29,6 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('antoinemadec/coc-fzf', { 'rev': 'release' })
+  call dein#add('editorconfig/editorconfig-vim')
 
   call dein#end()
   call dein#save_state()
