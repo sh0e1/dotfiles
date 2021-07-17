@@ -375,7 +375,7 @@ let g:go_code_completion_enabled = 0
 let g:go_code_completion_icase = 0
 let g:go_test_show_name = 1
 let g:go_test_timeout = '10s'
-let g:go_play_browser_command = ''
+let g:go_play_browser_command = 'chrome'
 let g:go_play_open_browser = 1
 let g:go_auto_type_info = 0
 let g:go_info_mode = 'gopls'
@@ -404,7 +404,7 @@ let g:go_bin_path = ''
 let g:go_search_bin_path_first = 1
 let g:go_snippet_engine = "neosnippet"
 let g:go_get_update = 1
-let g:go_guru_scope = []
+"let g:go_guru_scope = []
 let g:go_build_tags = ''
 let g:go_textobj_enabled = 1
 let g:go_textobj_include_function_doc = 1
@@ -493,7 +493,7 @@ augroup go
   " :GoTestFunc
   autocmd FileType go nmap <leader>tt  <Plug>(go-test-func)
   " :GoMetaLinter
-  "autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
   " :GoDoc
   "autocmd FileType go nmap <Leader>d <Plug>(go-doc)
   " :GoInfo
