@@ -30,6 +30,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('antoinemadec/coc-fzf', { 'rev': 'release' })
   call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('sh0e1/snippets')
 
   call dein#end()
   call dein#save_state()
@@ -341,6 +342,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
 " lightline.vim
 function! CocCurrentFunction()
   let f = get(b:, 'coc_current_function', '')
@@ -425,7 +427,7 @@ let g:go_def_mapping_enabled = 0
 let g:go_def_reuse_buffer = 0
 let g:go_bin_path = ''
 let g:go_search_bin_path_first = 1
-let g:go_snippet_engine = "neosnippet"
+let g:go_snippet_engine = ""
 let g:go_get_update = 1
 "let g:go_guru_scope = []
 let g:go_build_tags = ''
