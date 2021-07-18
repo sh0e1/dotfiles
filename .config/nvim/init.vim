@@ -296,6 +296,16 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
+" coc extensions
+let g:coc_global_extensions = [
+  \ 'coc-word',
+  \ 'coc-neosnippet',
+  \ 'coc-lists',
+  \ 'coc-dictionary',
+  \ 'coc-yaml',
+  \ 'coc-json',
+  \]
+
 " coc-fzf
 let g:coc_fzf_preview = 'right:50%'
 let g:coc_fzf_opts = ['--reverse', '--inline-info']
