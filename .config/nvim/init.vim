@@ -343,6 +343,8 @@ if has('conceal')
 endif
 
 let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
+let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/sh0e1/snippets/snippets'
+
 " lightline.vim
 function! CocCurrentFunction()
   let f = get(b:, 'coc_current_function', '')
