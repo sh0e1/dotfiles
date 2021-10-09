@@ -88,8 +88,8 @@ bindkey -v
 bindkey 'jj' vi-cmd-mode
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
-bindkey "^R" history-incremental-search-backward
-bindkey "^S" history-incremental-search-forward
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -178,3 +178,8 @@ SPACESHIP_GIT_BRANCH_SUFFIX=')'
 SPACESHIP_GIT_BRANCH_COLOR=cyan
 SPACESHIP_GIT_STATUS_PREFIX=''
 SPACESHIP_GIT_STATUS_SUFFIX=''
+
+# git
+if [ -d $HOME/.config/git/bin ]; then
+  export PATH="${PATH}:${HOME}/.config/git/bin:"
+fi
