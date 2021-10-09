@@ -1,0 +1,13 @@
+#!/bin/bash
+
+_fzf_log() {
+  files=$(sed -nE 's/.* -- (.*)/\1/p' <<< "$*")
+  cmd="echo {} | grep -Eo '[a-f0-9]+' | head -1 | xargs -I% git show --color=always % -- $files"
+  eval "git log $graph --color=always --format='%C(auto)%h%d %s %C(black)%C(bold)%cr%Creset' $*" |
+    fzf --preview="$cmd" \
+    +s +m --tiebreak=index --ansi \
+    --bind="enter:execute($cmd | LESS='-r' less)" \
+    --bind="ctrl-y:execute-silent(echo {} | grep -Eo '[a-f0-9]+' | head -1 | tr -d '[:space:]' | pbcopy)"
+}
+
+_fzf_log
