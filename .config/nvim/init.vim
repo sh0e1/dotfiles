@@ -657,7 +657,6 @@ function! s:init_fern() abort
   nmap <buffer> .     <Plug>(fern-action-hidden:toggle)
   nmap <buffer> ;     <Plug>(fern-action-repeat)
   nmap <buffer> ~     <Plug>(fern-action-cd)
-  nmap <buffer> q     <Plug>(fern-action-quit)
   nmap <buffer> <C-l> <Plug>(fern-action-redraw)
   nmap <buffer> a     <Plug>(fern-action-choice)
 endfunction
