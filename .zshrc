@@ -180,7 +180,13 @@ SPACESHIP_GIT_BRANCH_COLOR=cyan
 SPACESHIP_GIT_STATUS_PREFIX=''
 SPACESHIP_GIT_STATUS_SUFFIX=''
 
-# git
-if [ -d $HOME/.config/git/bin ]; then
-  export PATH="${PATH}:${HOME}/.config/git/bin:"
-fi
+_fzf_alias() {
+  selected=$(alias | fzf --height=40 | awk -F "=" '{print $1}' | sed -e "s/'//g")
+  if [ -n $selected ]; then
+    BUFFER=$selected
+    CURSOR=${#BUFFER}
+  fi
+  zle redisplay
+}
+zle -N _fzf_alias
+bindkey '^A' _fzf_alias
