@@ -6,11 +6,12 @@ zplug 'zsh-users/zsh-history-substring-search'
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-zplug 'tcnksm/docker-alias', use:zshrc
+# zplug 'tcnksm/docker-alias', use:zshrc
 zplug 'plugins/docker', from:oh-my-zsh
-zplug 'plugins/git', from:oh-my-zsh
+# zplug 'plugins/git', from:oh-my-zsh
 zplug 'b4b4r07/enhancd', use:init.sh
 zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug 'wfxr/forgit'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -77,7 +78,6 @@ alias ls='ls -FG'
 alias la='ls -laFG'
 alias ll='ls -lFG'
 alias vi='nvim'
-alias c='cdr'
 alias cp='cp -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
@@ -88,8 +88,8 @@ bindkey -v
 bindkey 'jj' vi-cmd-mode
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
-bindkey "^R" history-incremental-search-backward
-bindkey "^S" history-incremental-search-forward
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -178,3 +178,14 @@ SPACESHIP_GIT_BRANCH_SUFFIX=')'
 SPACESHIP_GIT_BRANCH_COLOR=cyan
 SPACESHIP_GIT_STATUS_PREFIX=''
 SPACESHIP_GIT_STATUS_SUFFIX=''
+
+_fzf_alias() {
+  selected=$(alias | fzf --height=40 | awk -F "=" '{print $1}' | sed -e "s/'//g")
+  if [ -n $selected ]; then
+    BUFFER=$selected
+    CURSOR=${#BUFFER}
+  fi
+  zle redisplay
+}
+zle -N _fzf_alias
+bindkey '^A' _fzf_alias
