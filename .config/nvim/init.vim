@@ -21,7 +21,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('tpope/vim-surround')
   call dein#add('bfredl/nvim-miniyank')
   call dein#add('easymotion/vim-easymotion')
-  call dein#add('Shougo/defx.nvim')
   call dein#add('tpope/vim-repeat')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('neoclide/coc.nvim', { 'merged': 0 })
@@ -31,6 +30,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('antoinemadec/coc-fzf', { 'rev': 'release' })
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('sh0e1/snippets')
+  call dein#add('lambdalisue/fern.vim')
 
   call dein#end()
   call dein#save_state()
@@ -637,96 +637,40 @@ let g:EasyMotion_smartcase = 1
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-" defx.nvim
-autocmd FileType defx call s:defx_map_settings()
-autocmd BufLeave,BufWinLeave \[defx\]* silent call defx#call_action('add_session')
+" fern.vim
+nnoremap <Leader>d :Fern . -reveal=%<CR>
 
-function! s:defx_map_settings() abort
-  " Define mappings
-  nnoremap <silent><buffer><expr> <CR>    defx#do_action('open')
-  nnoremap <silent><buffer><expr> c       defx#do_action('copy')
-  nnoremap <silent><buffer><expr> m       defx#do_action('move')
-  nnoremap <silent><buffer><expr> p       defx#do_action('paste')
-  nnoremap <silent><buffer><expr> l       defx#do_action('open')
-  nnoremap <silent><buffer><expr> E       defx#do_action('open', 'vsplit')
-  nnoremap <silent><buffer><expr> t       defx#do_action('open', 'tabnew')
-  nnoremap <silent><buffer><expr> P       defx#do_action('preview')
-  nnoremap <silent><buffer><expr> o       defx#do_action('open_tree', 'toggle')
-  nnoremap <silent><buffer><expr> K       defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N       defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> M       defx#do_action('new_multiple_files')
-  nnoremap <silent><buffer><expr> C       defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')
-  nnoremap <silent><buffer><expr> S       defx#do_action('toggle_sort', 'time')
-  nnoremap <silent><buffer><expr> d       defx#do_action('remove')
-  nnoremap <silent><buffer><expr> r       defx#do_action('rename')
-  nnoremap <silent><buffer><expr> !       defx#do_action('execute_command')
-  nnoremap <silent><buffer><expr> x       defx#do_action('execute_system')
-  nnoremap <silent><buffer><expr> yy      defx#do_action('yank_path')
-  nnoremap <silent><buffer><expr> .       defx#do_action('toggle_ignored_files')
-  nnoremap <silent><buffer><expr> ;       defx#do_action('repeat')
-  nnoremap <silent><buffer><expr> h       defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> ~       defx#do_action('cd')
-  nnoremap <silent><buffer><expr> q       defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> *       defx#do_action('toggle_select_all')
-  nnoremap <silent><buffer><expr> j       line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k       line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-l>   defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> <C-g>   defx#do_action('print')
-  nnoremap <silent><buffer><expr> cd      defx#do_action('change_vim_cwd')
-
-  nnoremap <silent><buffer> D :<C-u>call <SID>defx_reload()<CR>
+function! s:init_fern() abort
+  nmap <buffer> c     <Plug>(fern-action-copy)
+  nmap <buffer> m     <Plug>(fern-action-move)
+  nmap <buffer> E     <Plug>(fern-action-open:side)
+  nmap <buffer> t     <Plug>(fern-action-open:tabedit)
+  nmap <buffer> s     <Plug>(fern-action-open:select)
+  nmap <buffer> o     <Plug>(fern-action-expand)
+  nmap <buffer> K     <Plug>(fern-action-new-dir)
+  nmap <buffer> N     <Plug>(fern-action-new-file)
+  nmap <buffer> d     <Plug>(fern-action-trash)
+  nmap <buffer> r     <Plug>(fern-action-rename)
+  nmap <buffer> !     <Plug>(fern-action-terminal)
+  nmap <buffer> x     <Plug>(fern-action-open:system)
+  nmap <buffer> yy    <Plug>(fern-action-yank:path)
+  nmap <buffer> .     <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> ;     <Plug>(fern-action-repeat)
+  nmap <buffer> ~     <Plug>(fern-action-cd)
+  nmap <buffer> q     <Plug>(fern-action-quit)
+  nmap <buffer> <C-l> <Plug>(fern-action-redraw)
+  nmap <buffer> a     <Plug>(fern-action-choice)
 endfunction
 
-nnoremap <silent> <Leader>d :<C-u>silent call <SID>open_or_close_defx()<CR>
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
 
-function! s:defx_edit(...) abort
-  let args = defx#util#convert2list(get(a:000, 0, []))
-  let cmd = printf(":\<C-u>call DefxEditFile(%s)\<CR>", string(args))
-  return cmd
-endfunction
-
-function! DefxEditFile(args, ...) abort
-  " ...
-  call defx#call_action('open', a:args)
-endfunction
-
-function! s:open_or_close_defx() abort
-  if &filetype ==# 'defx'
-    bwipe
-  else
-    call s:open_defx()
-  end
-endfunction
-
-function! s:open_defx() abort
-  let opts = [
-    \   '-no-show-ignored-files',
-    \   '-ignored-files=.git,.nvimrc,.lc.*,_tmp,.defx_session.json',
-    \   '-sort=filename',
-    \   '-no-listed',
-    \   '-no-new',
-    \   '-buffer-name=defx',
-    \   '-split=no',
-    \   printf('-session-file=%s', '.defx_session.json'),
-    \ ]
-
-  call defx#util#call_defx('Defx', join(opts, ' '))
-endfunction
-
-function! s:defx_reload() abort
-  execute 'normal q'
-  call s:defx_delete_session()
-  call s:open_defx()
-endfunction
-
-function! s:defx_delete_session() abort
-  let jq_expression = printf(
-    \   '.sessions | map_values(select(.path != "%s")) | {version: "1.0", sessions: .}',
-    \   getcwd(),
-    \ )
-  let jq_cmd = printf("jq '%s'", jq_expression)
-  let cmd = printf('J=$(cat %s | %s) && echo $J > %s', '.defx_session.json', jq_cmd, '.defx_session.json')
-
-  call system(cmd)
-endfunction
+let g:fern#default_hidden                    = 1
+let g:fern#mark_symbol                       = '* '
+let g:fern#renderer#default#collapsed_symbol = '+ '
+let g:fern#renderer#default#expanded_symbol  = '- '
+let g:fern#renderer#default#leading          = ' '
+let g:fern#renderer#default#leaf_symbol      = ' '
+let g:fern#renderer#default#root_symbol      = '~ '
