@@ -641,7 +641,9 @@ map <Leader>k <Plug>(easymotion-k)
 nnoremap <Leader>d :Fern . -reveal=%<CR>
 
 function! s:init_fern() abort
-  nmap <buffer> c     <Plug>(fern-action-copy)
+  nmap <buffer> C     <Plug>(fern-action-copy)
+  nmap <buffer> c     <Plug>(fern-action-clipboard-copy)
+  nmap <buffer> p     <Plug>(fern-action-clipboard-paste)
   nmap <buffer> m     <Plug>(fern-action-move)
   nmap <buffer> E     <Plug>(fern-action-open:side)
   nmap <buffer> t     <Plug>(fern-action-open:tabedit)
@@ -649,7 +651,7 @@ function! s:init_fern() abort
   nmap <buffer> o     <Plug>(fern-action-expand)
   nmap <buffer> K     <Plug>(fern-action-new-dir)
   nmap <buffer> N     <Plug>(fern-action-new-file)
-  nmap <buffer> d     <Plug>(fern-action-trash)
+  nmap <buffer> d     <Plug>(fern-action-remove)
   nmap <buffer> r     <Plug>(fern-action-rename)
   nmap <buffer> !     <Plug>(fern-action-terminal)
   nmap <buffer> x     <Plug>(fern-action-open:system)
@@ -657,8 +659,9 @@ function! s:init_fern() abort
   nmap <buffer> .     <Plug>(fern-action-hidden:toggle)
   nmap <buffer> ;     <Plug>(fern-action-repeat)
   nmap <buffer> ~     <Plug>(fern-action-cd)
-  nmap <buffer> <C-l> <Plug>(fern-action-redraw)
   nmap <buffer> a     <Plug>(fern-action-choice)
+  nmap <buffer> <C-h> <C-w>h
+  nmap <buffer> <C-l> <C-w>l
 endfunction
 
 augroup fern-custom
