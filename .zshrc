@@ -145,6 +145,20 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
     fi
 fi
 
+tmls() {
+  out=$(tmux list-sessions | fzf)
+  [[ -z $out ]] && return
+  sid=$(echo $out | cut -d: -f1)
+  tmux switch -t $sid
+}
+
+tmlw() {
+  out=$(tmux list-windows | fzf)
+  [[ -z $out ]] && return
+  wid=$(echo $out | cut -d: -f1)
+  tmux select-window -t $wid
+}
+
 # openjdk
 if [ -d /usr/local/opt/openjdk/bin ]; then
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
