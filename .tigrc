@@ -61,7 +61,7 @@ bind generic ul stage-update-line
 bind generic us stage-split-chunk
 
 bind generic c  none
-bind generic cc !git commit
+bind generic cc !git commit -v
 bind generic ca !?@git commit --amend --no-edit
 
 bind generic K view-help
@@ -80,4 +80,3 @@ set tab-size = 4
 set ignore-space = at-eol
 set ignore-case = true
 set mouse = true
-
