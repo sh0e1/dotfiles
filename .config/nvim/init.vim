@@ -15,8 +15,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
   call dein#add('cohama/lexima.vim')
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('godlygeek/tabular', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'md'})
-  call dein#add('previm/previm', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('kristijanhusak/vim-hybrid-material')
   call dein#add('tpope/vim-surround')
   call dein#add('bfredl/nvim-miniyank')
@@ -614,10 +614,7 @@ endfunction
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
-
-" previm/previm
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-let g:previm_open_cmd = 'open -a Google\ Chrome'
+let g:vim_markdown_conceal = 0
 
 " vim-easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
