@@ -31,10 +31,14 @@ if dein#load_state('~/.cache/dein')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('sh0e1/snippets')
   call dein#add('lambdalisue/fern.vim')
+  call dein#add('kassio/neoterm')
 
   call dein#end()
   call dein#save_state()
 endif
+
+" neoterm
+let &runtimepath.=',~/.vim/bundle/neoterm'
 
 filetype plugin indent on
 syntax enable
@@ -92,6 +96,7 @@ set shiftwidth=4
 set mouse=a
 set signcolumn=yes
 set completeopt-=preview
+set sh=zsh
 
 if &term =~ "xterm"
   let &t_SI .= "\e[?2004h"
@@ -145,6 +150,7 @@ nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 map [c :cprevious<CR>
 map ]c :cnext<CR>
+tnoremap <silent> <ESC> <C-\><C-n>
 
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
