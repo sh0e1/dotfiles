@@ -32,6 +32,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('sh0e1/snippets')
   call dein#add('lambdalisue/fern.vim')
   call dein#add('kassio/neoterm')
+  call dein#add('andymass/vim-matchup')
 
   call dein#end()
   call dein#save_state()
