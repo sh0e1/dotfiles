@@ -148,9 +148,11 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
-map [c :cprevious<CR>
-map ]c :cnext<CR>
+nnoremap [c :cprevious<CR>
+nnoremap ]c :cnext<CR>
+
 tnoremap <silent> <ESC> <C-\><C-n>
+nnoremap <Leader>t :Topen<CR>
 
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
