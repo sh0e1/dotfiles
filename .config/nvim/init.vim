@@ -153,6 +153,8 @@ nnoremap ]c :cnext<CR>
 
 tnoremap <silent> <ESC> <C-\><C-n>
 nnoremap <Leader>t :Topen<CR>
+nnoremap <Leader>tc :Tclose!<CR>
+let g:neoterm_autoinsert = 1
 
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
