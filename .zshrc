@@ -123,7 +123,7 @@ if [ -d ${HOME}/.krew/bin ]; then
 fi
 
 # direnv
-export EDITOR=vim
+export EDITOR=nvim
 eval "$(direnv hook zsh)"
 
 # tmux
