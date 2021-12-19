@@ -153,7 +153,7 @@ nnoremap [c :cprevious<CR>
 nnoremap ]c :cnext<CR>
 
 tnoremap <silent> <ESC> <C-\><C-n>
-nnoremap <Leader>t :Topen<CR>
+nnoremap <Leader>to :Topen<CR>
 nnoremap <Leader>tc :Tclose!<CR>
 let g:neoterm_autoinsert = 1
 
