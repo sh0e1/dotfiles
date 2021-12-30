@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+Plug 'kristijanhusak/vim-hybrid-material'
 call plug#end()
 
 set encoding=utf-8
@@ -61,3 +62,7 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 syntax enable
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+set background=dark
+colorscheme hybrid_reverse
