@@ -11,6 +11,7 @@ Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'andymass/vim-matchup'
 call plug#end()
 
 set encoding=utf-8
