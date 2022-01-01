@@ -5,6 +5,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'cohama/lexima.vim'
 call plug#end()
 
 set encoding=utf-8
