@@ -1,5 +1,6 @@
 .vim/undo/*
 .vim/bundle/*
 .vim/sessions/*
+.vim/plugged/*
 .tmux/plugins/*
 !.gitkeep
