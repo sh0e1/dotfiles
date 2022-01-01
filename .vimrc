@@ -6,6 +6,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'mattn/vim-goimports'
 Plug 'sheerun/vim-polyglot'
+Plug 'itchyny/lightline.vim'
 Plug 'cohama/lexima.vim'
 call plug#end()
 
@@ -134,3 +135,9 @@ let g:lsp_settings['gopls'] = {
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+" lightline.vim
+set noshowmode
+let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ }
