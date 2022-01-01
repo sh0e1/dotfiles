@@ -4,6 +4,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'mattn/vim-goimports'
 Plug 'sheerun/vim-polyglot'
 Plug 'cohama/lexima.vim'
 call plug#end()
