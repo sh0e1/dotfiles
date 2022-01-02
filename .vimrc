@@ -15,6 +15,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'andymass/vim-matchup'
+Plug 'lambdalisue/fern.vim'
 call plug#end()
 
 set encoding=utf-8
@@ -164,3 +165,44 @@ set noshowmode
 let g:lightline = {
   \ 'colorscheme': 'wombat',
   \ }
+
+" fern.vim
+nnoremap <Leader>d :Fern . -reveal=%<CR>
+
+function! s:init_fern() abort
+  nmap <buffer> C     <Plug>(fern-action-copy)
+  nmap <buffer> c     <Plug>(fern-action-clipboard-copy)
+  nmap <buffer> p     <Plug>(fern-action-clipboard-paste)
+  nmap <buffer> m     <Plug>(fern-action-move)
+  nmap <buffer> E     <Plug>(fern-action-open:side)
+  nmap <buffer> t     <Plug>(fern-action-open:tabedit)
+  nmap <buffer> s     <Plug>(fern-action-open:select)
+  nmap <buffer> o     <Plug>(fern-action-expand)
+  nmap <buffer> K     <Plug>(fern-action-new-dir)
+  nmap <buffer> N     <Plug>(fern-action-new-file)
+  nmap <buffer> d     <Plug>(fern-action-remove)
+  nmap <buffer> r     <Plug>(fern-action-rename)
+  nmap <buffer> !     <Plug>(fern-action-terminal)
+  nmap <buffer> x     <Plug>(fern-action-open:system)
+  nmap <buffer> yy    <Plug>(fern-action-yank:path)
+  nmap <buffer> .     <Plug>(fern-action-hidden:toggle)
+  nmap <buffer> ;     <Plug>(fern-action-repeat)
+  nmap <buffer> ~     <Plug>(fern-action-cd)
+  nmap <buffer> a     <Plug>(fern-action-choice)
+  nmap <buffer> <C-h> <C-w>h
+  nmap <buffer> <C-l> <C-w>l
+endfunction
+
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
+augroup END
+
+let g:fern#default_hidden                    = 1
+let g:fern#mark_symbol                       = '* '
+let g:fern#renderer#default#collapsed_symbol = '+ '
+let g:fern#renderer#default#expanded_symbol  = '- '
+let g:fern#renderer#default#leading          = ' '
+let g:fern#renderer#default#leaf_symbol      = ' '
+let g:fern#renderer#default#root_symbol      = '~ '
+let g:fern#default_exclude = '^\%(\.git\)$'
