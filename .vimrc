@@ -77,6 +77,12 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 
 " color scheme
+augroup highlight
+  autocmd!
+  autocmd ColorScheme * highlight clear SpellBad
+                    \ | highlight SpellBad cterm=underline gui=underline
+augroup END
+
 syntax enable
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
