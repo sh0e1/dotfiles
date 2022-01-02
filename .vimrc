@@ -79,7 +79,8 @@ inoremap <C-l> <Right>
 " color scheme
 augroup highlight
   autocmd!
-  autocmd ColorScheme * highlight clear SpellBad
+  autocmd ColorScheme * highlight SpecialKey ctermfg=244 ctermbg=NONE guifg=#8e9292 guibg=NONE gui=none
+                    \ | highlight clear SpellBad
                     \ | highlight SpellBad cterm=underline gui=underline
 augroup END
 
