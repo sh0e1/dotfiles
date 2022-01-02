@@ -4,6 +4,9 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'SirVer/ultisnips'
+Plug 'sh0e1/snippets', { 'rtp': 'UltiSnips' }
 Plug 'mattn/vim-goimports'
 Plug 'sheerun/vim-polyglot'
 Plug 'itchyny/lightline.vim'
@@ -139,6 +142,15 @@ let g:lsp_settings['gopls'] = {
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
+" ultisnips
+let g:UltiSnipsSnippetDirectories = '~/.vim/plugged/snippets/UltiSnips'
+let g:UltiSnipsExpandTrigger = "<C-k>"
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+  \ 'name': 'ultisnips',
+  \ 'allowlist': ['*'],
+  \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+  \ }))
 
 " lightline.vim
 set noshowmode
