@@ -1,3 +1,5 @@
+filetype plugin indent on
+
 call plug#begin('~/.vim/plugged')
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'prabirshrestha/vim-lsp'
