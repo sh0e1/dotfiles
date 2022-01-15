@@ -11,6 +11,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('kristijanhusak/vim-hybrid-material')
   call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
+  call dein#add('nvim-lualine/lualine.nvim')
 
   call dein#end()
   call dein#save_state()
@@ -103,3 +104,7 @@ let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 set background=dark
 colorscheme hybrid_reverse
+
+" lualine.nvim
+:lua require('lualine').setup()
+set noshowmode
