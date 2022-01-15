@@ -9,6 +9,8 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('kristijanhusak/vim-hybrid-material')
+  call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
 
   call dein#end()
   call dein#save_state()
@@ -87,3 +89,17 @@ inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
+
+" color schema
+augroup highlight
+  autocmd!
+  autocmd ColorScheme * highlight SpecialKey ctermfg=244 ctermbg=NONE guifg=#8e9292 guibg=NONE gui=none
+                    \ | highlight clear SpellBad
+                    \ | highlight SpellBad cterm=underline gui=underline
+augroup END
+
+syntax enable
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
+set background=dark
+colorscheme hybrid_reverse
