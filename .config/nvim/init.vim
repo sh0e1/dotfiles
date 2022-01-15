@@ -99,19 +99,7 @@ set signcolumn=yes
 set completeopt-=preview
 set sh=zsh
 
-if &term =~ "xterm"
-  let &t_SI .= "\e[?2004h"
-  let &t_EI .= "\e[?2004l"
-  let &pastetoggle = "\e[201~"
-
-  function XTermPasteBegin(ret)
-    set paste
-    return a:ret
-  endfunction
-
-  inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
-
+" color scheme
 augroup highlight
   autocmd!
   autocmd ColorScheme * highlight SpecialKey ctermfg=244 ctermbg=NONE guifg=#8e9292 guibg=NONE gui=none
@@ -119,7 +107,6 @@ augroup highlight
                     \ | highlight SpellBad cterm=underline gui=underline
 augroup END
 
-" color scheme
 set termguicolors
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
