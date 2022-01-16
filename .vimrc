@@ -61,6 +61,7 @@ set shiftwidth=4
 set autoindent
 set smartindent
 set sh=zsh
+set signcolumn=yes
 
 autocmd CursorHold * wall
 autocmd CursorHoldI * wall
@@ -110,7 +111,6 @@ endif
 " vim-lsp
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
-  setlocal signcolumn=yes
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
   nmap <buffer> gd <plug>(lsp-definition)
   nmap <buffer> gs <plug>(lsp-document-symbol-search)
