@@ -23,6 +23,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 call plug#end()
 
 set encoding=utf-8
@@ -262,3 +263,8 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" incsearch-easymotion.vim
+map z/ <Plug>(incsearch-easymotion-/)
+map z? <Plug>(incsearch-easymotion-?)
+map zg/ <Plug>(incsearch-easymotion-stay)
