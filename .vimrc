@@ -21,6 +21,7 @@ Plug 'lambdalisue/fern.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 set encoding=utf-8
