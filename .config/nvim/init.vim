@@ -35,6 +35,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('andymass/vim-matchup')
   call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
   call dein#add('haya14busa/incsearch.vim')
+  call dein#add('haya14busa/incsearch-easymotion.vim')
 
   call dein#end()
   call dein#save_state()
@@ -688,3 +689,8 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
+
+" incsearch-easymotion.vim
+map z/ <Plug>(incsearch-easymotion-/)
+map z? <Plug>(incsearch-easymotion-?)
+map zg/ <Plug>(incsearch-easymotion-stay)
