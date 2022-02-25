@@ -8,15 +8,12 @@
   "signature.target": "echo",
   // coc.preferences
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "coc.preferences.formatOnSaveFiletypes": [
-    "dart"
-  ],
+  "coc.preferences.formatOnSaveFiletypes": ["go", "dart"],
   // languageserver
   "languageserver": {
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod"],
-      "disableWorkspaceFolders": true,
       "filetypes": ["go"],
       "initializationOptions": {
         "usePlaceholders": true

@@ -305,6 +305,8 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \]
 
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
 " coc-fzf
 let g:coc_fzf_preview = 'right:50%'
 let g:coc_fzf_opts = ['--reverse', '--inline-info']
