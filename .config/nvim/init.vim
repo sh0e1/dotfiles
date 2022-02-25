@@ -10,7 +10,7 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('itchyny/lightline.vim')
-  call dein#add('fatih/vim-go')
+  " call dein#add('fatih/vim-go')
   call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
   call dein#add('cohama/lexima.vim')
@@ -395,156 +395,156 @@ let g:lightline = {
 autocmd User CocDiagnosticChange call lightline#update()
 
 " vim-go
-let g:go_version_warning = 1
-let g:go_code_completion_enabled = 0
-let g:go_code_completion_icase = 0
-let g:go_test_show_name = 1
-let g:go_test_timeout = '10s'
-let g:go_play_browser_command = 'chrome'
-let g:go_play_open_browser = 1
-let g:go_auto_type_info = 0
-let g:go_info_mode = 'gopls'
-let g:go_auto_sameids = 0
-let g:go_updatetime = 800
-let g:go_jump_to_error = 0
-let g:go_fmt_autosave = 1
-let g:go_fmt_command = 'goimports'
-let g:go_fmt_options = {}
-let g:go_fmt_fail_silently = 0
-let g:go_fmt_experimental = 0
-let g:go_imports_autosave = 0
-let g:go_imports_mode = 'goimports'
-let g:go_mod_fmt_autosave = 1
-let g:go_doc_keywordprg_enabled = 0
-let g:go_doc_max_height = 20
-let g:go_doc_url = 'https：//pkg.go.dev'
-let g:go_odc_popup_window = 0
-let g:go_def_mode = 'gopls'
-let g:go_fillstruct_mode = 'fillstruct'
-let g:go_referrers_mode = 'gopls'
-let g:go_implements_mode = 'gopls'
-let g:go_def_mapping_enabled = 0
-let g:go_def_reuse_buffer = 0
-let g:go_bin_path = ''
-let g:go_search_bin_path_first = 1
-let g:go_snippet_engine = ""
-let g:go_get_update = 1
-"let g:go_guru_scope = []
-let g:go_build_tags = ''
-let g:go_textobj_enabled = 1
-let g:go_textobj_include_function_doc = 1
-let g:go_textobj_include_variable = 1
-let g:go_metalinter_autosave = 1
-let g:go_metalinter_autosave_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode']
-let g:go_metalinter_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode']
-let g:go_metalinter_command = 'golangci-lint'
-let g:go_metalinter_deadline = "5s"
-let g:go_list_height = 0
-let g:go_list_type = 'quickfix'
-let g:go_list_type_commands = {}
-let g:go_list_autoclose = 1
-let g:go_asmfmt_autosave = 0
-let g:go_term_mode = 'split'
-let g:go_term_reuse = 1
-let g:go_term_height = 30
-let g:go_term_width = 30
-let g:go_term_enabled = 1
-let g:go_term_close_on_exit = 1
-let g:go_alternate_mode = "edit"
-let g:go_rename_command = 'gopls'
-let g:go_gorename_prefill = 'expand("<cword>") =~# "^[A-Z]"' .
-  \ '? go#util#pascalcase(expand("<cword>"))' .
-  \ ': go#util#camelcase(expand("<cword>"))'
-let g:go_gopls_enabled = 1
-let g:go_gopls_options = ['-remote = auto']
-let g:go_gopls_analyses = v:null
-let g:go_gopls_complete_unimported = v:null
-let g:go_gopls_deep_completion = v:null
-let g:go_gopls_matcher = v:null
-let g:go_gopls_staticcheck = v:null
-let g:go_gopls_use_placeholders = v:null
-let g:go_gopls_temp_modfile = v:null
-let g:go_gopls_local = v:null
-let g:go_gopls_gofumpt = v:null
-let g:go_gopls_settings = v:null
-let g:go_diagnostics_enabled = 0
-let g:go_diagnostics_level = 0
-let g:go_template_autocreate = 1
-let g:go_template_file = 'hello_world.go'
-let g:go_template_test_file = 'hello_world_test.go'
-let g:go_template_use_pkg = 0
-let g:go_decls_includes = 'func,type'
-let g:go_decls_mode = "fzf"
-let g:go_echo_command_info = 1
-let g:go_echo_go_info = 1
-let g:go_statusline_duration = 60000
-let g:go_addtags_transform = 'snakecase'
-let g:go_addtags_skip_unexported = 0
-let g:go_debug = []
-
-let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
-let g:go_highlight_array_whitespace_error = 0
-let g:go_highlight_chan_whitespace_error = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_space_tab_error = 0
-let g:go_highlight_trailing_whitespace_error = 0
-let g:go_highlight_operators = 0
-let g:go_highlight_functions = 0
-let g:go_highlight_function_parameters = 0
-let g:go_highlight_function_calls = 0
-let g:go_highlight_types = 0
-let g:go_highlight_fields = 0
-let g:go_highlight_build_constraints = 0
-let g:go_highlight_generate_tags = 0
-let g:go_highlight_string_spellcheck = 0
-let g:go_highlight_format_strings = 0
-let g:go_highlight_variable_declarations = 0
-let g:go_highlight_variable_assignments = 0
-let g:go_highlight_diagnostic_errors = 0
-let g:go_highlight_diagnostic_warnings = 0
-
-" Open :GoDeclsDir with ctrl-g
-nmap <C-g> :GoDeclsDir<cr>
-imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
-
-augroup go
-  autocmd!
-  " :GoBuild and :GoTestCompile
-  autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
-  " :GoRun
-  autocmd FileType go nmap <leader>r  <Plug>(go-run)
-  " :GoTest
-  autocmd FileType go nmap <leader>t  <Plug>(go-test)
-  " :GoTestFunc
-  autocmd FileType go nmap <leader>tt  <Plug>(go-test-func)
-  " :GoMetaLinter
-  autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
-  " :GoDoc
-  "autocmd FileType go nmap <Leader>d <Plug>(go-doc)
-  " :GoInfo
-  "autocmd FileType go nmap <Leader>i <Plug>(go-info)
-  " :GoCoverageToggle
-  autocmd FileType go nmap <Leader>cc <Plug>(go-coverage-toggle)
-  " :GoDef but opens in a vertical split
-  "autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
-  " :GoDef but opens in a horizontal split
-  "autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
-  " :GoAlternate  commands :A, :AV, :AS and :AT
-  autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
-  autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
-  autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
-  autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
-augroup END
-
-" run :GoBuild or :GoTestCompile based on the go file
-function! s:build_go_files()
-  let l:file = expand('%')
-  if l:file =~# '^\f\+_test\.go$'
-    call go#test#Test(0, 1)
-  elseif l:file =~# '^\f\+\.go$'
-    call go#cmd#Build(0)
-  endif
-endfunction
+" let g:go_version_warning = 1
+" let g:go_code_completion_enabled = 0
+" let g:go_code_completion_icase = 0
+" let g:go_test_show_name = 1
+" let g:go_test_timeout = '10s'
+" let g:go_play_browser_command = 'chrome'
+" let g:go_play_open_browser = 1
+" let g:go_auto_type_info = 0
+" let g:go_info_mode = 'gopls'
+" let g:go_auto_sameids = 0
+" let g:go_updatetime = 800
+" let g:go_jump_to_error = 0
+" let g:go_fmt_autosave = 1
+" let g:go_fmt_command = 'goimports'
+" let g:go_fmt_options = {}
+" let g:go_fmt_fail_silently = 0
+" let g:go_fmt_experimental = 0
+" let g:go_imports_autosave = 0
+" let g:go_imports_mode = 'goimports'
+" let g:go_mod_fmt_autosave = 1
+" let g:go_doc_keywordprg_enabled = 0
+" let g:go_doc_max_height = 20
+" let g:go_doc_url = 'https：//pkg.go.dev'
+" let g:go_odc_popup_window = 0
+" let g:go_def_mode = 'gopls'
+" let g:go_fillstruct_mode = 'fillstruct'
+" let g:go_referrers_mode = 'gopls'
+" let g:go_implements_mode = 'gopls'
+" let g:go_def_mapping_enabled = 0
+" let g:go_def_reuse_buffer = 0
+" let g:go_bin_path = ''
+" let g:go_search_bin_path_first = 1
+" let g:go_snippet_engine = ""
+" let g:go_get_update = 1
+" "let g:go_guru_scope = []
+" let g:go_build_tags = ''
+" let g:go_textobj_enabled = 1
+" let g:go_textobj_include_function_doc = 1
+" let g:go_textobj_include_variable = 1
+" let g:go_metalinter_autosave = 1
+" let g:go_metalinter_autosave_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode']
+" let g:go_metalinter_enabled = ['govet', 'errcheck', 'staticcheck', 'unused', 'gosimple', 'structcheck', 'varcheck', 'ineffassign', 'deadcode']
+" let g:go_metalinter_command = 'golangci-lint'
+" let g:go_metalinter_deadline = "5s"
+" let g:go_list_height = 0
+" let g:go_list_type = 'quickfix'
+" let g:go_list_type_commands = {}
+" let g:go_list_autoclose = 1
+" let g:go_asmfmt_autosave = 0
+" let g:go_term_mode = 'split'
+" let g:go_term_reuse = 1
+" let g:go_term_height = 30
+" let g:go_term_width = 30
+" let g:go_term_enabled = 1
+" let g:go_term_close_on_exit = 1
+" let g:go_alternate_mode = "edit"
+" let g:go_rename_command = 'gopls'
+" let g:go_gorename_prefill = 'expand("<cword>") =~# "^[A-Z]"' .
+"   \ '? go#util#pascalcase(expand("<cword>"))' .
+"   \ ': go#util#camelcase(expand("<cword>"))'
+" let g:go_gopls_enabled = 1
+" let g:go_gopls_options = ['-remote = auto']
+" let g:go_gopls_analyses = v:null
+" let g:go_gopls_complete_unimported = v:null
+" let g:go_gopls_deep_completion = v:null
+" let g:go_gopls_matcher = v:null
+" let g:go_gopls_staticcheck = v:null
+" let g:go_gopls_use_placeholders = v:null
+" let g:go_gopls_temp_modfile = v:null
+" let g:go_gopls_local = v:null
+" let g:go_gopls_gofumpt = v:null
+" let g:go_gopls_settings = v:null
+" let g:go_diagnostics_enabled = 0
+" let g:go_diagnostics_level = 0
+" let g:go_template_autocreate = 1
+" let g:go_template_file = 'hello_world.go'
+" let g:go_template_test_file = 'hello_world_test.go'
+" let g:go_template_use_pkg = 0
+" let g:go_decls_includes = 'func,type'
+" let g:go_decls_mode = "fzf"
+" let g:go_echo_command_info = 1
+" let g:go_echo_go_info = 1
+" let g:go_statusline_duration = 60000
+" let g:go_addtags_transform = 'snakecase'
+" let g:go_addtags_skip_unexported = 0
+" let g:go_debug = []
+" 
+" let g:go_fold_enable = ['block', 'import', 'varconst', 'package_comment']
+" let g:go_highlight_array_whitespace_error = 0
+" let g:go_highlight_chan_whitespace_error = 0
+" let g:go_highlight_extra_types = 0
+" let g:go_highlight_space_tab_error = 0
+" let g:go_highlight_trailing_whitespace_error = 0
+" let g:go_highlight_operators = 0
+" let g:go_highlight_functions = 0
+" let g:go_highlight_function_parameters = 0
+" let g:go_highlight_function_calls = 0
+" let g:go_highlight_types = 0
+" let g:go_highlight_fields = 0
+" let g:go_highlight_build_constraints = 0
+" let g:go_highlight_generate_tags = 0
+" let g:go_highlight_string_spellcheck = 0
+" let g:go_highlight_format_strings = 0
+" let g:go_highlight_variable_declarations = 0
+" let g:go_highlight_variable_assignments = 0
+" let g:go_highlight_diagnostic_errors = 0
+" let g:go_highlight_diagnostic_warnings = 0
+" 
+" " Open :GoDeclsDir with ctrl-g
+" nmap <C-g> :GoDeclsDir<cr>
+" imap <C-g> <esc>:<C-u>GoDeclsDir<cr>
+" 
+" augroup go
+"   autocmd!
+"   " :GoBuild and :GoTestCompile
+"   autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+"   " :GoRun
+"   autocmd FileType go nmap <leader>r  <Plug>(go-run)
+"   " :GoTest
+"   autocmd FileType go nmap <leader>t  <Plug>(go-test)
+"   " :GoTestFunc
+"   autocmd FileType go nmap <leader>tt  <Plug>(go-test-func)
+"   " :GoMetaLinter
+"   autocmd FileType go nmap <Leader>l <Plug>(go-metalinter)
+"   " :GoDoc
+"   "autocmd FileType go nmap <Leader>d <Plug>(go-doc)
+"   " :GoInfo
+"   "autocmd FileType go nmap <Leader>i <Plug>(go-info)
+"   " :GoCoverageToggle
+"   autocmd FileType go nmap <Leader>cc <Plug>(go-coverage-toggle)
+"   " :GoDef but opens in a vertical split
+"   "autocmd FileType go nmap <Leader>v <Plug>(go-def-vertical)
+"   " :GoDef but opens in a horizontal split
+"   "autocmd FileType go nmap <Leader>s <Plug>(go-def-split)
+"   " :GoAlternate  commands :A, :AV, :AS and :AT
+"   autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+"   autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+"   autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+"   autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+" augroup END
+" 
+" " run :GoBuild or :GoTestCompile based on the go file
+" function! s:build_go_files()
+"   let l:file = expand('%')
+"   if l:file =~# '^\f\+_test\.go$'
+"     call go#test#Test(0, 1)
+"   elseif l:file =~# '^\f\+\.go$'
+"     call go#cmd#Build(0)
+"   endif
+" endfunction
 
 " fzf.vim
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
