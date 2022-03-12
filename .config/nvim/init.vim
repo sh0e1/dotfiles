@@ -326,8 +326,10 @@ let g:coc_global_extensions = [
   \ 'coc-dictionary',
   \ 'coc-yaml',
   \ 'coc-json',
+  \ 'coc-spell-checker',
   \]
 
+" goimport
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " coc-fzf
