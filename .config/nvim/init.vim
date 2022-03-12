@@ -32,6 +32,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('kassio/neoterm')
   call dein#add('andymass/vim-matchup')
   call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
+  call dein#add('nvim-treesitter/playground')
 
   call dein#end()
   call dein#save_state()
@@ -110,6 +111,19 @@ set termguicolors
 let g:enable_bold_font = 1
 let g:enable_italic_font = 1
 colorscheme hybrid_reverse
+" nvim-treesitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,
+  }
+}
+
+require"nvim-treesitter.highlight".set_custom_captures {
+  ["function.builtin"] = "TSFunction",
+}
+EOF
 
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
@@ -522,12 +536,3 @@ let g:fern#renderer#default#leading          = ' '
 let g:fern#renderer#default#leaf_symbol      = ' '
 let g:fern#renderer#default#root_symbol      = '~ '
 let g:fern#default_exclude = '^\%(\.git\)$'
-
-" nvim-treesitter
-lua << EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-  }
-}
-EOF
