@@ -127,6 +127,8 @@ require("github-theme").setup({
       TSTypeBuiltin = { link = "Type" },
       TSProperty = { fg = c.bright_blue },
       TSOperator = { fg = c.bright_blue },
+      SpellBad = {},
+      SpellCap = { link = SpellBad },
     }
   end
 })
