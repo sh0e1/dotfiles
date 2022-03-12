@@ -33,6 +33,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
   call dein#add('nvim-treesitter/playground')
   call dein#add('projekt0n/github-nvim-theme')
+  call dein#add('ray-x/go.nvim')
 
   call dein#end()
   call dein#save_state()
@@ -545,3 +546,14 @@ let g:fern#renderer#default#leading          = ' '
 let g:fern#renderer#default#leaf_symbol      = ' '
 let g:fern#renderer#default#root_symbol      = '~ '
 let g:fern#default_exclude = '^\%(\.git\)$'
+
+" ray-x/go.nvim
+lua << EOF
+require('go').setup({
+  goimport = 'gopls',
+  fillstruct = 'gopls',
+  gofmt = 'gopls',
+})
+
+vim.cmd("autocmd FileType go nmap <Leader>l :GoLint<cr>")
+EOF
