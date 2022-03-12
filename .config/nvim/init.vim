@@ -119,8 +119,10 @@ lua << EOF
 require("github-theme").setup({
   theme_style = "dimmed",
   keyword_style = "NONE",
-
-  -- Overwrite the highlight groups
+  dark_float = true,
+  colors = {
+    bg_search = "#ffea80",
+  },
   overrides = function(c)
     return {
       Type = { fg = c.fg },
