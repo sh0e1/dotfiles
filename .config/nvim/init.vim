@@ -16,7 +16,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('godlygeek/tabular', {'lazy': 1, 'on_ft': 'md'})
   call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'md'})
-  call dein#add('kristijanhusak/vim-hybrid-material')
   call dein#add('tpope/vim-surround')
   call dein#add('bfredl/nvim-miniyank')
   call dein#add('easymotion/vim-easymotion')
@@ -33,6 +32,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('andymass/vim-matchup')
   call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
   call dein#add('nvim-treesitter/playground')
+  call dein#add('projekt0n/github-nvim-theme')
 
   call dein#end()
   call dein#save_state()
@@ -99,18 +99,6 @@ set signcolumn=yes
 set completeopt-=preview
 set sh=zsh
 
-" color scheme
-augroup highlight
-  autocmd!
-  autocmd ColorScheme * highlight SpecialKey ctermfg=244 ctermbg=NONE guifg=#8e9292 guibg=NONE gui=none
-                    \ | highlight clear SpellBad
-                    \ | highlight SpellBad cterm=underline gui=underline
-augroup END
-
-set termguicolors
-let g:enable_bold_font = 1
-let g:enable_italic_font = 1
-colorscheme hybrid_reverse
 " nvim-treesitter
 lua << EOF
 require'nvim-treesitter.configs'.setup {
@@ -123,6 +111,25 @@ require'nvim-treesitter.configs'.setup {
 require"nvim-treesitter.highlight".set_custom_captures {
   ["function.builtin"] = "TSFunction",
 }
+EOF
+
+" color scheme
+lua << EOF
+require("github-theme").setup({
+  theme_style = "dimmed",
+  keyword_style = "NONE",
+
+  -- Overwrite the highlight groups
+  overrides = function(c)
+    return {
+      Type = { fg = c.fg },
+      TSType = { link = "Type" },
+      TSTypeBuiltin = { link = "Type" },
+      TSProperty = { fg = c.bright_blue },
+      TSOperator = { fg = c.bright_blue },
+    }
+  end
+})
 EOF
 
 " this enables us to undo files even if you exit Vim.
