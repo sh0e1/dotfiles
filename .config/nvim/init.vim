@@ -9,7 +9,6 @@ if dein#load_state('~/.cache/dein')
   call dein#begin('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  call dein#add('itchyny/lightline.vim')
   call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
   call dein#add('cohama/lexima.vim')
@@ -34,6 +33,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('nvim-treesitter/playground')
   call dein#add('projekt0n/github-nvim-theme')
   call dein#add('ray-x/go.nvim')
+  call dein#add('nvim-lualine/lualine.nvim')
 
   call dein#end()
   call dein#save_state()
@@ -315,11 +315,6 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
 " coc extensions
 let g:coc_global_extensions = [
   \ 'coc-word',
@@ -372,56 +367,20 @@ endif
 let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
 let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/sh0e1/snippets/snippets'
 
-" lightline.vim
-function! CocCurrentFunction()
-  let f = get(b:, 'coc_current_function', '')
-  return f == '' ? '' : f . '()'
-endfunction
-
-" Helper function for LightlineCoc*() functions.
-function! s:lightline_coc_diagnostic(kind, sign) abort
-  let info = get(b:, 'coc_diagnostic_info', 0)
-  if empty(info) || get(info, a:kind, 0) == 0
-    return ''
-  endif
-  return printf("%s %d", a:sign, info[a:kind])
-endfunction
-
-" Used in LightLine config to show diagnostic messages.
-function! LightlineCocErrors() abort
-  return s:lightline_coc_diagnostic('error', '●')
-endfunction
-function! LightlineCocWarnings() abort
-    return s:lightline_coc_diagnostic('warning', "●")
-endfunction
-function! LightlineCocInfos() abort
-  return s:lightline_coc_diagnostic('information', "●")
-endfunction
-function! LightlineCocHints() abort
-  return s:lightline_coc_diagnostic('hints', "●")
-endfunction
-
-let g:lightline = {
-  \ 'colorscheme': 'wombat',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \             [ 'readonly', 'relativepath', 'modified' ],
-  \             [ 'coc_error', 'coc_warning', 'coc_info', 'coc_hint' ], ] },
-  \ 'component_expand': {
-  \   'coc_error': 'LightlineCocErrors',
-  \   'coc_warning': 'LightlineCocWarnings',
-  \   'coc_info': 'LightlineCocInfos',
-  \   'coc_hint': 'LightlineCocHints' },
-  \ 'component_type': {
-  \   'coc_error': 'error',
-  \   'coc_warning': 'warning',
-  \   'coc_info': 'tabsel',
-  \   'coc_hint': 'middle' },
-  \ 'component_function': {
-  \   'currentfunction': 'CocCurrentFunction' },
-  \ }
-
-autocmd User CocDiagnosticChange call lightline#update()
+lua << EOF
+require('lualine').setup {
+  options = {
+    theme = "auto",
+    icons_enabled = false,
+    section_separators = '',
+    component_separators = '',
+  },
+  extensions = {
+    'fern',
+    'fzf',
+  }
+}
+EOF
 
 " fzf.vim
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
