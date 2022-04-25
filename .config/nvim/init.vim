@@ -11,7 +11,6 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
   call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
-  call dein#add('yuki-yano/fzf-preview.vim', { 'rev': 'release/rpc' })
   call dein#add('cohama/lexima.vim')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('godlygeek/tabular', {'lazy': 1, 'on_ft': 'md'})
@@ -325,6 +324,7 @@ let g:coc_global_extensions = [
   \ 'coc-yaml',
   \ 'coc-json',
   \ 'coc-spell-checker',
+  \ 'coc-fzf-preview',
   \]
 
 " goimport
