@@ -96,9 +96,9 @@ set autoindent
 set smartindent
 set shiftwidth=4
 set mouse=a
-set signcolumn=yes
 set completeopt-=preview
 set sh=zsh
+set cmdheight=2
 
 " nvim-treesitter
 lua << EOF
@@ -178,15 +178,9 @@ map P <Plug>(miniyank-autoPut)
 set nobackup
 set nowritebackup
 
-" Give more space for displaying messages.
-set cmdheight=2
-
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=300
-
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -325,7 +319,7 @@ let g:coc_global_extensions = [
   \]
 
 " goimport
-autocmd BufWritePre *.go :call CocActionAsync('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " coc-fzf
 let g:coc_fzf_preview = 'right:50%'
@@ -358,9 +352,9 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
   \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+" if has('conceal')
+"   set conceallevel=2 concealcursor=niv
+" endif
 
 let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
 let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/sh0e1/snippets/snippets'
