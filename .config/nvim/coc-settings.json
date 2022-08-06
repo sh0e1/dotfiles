@@ -1,19 +1,11 @@
 {
-  // suggest
-  "suggest.floatEnable": false,
-  // diagnostic
   "diagnostic.messageTarget": "echo",
   "diagnostic.virtualText": true,
-  // signature
-  "signature.target": "echo",
-  // coc.preferences
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "coc.preferences.formatOnSaveFiletypes": ["go", "dart"],
-  // languageserver
+  "coc.preferences.formatOnSaveFiletypes": ["go"],
   "languageserver": {
     "golang": {
       "command": "gopls",
-      "rootPatterns": ["go.mod"],
+      "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
       "initializationOptions": {
         "usePlaceholders": true
@@ -38,19 +30,6 @@
       "command": "efm-langserver",
       "args": [],
       "filetypes": ["markdown"]
-    },
-    "dart": {
-      "command": "dart",
-      "args": [
-        "/usr/local/Caskroom/flutter/1.22.6/flutter/bin/cache/dart-sdk/bin/snapshots",
-        "--lsp",
-        "--client-id",
-        "vim",
-        "--client-version",
-        "coc.nvim"
-      ],
-      "filetypes": ["dart"],
-      "trace.server": "verbose"
     }
   }
 }
