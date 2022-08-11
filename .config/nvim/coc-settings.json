@@ -2,6 +2,8 @@
   "suggest.detailField": "abbr",
   "diagnostic.messageTarget": "echo",
   "diagnostic.virtualText": true,
+  "signature.target": "echo",
+  "notification.disabledProgressSources": ["*"],
   "coc.preferences.formatOnSaveFiletypes": ["go"],
   "languageserver": {
     "golang": {
