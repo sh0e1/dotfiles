@@ -313,7 +313,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " endif
 
 let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
-let g:neosnippet#snippets_directory = '~/.cache/dein/repos/github.com/sh0e1/snippets/snippets'
+let g:neosnippet#snippets_directory = '~/.local/share/nvim/site/pack/packer/start/snippets/snippets'
 
 lua << EOF
 require('lualine').setup {
