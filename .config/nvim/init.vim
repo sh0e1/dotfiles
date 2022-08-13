@@ -374,6 +374,10 @@ endfunction
 
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
+nmap q: :History:<CR>
+xmap q: :History:<CR>
+omap q: :History:<CR>
+
 " vim-gitgutter
 let g:gitgutter_preview_win_floating = 0
 
