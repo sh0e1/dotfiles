@@ -11,7 +11,6 @@ lua require('plugins')
 "   call dein#begin('~/.cache/dein')
 " 
 "   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-"   call dein#add('airblade/vim-gitgutter')
 " 
 "   call dein#end()
 "   call dein#save_state()
@@ -401,33 +400,28 @@ endfunction
 
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
-" " vim-gitgutter
-" let g:gitgutter_preview_win_floating = 0
-" 
-" nmap [h  <Plug>(GitGutterPrevHunk)
-" nmap ]h  <Plug>(GitGutterNextHunk)
-" nmap ghs <Plug>(GitGutterStageHunk)
-" nmap ghu <Plug>(GitGutterUndoHunk)
-" nmap ghp <Plug>(GitGutterPreviewHunk)
-" omap ih  <Plug>(GitGutterTextObjectInnerPending)
-" omap ah  <Plug>(GitGutterTextObjectOuterPending)
-" xmap ih  <Plug>(GitGutterTextObjectInnerVisual)
-" xmap ah  <Plug>(GitGutterTextObjectOuterVisual)
-" 
-" function! GitGutterNextHunkCycle()
-"   let line = line('.')
-"   silent! GitGutterNextHunk
-"   if line('.') == line
-"     1
-"     GitGutterNextHunk
-"   endif
-" endfunction
-" 
-" " vim-markdown
-" let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_conceal = 0
-" let g:vim_markdown_conceal_code_blocks = 0
- 
+" vim-gitgutter
+let g:gitgutter_preview_win_floating = 0
+
+nmap [h  <Plug>(GitGutterPrevHunk)
+nmap ]h  <Plug>(GitGutterNextHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)
+nmap ghp <Plug>(GitGutterPreviewHunk)
+omap ih  <Plug>(GitGutterTextObjectInnerPending)
+omap ah  <Plug>(GitGutterTextObjectOuterPending)
+xmap ih  <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah  <Plug>(GitGutterTextObjectOuterVisual)
+
+function! GitGutterNextHunkCycle()
+  let line = line('.')
+  silent! GitGutterNextHunk
+  if line('.') == line
+    1
+    GitGutterNextHunk
+  endif
+endfunction
+
 " vim-easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 

@@ -26,7 +26,8 @@ return require('packer').startup(function(use)
   use 'andymass/vim-matchup'
   use 'easymotion/vim-easymotion'
   use 'editorconfig/editorconfig-vim'
-  use {'tpope/vim-fugitive', tag = '*'}
+  use 'tpope/vim-fugitive'
+  use 'airblade/vim-gitgutter'
   use 'ray-x/go.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
