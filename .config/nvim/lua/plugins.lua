@@ -27,6 +27,7 @@ return require('packer').startup(function(use)
   use 'easymotion/vim-easymotion'
   use 'editorconfig/editorconfig-vim'
   use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
   use 'airblade/vim-gitgutter'
   use 'ray-x/go.nvim'
 
