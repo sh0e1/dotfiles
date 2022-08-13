@@ -1,59 +1,10 @@
-" dein
-if &compatible
-  set nocompatible
-endif
-" Add the dein installation directory into runtimepath
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  call dein#add('junegunn/fzf', {'build': './install --all', 'merged': 0})
-  call dein#add('junegunn/fzf.vim', {'depends': 'fzf'})
-  call dein#add('cohama/lexima.vim')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('godlygeek/tabular', {'lazy': 1, 'on_ft': 'md'})
-  call dein#add('plasticboy/vim-markdown', {'lazy': 1, 'on_ft': 'md'})
-  call dein#add('tpope/vim-surround')
-  call dein#add('bfredl/nvim-miniyank')
-  call dein#add('easymotion/vim-easymotion')
-  call dein#add('tpope/vim-repeat')
-  call dein#add('neoclide/coc.nvim', { 'merged': 0, 'rev': 'release' })
-  call dein#add('Shougo/neosnippet.vim')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('christoomey/vim-tmux-navigator')
-  call dein#add('antoinemadec/coc-fzf', { 'rev': 'release' })
-  call dein#add('editorconfig/editorconfig-vim')
-  call dein#add('sh0e1/snippets')
-  call dein#add('lambdalisue/fern.vim')
-  call dein#add('kassio/neoterm')
-  call dein#add('andymass/vim-matchup')
-  call dein#add('nvim-treesitter/nvim-treesitter', {'hook_post_update': 'TSUpdate'})
-  call dein#add('nvim-treesitter/playground')
-  call dein#add('projekt0n/github-nvim-theme')
-  call dein#add('ray-x/go.nvim')
-  call dein#add('nvim-lualine/lualine.nvim')
-
-  call dein#end()
-  call dein#save_state()
-endif
+lua require('plugins')
 
 " neoterm
-let &runtimepath.=',~/.vim/bundle/neoterm'
+let &runtimepath.=',~/.local/share/nvim/site/pack/packer/start/neoterm'
 
 filetype plugin indent on
 syntax enable
-
-if dein#check_install()
-  call dein#install()
-endif
-
-let s:removed_plugins = dein#check_clean()
-if len(s:removed_plugins) > 0
-  call map(s:removed_plugins, "delete(v:val, 'rf')")
-  call dein#recache_runtimepath()
-endif
 
 set encoding=utf-8
 scriptencoding utf-8
@@ -102,14 +53,15 @@ set cmdheight=2
 
 " nvim-treesitter
 lua << EOF
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup {
   ensure_installed = "all",
   highlight = {
     enable = true,
-  }
+  },
+  indent = {enable = true}
 }
 
-require"nvim-treesitter.highlight".set_custom_captures {
+require('nvim-treesitter.highlight').set_custom_captures {
   ["function.builtin"] = "TSFunction",
 }
 EOF
@@ -165,6 +117,7 @@ nnoremap [c :cprevious<CR>
 nnoremap ]c :cnext<CR>
 
 tnoremap <silent> <ESC> <C-\><C-n>
+nnoremap <Leader>tt :Ttoggle<CR>
 nnoremap <Leader>to :Topen<CR>
 nnoremap <Leader>tc :Tclose!<CR>
 let g:neoterm_autoinsert = 1
@@ -324,9 +277,6 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \]
 
-" goimport
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-
 " coc-fzf
 let g:coc_fzf_preview = 'right:50%'
 let g:coc_fzf_opts = ['--reverse', '--inline-info']
@@ -381,6 +331,8 @@ require('lualine').setup {
 EOF
 
 " fzf.vim
+set rtp+=/usr/local/opt/fzf
+
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS = '--reverse --inline-info'
 let g:fzf_action = {
@@ -443,11 +395,6 @@ function! GitGutterNextHunkCycle()
     GitGutterNextHunk
   endif
 endfunction
-
-" vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
 
 " vim-easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -518,3 +465,6 @@ require('go').setup({
 
 vim.cmd("autocmd FileType go nmap <Leader>l :GoLint<CR>")
 EOF
+
+" goimport
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
