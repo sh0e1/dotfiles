@@ -13,8 +13,8 @@ return require('packer').startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use 'kassio/neoterm'
   use 'junegunn/fzf.vim'
-  use {'neoclide/coc.nvim', branch = 'release'}
-  use {'antoinemadec/coc-fzf', branch = 'release'}
+  -- use {'neoclide/coc.nvim', branch = 'release'}
+  -- use {'antoinemadec/coc-fzf', branch = 'release'}
   use 'Shougo/neosnippet.vim'
   use 'Shougo/neosnippet-snippets'
   use 'sh0e1/snippets'
@@ -30,6 +30,11 @@ return require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'airblade/vim-gitgutter'
   use 'ray-x/go.nvim'
+
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/mason.nvim'
+  use 'williamboman/mason-lspconfig.nvim'
+  use 'j-hui/fidget.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
