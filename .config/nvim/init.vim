@@ -471,5 +471,5 @@ require('go').setup({
 vim.cmd("autocmd FileType go nmap <Leader>l :GoLint<CR>")
 EOF
 
-" goimport
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+" " goimport
+" autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
