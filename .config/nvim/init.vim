@@ -1,5 +1,6 @@
-lua require('plugins')
-lua require('lsp')
+lua require('_plugins')
+lua require('_cmp')
+lua require('_lsp')
 
 " neoterm
 let &runtimepath.=',~/.local/share/nvim/site/pack/packer/start/neoterm'
@@ -48,9 +49,12 @@ set autoindent
 set smartindent
 set shiftwidth=4
 set mouse=a
-set completeopt-=preview
+" set completeopt-=preview
 set sh=zsh
 set cmdheight=2
+
+set signcolumn=yes
+set nowritebackup
 
 " nvim-treesitter
 lua << EOF
