@@ -34,7 +34,7 @@ SAVEHIST=100000
 zstyle :compinstall filename '$HOME/.zshrc'
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 autoload -Uz compinit
-compinit -u
+compinit
 # End of lines added by compinstall
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
