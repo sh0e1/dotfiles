@@ -71,6 +71,7 @@ setopt hist_save_no_dups
 setopt hist_no_store
 setopt hist_expand
 setopt inc_append_history
+setopt share_history
 
 # alias
 alias lst='ls -ltrFG'
