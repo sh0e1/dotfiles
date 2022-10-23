@@ -10,7 +10,7 @@ zplug 'zsh-users/zsh-syntax-highlighting', defer:2
 zplug 'plugins/docker', from:oh-my-zsh
 # zplug 'plugins/git', from:oh-my-zsh
 zplug 'b4b4r07/enhancd', use:init.sh
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+zplug 'spaceship-prompt/spaceship-prompt', use:spaceship.zsh, from:github, as:theme
 zplug 'wfxr/forgit'
 
 # Install plugins if there are plugins that have not been installed
@@ -91,6 +91,9 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
+
+# Homebrew
+export PATH="/usr/local/sbin:$PATH"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -193,6 +196,7 @@ SPACESHIP_GIT_BRANCH_SUFFIX=')'
 SPACESHIP_GIT_BRANCH_COLOR=cyan
 SPACESHIP_GIT_STATUS_PREFIX=''
 SPACESHIP_GIT_STATUS_SUFFIX=''
+SPACESHIP_PROMPT_ASYNC=false
 
 _fzf_alias() {
   selected=$(alias | fzf --height=40 | awk -F "=" '{print $1}' | sed -e "s/'//g")
