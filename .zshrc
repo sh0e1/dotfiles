@@ -6,12 +6,10 @@ zplug 'zsh-users/zsh-history-substring-search'
 zplug 'zsh-users/zsh-autosuggestions'
 zplug 'zsh-users/zsh-completions'
 zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-# zplug 'tcnksm/docker-alias', use:zshrc
 zplug 'plugins/docker', from:oh-my-zsh
-# zplug 'plugins/git', from:oh-my-zsh
 zplug 'b4b4r07/enhancd', use:init.sh
-zplug 'spaceship-prompt/spaceship-prompt', use:spaceship.zsh, from:github, as:theme
 zplug 'wfxr/forgit'
+zplug 'git/git', use:'contrib/completion/git-prompt.sh'
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -52,6 +50,18 @@ colors
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 zstyle ':completion:*' list-colors "${LS_COLORS}"
+
+# prompt
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUPSTREAM='auto'
+GIT_PS1_STATESEPARATOR='|'
+GIT_PS1_COMPRESSSPARSESTATE=1
+GIT_PS1_SHOWCONFLICTSTATE='yes'
+GIT_PS1_DESCRIBE_STYLE='default'
+#GIT_PS1_SHOWCOLORHINTS=true
+setopt PROMPT_SUBST ; PS1='%F{blue}%2c%f% %F{cyan}$(__git_ps1 " (%s)")%f > '
 
 # options
 setopt auto_cd
