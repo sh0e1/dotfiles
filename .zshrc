@@ -60,8 +60,8 @@ GIT_PS1_STATESEPARATOR='|'
 GIT_PS1_COMPRESSSPARSESTATE=1
 GIT_PS1_SHOWCONFLICTSTATE='yes'
 GIT_PS1_DESCRIBE_STYLE='default'
-#GIT_PS1_SHOWCOLORHINTS=true
-setopt PROMPT_SUBST ; PS1='%F{blue}%2c%f% %F{cyan}$(__git_ps1 " (%s)")%f > '
+GIT_PS1_SHOWCOLORHINTS=1
+setopt PROMPT_SUBST ; PS1='%F{blue}%2c%f% $(__git_ps1 " git:(%s)") > '
 
 # options
 setopt auto_cd
