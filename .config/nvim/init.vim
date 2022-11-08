@@ -61,9 +61,7 @@ require('nvim-treesitter.configs').setup {
   indent = {enable = true}
 }
 
-require('nvim-treesitter.highlight').set_custom_captures {
-  ["function.builtin"] = "TSFunction",
-}
+vim.api.nvim_set_hl(0, "@function.builtin", { link = "TSFunction" })
 EOF
 
 " color scheme
