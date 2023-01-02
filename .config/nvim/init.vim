@@ -288,7 +288,7 @@ nnoremap <silent> [fzf-p]c       :<C-u>CocFzfList commands<CR>
 nnoremap <silent> [fzf-p]e       :<C-u>CocFzfList extensions<CR>
 nnoremap <silent> [fzf-p]l       :<C-u>CocFzfList location<CR>
 nnoremap <silent> [fzf-p]o       :<C-u>CocFzfList outline<CR>
-nnoremap <silent> [fzf-p]s       :<C-u>CocFzfList symbols<CR>
+nnoremap <silent> [fzf-p]s       :<C-u>CocFzfList -I symbols<CR>
 nnoremap <silent> [fzf-p]p       :<C-u>CocFzfListResume<CR>
 nnoremap <silent> [fzf-p]b       :<C-u>Buffers<CR>
 nnoremap <silent> [fzf-p]r       :<C-u>Rg<CR>
