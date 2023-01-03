@@ -29,12 +29,19 @@ return require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'airblade/vim-gitgutter'
   use 'ray-x/go.nvim'
-
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2',
+    config = function()
+      require'hop'.setup {}
+    end
+  }
   -- install without yarn or npm
   use({
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
