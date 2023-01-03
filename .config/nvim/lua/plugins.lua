@@ -24,7 +24,6 @@ return require('packer').startup(function(use)
   use 'bfredl/nvim-miniyank'
   use 'christoomey/vim-tmux-navigator'
   use 'andymass/vim-matchup'
-  use 'easymotion/vim-easymotion'
   use 'editorconfig/editorconfig-vim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
