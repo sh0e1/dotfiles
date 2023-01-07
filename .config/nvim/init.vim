@@ -398,23 +398,7 @@ function! GitGutterNextHunkCycle()
   endif
 endfunction
 
-" vim-easymotion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-nmap s <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
 
 " fern.vim
 nnoremap <Leader>d :Fern . -reveal=%<CR>
@@ -470,3 +454,39 @@ EOF
 
 " goimport
 autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" phaazon/hop.nvim
+lua << EOF
+local hop = require('hop')
+local directions = require('hop.hint').HintDirection
+vim.keymap.set('', 'f', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
+end, { remap=true })
+vim.keymap.set('', 'F', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
+end, { remap=true })
+vim.keymap.set('', 't', function()
+  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+end, { remap=true })
+vim.keymap.set('', 'T', function()
+  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+end, { remap=true })
+vim.keymap.set('n', 's', function()
+  hop.hint_char2({ multi_windows = true })
+end, { remap=true })
+vim.keymap.set('v', 's', function()
+  hop.hint_char2()
+end, { remap=true })
+vim.keymap.set('', '<Leader>L', function()
+  hop.hint_lines()
+end, { remap=true })
+vim.keymap.set('n', '<Leader>L', function()
+  hop.hint_lines({ multi_windows = true })
+end, { remap=true })
+vim.keymap.set('', '<Leader>w', function()
+  hop.hint_words()
+end, { remap=true })
+vim.keymap.set('n', '<Leader>w', function()
+  hop.hint_words({ multi_windows = true })
+end, { remap=true })
+EOF

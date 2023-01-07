@@ -24,13 +24,18 @@ return require('packer').startup(function(use)
   use 'bfredl/nvim-miniyank'
   use 'christoomey/vim-tmux-navigator'
   use 'andymass/vim-matchup'
-  use 'easymotion/vim-easymotion'
   use 'editorconfig/editorconfig-vim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use 'airblade/vim-gitgutter'
   use 'ray-x/go.nvim'
-
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2',
+    config = function()
+      require'hop'.setup {}
+    end
+  }
   -- install without yarn or npm
   use({
     "iamcco/markdown-preview.nvim",
