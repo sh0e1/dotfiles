@@ -63,8 +63,16 @@ require('nvim-treesitter.configs').setup {
     enable = true,
   },
 }
+EOF
 
-vim.api.nvim_set_hl(0, "@function.builtin", { link = "TSFunction" })
+" highlight
+lua << EOF
+vim.api.nvim_set_hl(0, "@function.builtin", { link = "@function" })
+vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "@text" })
+vim.api.nvim_set_hl(0, "@text.diff.add", { link = "DiffAdd" })
+vim.api.nvim_set_hl(0, "@text.diff.change", { link = "DiffChange" })
+vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffDelete" })
+vim.api.nvim_set_hl(0, "@text.diff.text", { link = "DiffText" })
 EOF
 
 " color scheme
@@ -73,18 +81,16 @@ require("github-theme").setup({
   theme_style = "dimmed",
   keyword_style = "NONE",
   dark_float = true,
-  colors = {
-    bg_search = "#ffea80",
-  },
   overrides = function(c)
     return {
       Type = { fg = c.fg },
-      TSType = { link = "Type" },
-      TSTypeBuiltin = { link = "Type" },
-      TSProperty = { fg = c.bright_blue },
-      TSOperator = { fg = c.bright_blue },
       SpellBad = {},
       SpellCap = { link = SpellBad },
+      ['@type'] = { link = 'Type' },
+      ['@field'] = { fg = c.bright_blue },
+      ['@property'] = { fg = c.bright_blue },
+      ['@operator'] = { fg = c.bright_blue },
+      ['@string.escape'] = { fg = c.syntax.string },
     }
   end
 })
