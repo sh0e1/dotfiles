@@ -499,3 +499,9 @@ vim.keymap.set('n', '<Leader>w', function()
   hop.hint_words({ multi_windows = true })
 end, { remap=true })
 EOF
+
+" haya14busa/vim-edgemotion
+lua << EOF
+vim.keymap.set('', ']]', '<Plug>(edgemotion-j)')
+vim.keymap.set('', '[[', '<Plug>(edgemotion-k)')
+EOF

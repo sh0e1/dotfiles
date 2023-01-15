@@ -37,6 +37,7 @@ return require('packer').startup(function(use)
       require'hop'.setup {}
     end
   }
+  use 'haya14busa/vim-edgemotion'
   -- install without yarn or npm
   use({
     "iamcco/markdown-preview.nvim",
