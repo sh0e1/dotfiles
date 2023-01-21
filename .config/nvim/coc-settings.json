@@ -11,7 +11,11 @@
       "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
       "initializationOptions": {
-        "usePlaceholders": true
+        "directoryFilters": [
+          "-**/node_modules"
+        ],
+        "templateExtensions": ["html", "tmpl", "tpl"],
+        "ui.completion.usePlaceholders": true
       }
     },
     "dockerfile": {
