@@ -453,12 +453,16 @@ let g:fern#default_exclude = '^\%(\.git\)$'
 " ray-x/go.nvim
 lua << EOF
 require('go').setup({
+  disable_defaults = true,
   goimport = 'gopls',
   fillstruct = 'gopls',
   gofmt = 'gopls',
+  lsp_cfg = false,
+  gopls_remote_auto = true,
+  textobjects = true,
+  test_runner = 'go',
+  verbose_tests = true,
 })
-
-vim.cmd("autocmd FileType go nmap <Leader>l :GoLint<CR>")
 EOF
 
 " goimport
