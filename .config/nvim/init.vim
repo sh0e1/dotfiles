@@ -284,6 +284,10 @@ let g:coc_global_extensions = [
   \ 'coc-spell-checker',
   \]
 
+" goimport
+" https://github.com/golang/tools/blob/master/gopls/doc/vim.md#cocnvim
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
+
 " coc-fzf
 let g:coc_fzf_preview = 'right:50%'
 let g:coc_fzf_opts = ['--reverse', '--inline-info']
@@ -407,8 +411,6 @@ function! GitGutterNextHunkCycle()
   endif
 endfunction
 
-
-
 " fern.vim
 nnoremap <Leader>d :Fern . -reveal=%<CR>
 
@@ -464,9 +466,6 @@ require('go').setup({
   verbose_tests = true,
 })
 EOF
-
-" goimport
-autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " phaazon/hop.nvim
 lua << EOF
