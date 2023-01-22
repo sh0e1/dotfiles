@@ -58,7 +58,31 @@ require('nvim-treesitter.configs').setup {
   highlight = {
     enable = true,
   },
-  indent = {enable = true},
+  indent = {
+    enable = true,
+  },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        ["]]"] = "@function.outer",
+      },
+      goto_previous_start = {
+        ["[["] = "@function.outer",
+      }
+    },
+  },
   playground = {
     enable = true,
   },
@@ -235,14 +259,14 @@ nmap <leader>cl  <Plug>(coc-codelens-action)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
+" xmap if <Plug>(coc-funcobj-i)
+" omap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap af <Plug>(coc-funcobj-a)
+" xmap ic <Plug>(coc-classobj-i)
+" omap ic <Plug>(coc-classobj-i)
+" xmap ac <Plug>(coc-classobj-a)
+" omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
@@ -503,8 +527,8 @@ vim.keymap.set('n', '<Leader>w', function()
 end, { remap=true })
 EOF
 
-" haya14busa/vim-edgemotion
+" mfussenegger/nvim-treehopper
 lua << EOF
-vim.keymap.set('', ']]', '<Plug>(edgemotion-j)')
-vim.keymap.set('', '[[', '<Plug>(edgemotion-k)')
+vim.keymap.set('o', 'm', ':<C-U>lua require("tsht").nodes()<CR>', { silent = true })
+vim.keymap.set('x', 'm', ':lua require("tsht").nodes()<CR>', { noremap = true, silent = true })
 EOF
