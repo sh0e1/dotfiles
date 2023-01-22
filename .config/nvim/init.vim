@@ -532,9 +532,3 @@ lua << EOF
 vim.keymap.set('o', 'm', ':<C-U>lua require("tsht").nodes()<CR>', { silent = true })
 vim.keymap.set('x', 'm', ':lua require("tsht").nodes()<CR>', { noremap = true, silent = true })
 EOF
-
-" haya14busa/vim-edgemotion
-lua << EOF
-vim.keymap.set('', ']]', '<Plug>(edgemotion-j)')
-vim.keymap.set('', '[[', '<Plug>(edgemotion-k)')
-EOF

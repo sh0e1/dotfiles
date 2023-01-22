@@ -39,7 +39,6 @@ return require('packer').startup(function(use)
     end
   }
   use 'mfussenegger/nvim-treehopper'
-  use 'haya14busa/vim-edgemotion'
   -- install without yarn or npm
   use({
     "iamcco/markdown-preview.nvim",
