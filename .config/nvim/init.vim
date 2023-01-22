@@ -305,7 +305,7 @@ nnoremap <silent> [fzf-p]s       :<C-u>CocFzfList -I symbols<CR>
 nnoremap <silent> [fzf-p]p       :<C-u>CocFzfListResume<CR>
 nnoremap <silent> [fzf-p]b       :<C-u>Buffers<CR>
 nnoremap <silent> [fzf-p]r       :<C-u>Rg<CR>
-nnoremap <silent> [fzf-p]f       :<C-u>GFiles<CR>
+nnoremap <silent> [fzf-p]f       :<C-u>Files<CR>
 
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
