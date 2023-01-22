@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'projekt0n/github-nvim-theme'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
   use 'lambdalisue/fern.vim'
   use 'nvim-lualine/lualine.nvim'
