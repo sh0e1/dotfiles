@@ -361,6 +361,7 @@ require('lualine').setup {
   extensions = {
     'fern',
     'fzf',
+    'fugitive',
   }
 }
 EOF
