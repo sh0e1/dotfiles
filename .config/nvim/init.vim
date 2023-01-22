@@ -334,6 +334,9 @@ nnoremap <silent> [fzf-p]p       :<C-u>CocFzfListResume<CR>
 nnoremap <silent> [fzf-p]b       :<C-u>Buffers<CR>
 nnoremap <silent> [fzf-p]r       :<C-u>Rg<CR>
 nnoremap <silent> [fzf-p]f       :<C-u>Files<CR>
+nnoremap <silent> [fzf-p]h       :<C-u>History<CR>
+nnoremap <silent> [fzf-p]:       :<C-u>History:<CR>
+nnoremap <silent> [fzf-p]/       :<C-u>History/<CR>
 
 " neosnippet.vim
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -413,10 +416,6 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
-
-nmap q: :History:<CR>
-xmap q: :History:<CR>
-omap q: :History:<CR>
 
 " vim-gitgutter
 let g:gitgutter_preview_win_floating = 0
