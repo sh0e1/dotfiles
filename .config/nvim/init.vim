@@ -144,8 +144,12 @@ inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
-nnoremap [c :cprevious<CR>
-nnoremap ]c :cnext<CR>
+nnoremap x "_x
+nnoremap X "_x
+nnoremap d "_d
+nnoremap D "_d
+nnoremap c "_c
+nnoremap C "_c
 
 tnoremap <silent> <ESC> <C-\><C-n>
 nnoremap <Leader>tt :Ttoggle<CR>
