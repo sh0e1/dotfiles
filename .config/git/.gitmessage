@@ -8,7 +8,7 @@ issue=#no
 # 👍 :+1: Update: 機能改善
 # ✨ :sparkles: Add: 機能追加
 # 🍀 :four_leaf_clover: Refactor: リファクタリング
-# 🗑  :wastebasket: Remove: 削除
+# 🗑 :wastebasket: Remove: 削除
 # 💚 :green_heart: Test: テスト
 # 🚀 :rocket: Performance: パフォーマンス改善
 # 🆙 :arrow_up: Update: 依存パッケージなどのアップデート
@@ -27,4 +27,3 @@ issue=#no
 # 7. Use the body to explain what and why vs. how
 #
 # How to Write a Git Commit Message http://chris.beams.io/posts/git-commit/
-
