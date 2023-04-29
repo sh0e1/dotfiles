@@ -7,7 +7,7 @@ end
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use 'projekt0n/github-nvim-theme'
+  use {'projekt0n/github-nvim-theme', tag = 'v0.0.7'}
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
