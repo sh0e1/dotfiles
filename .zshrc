@@ -120,9 +120,10 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH:$GOBIN
 
 # google-cloud-sdk
-export CLOUDSDK_PYTHON="/usr/local/bin/python3"
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+if [ -e $(brew --prefix)/bin/gcloud ]; then
+    source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+    source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+fi
 
 if [ $commands[kubectl] ]; then
   source <(kubectl completion zsh)
@@ -171,7 +172,7 @@ tmlw() {
 }
 
 # openjdk
-if [ -d /usr/local/opt/openjdk/bin ]; then
+if [ -d $(brew --prefix)/opt/openjdk/bin ]; then
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
 fi
 
@@ -192,6 +193,11 @@ if [ -d $HOME/.nvm ]; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
     [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+fi
+
+# pyenv
+if [ -e $(brew --prefix)/bin/pyenv ]; then
+    export PATH=$(pyenv root)/shims:$PATH
 fi
 
 # spaceship-prompt
