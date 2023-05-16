@@ -103,9 +103,6 @@ bindkey '^N' history-beginning-search-forward
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward
 
-# Homebrew
-export PATH="/usr/local/sbin:$PATH"
-
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_TMUX=1
