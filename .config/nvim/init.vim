@@ -368,7 +368,7 @@ require('lualine').setup {
 EOF
 
 " fzf.vim
-set rtp+=/usr/local/opt/fzf
+set rtp+=$HOMEBREW_PREFIX/opt/fzf
 
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS = '--reverse --inline-info'
