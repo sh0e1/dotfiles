@@ -45,12 +45,14 @@
 
 [merge]
 	tool = vimdiff
+	ff = false
 
 [mergetool]
 	prompt = false
 
 [pull]
 	rebase = false
+	ff = only
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
