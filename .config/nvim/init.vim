@@ -304,6 +304,8 @@ let g:coc_global_extensions = [
   \ 'coc-yaml',
   \ 'coc-json',
   \ 'coc-spell-checker',
+  \ 'coc-tsserver',
+  \ 'coc-prettier',
   \]
 
 " goimport
