@@ -3,6 +3,10 @@
   "diagnostic.messageTarget": "echo",
   "diagnostic.virtualText": true,
   "signature.target": "echo",
+  // language-overridable
+  "[go][javascript][typescript]": {
+    "coc.preferences.formatOnSave": true,
+  },
   "languageserver": {
     "golang": {
       "command": "gopls",
@@ -36,8 +40,5 @@
       "args": [],
       "filetypes": ["markdown"]
     }
-  },
-  "[go]": {
-    "coc.preferences.formatOnSave": true,
   },
 }
