@@ -4,18 +4,17 @@
   "diagnostic.virtualText": true,
   "signature.target": "echo",
   // language-overridable
-  "[go][javascript][typescript]": {
-    "coc.preferences.formatOnSave": true,
+  "[go][javascript][typescript][json]": {
+    "coc.preferences.formatOnSave": true
   },
+  // languageserver
   "languageserver": {
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.work", "go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"],
       "initializationOptions": {
-        "directoryFilters": [
-          "-**/node_modules"
-        ],
+        "directoryFilters": ["-**/node_modules"],
         "templateExtensions": ["html", "tmpl", "tpl"],
         "ui.completion.usePlaceholders": true
       }
@@ -28,10 +27,7 @@
     "terraform": {
       "command": "terraform-ls",
       "args": ["serve"],
-      "filetypes": [
-        "terraform",
-        "tf"
-      ],
+      "filetypes": ["terraform", "tf"],
       "initializationOptions": {},
       "settings": {}
     },
@@ -39,6 +35,13 @@
       "command": "efm-langserver",
       "args": [],
       "filetypes": ["markdown"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"]
     }
   },
+  // eslint
+  "eslint.autoFixOnSave": true
 }
