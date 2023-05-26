@@ -3,8 +3,6 @@
   "diagnostic.messageTarget": "echo",
   "diagnostic.virtualText": true,
   "signature.target": "echo",
-  "notification.disabledProgressSources": ["*"],
-  "coc.preferences.formatOnSaveFiletypes": ["go"],
   "languageserver": {
     "golang": {
       "command": "gopls",
@@ -38,5 +36,8 @@
       "args": [],
       "filetypes": ["markdown"]
     }
-  }
+  },
+  "[go]": {
+    "coc.preferences.formatOnSave": true,
+  },
 }
