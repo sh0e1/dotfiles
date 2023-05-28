@@ -3,10 +3,7 @@
   "diagnostic.messageTarget": "echo",
   "diagnostic.virtualText": true,
   "signature.target": "echo",
-  // language-overridable
-  "[go][javascript][typescript][json]": {
-    "coc.preferences.formatOnSave": true
-  },
+  "coc.preferences.formatOnSave": true,
   // languageserver
   "languageserver": {
     "golang": {
@@ -43,5 +40,40 @@
     }
   },
   // eslint
-  "eslint.autoFixOnSave": true
+  "eslint.autoFixOnSave": true,
+  // diagnostic-languageserver
+  "diagnostic-languageserver.filetypes": {
+    "go": "golangci-lint"
+  },
+  "diagnostic-languageserver.linters": {
+    "golangci-lint": {
+      "command": "golangci-lint",
+      "rootPatterns": [".git", "go.mod"],
+      "debounce": 100,
+      "args": ["run", "--out-format", "json"],
+      "sourceName": "golangci-lint",
+      "parseJson": {
+        "errorsRoot": "Issues",
+        "sourceName": "Pos.Filename",
+        "sourceNameFilter": true,
+        "line": "Pos.Line",
+        "column": "Pos.Column",
+        "message": "${Text} [${FromLinter}]"
+      },
+      "requiredFiles": [
+        ".golangci.yml",
+        ".golangci.yaml",
+        ".golangci.toml",
+        ".golangci.json"
+      ]
+    }
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "sh": "shfmt"
+  },
+  "diagnostic-languageserver.formatters": {
+    "shfmt": {
+      "command": "shfmt"
+    }
+  }
 }
