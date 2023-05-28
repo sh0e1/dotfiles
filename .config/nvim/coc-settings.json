@@ -69,11 +69,16 @@
     }
   },
   "diagnostic-languageserver.formatFiletypes": {
-    "sh": "shfmt"
+    "sh": "shfmt",
+    "terraform": "terraform"
   },
   "diagnostic-languageserver.formatters": {
     "shfmt": {
       "command": "shfmt"
+    },
+    "terraform": {
+      "command": "terraform",
+      "args": ["fmt", "-"]
     }
   }
 }
