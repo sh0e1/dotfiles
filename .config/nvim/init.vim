@@ -319,8 +319,8 @@ let g:coc_fzf_opts = ['--reverse', '--inline-info']
 nmap <Leader>f [fzf-p]
 
 nnoremap <silent> [fzf-p]<space> :<C-u>CocFzfList<CR>
-nnoremap <silent> [fzf-p]a       :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> [fzf-p]b       :<C-u>CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent> [fzf-p]D       :<C-u>CocFzfList diagnostics<CR>
+nnoremap <silent> [fzf-p]d       :<C-u>CocFzfList diagnostics --current-buf<CR>
 nnoremap <silent> [fzf-p]c       :<C-u>CocFzfList commands<CR>
 nnoremap <silent> [fzf-p]e       :<C-u>CocFzfList extensions<CR>
 nnoremap <silent> [fzf-p]l       :<C-u>CocFzfList location<CR>
