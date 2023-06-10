@@ -13,7 +13,7 @@ insert_final_newline = true
 [*.go]
 indent_style = tab
 
-[*.{js,ts,json,yaml}]
+[*.{js,ts,json,yaml,tf}]
 indent_size = 2
 
 [*.md]
