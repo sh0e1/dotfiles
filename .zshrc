@@ -15,7 +15,7 @@ zinit light git/git
 
 # Apply fast-syntax-highlighting theme overlay
 # https://github.com/zdharma-continuum/fast-syntax-highlighting/blob/master/THEME_GUIDE.md
-fast-theme XDG:overlay
+fast-theme XDG:overlay 1>/dev/null
 
 # history
 HISTFILE=~/.zsh_history
