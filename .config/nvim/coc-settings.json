@@ -43,7 +43,9 @@
   "eslint.autoFixOnSave": true,
   // diagnostic-languageserver
   "diagnostic-languageserver.filetypes": {
-    "go": "golangci-lint"
+    "go": "golangci-lint",
+    "sh": "shellcheck",
+    "zsh": "zsh"
   },
   "diagnostic-languageserver.linters": {
     "golangci-lint": {
@@ -65,6 +67,41 @@
         ".golangci.yaml",
         ".golangci.toml",
         ".golangci.json"
+      ]
+    },
+    "shellcheck": {
+      "command": "shellcheck",
+      "debounce": 100,
+      "args": ["--format", "json", "-"],
+      "sourceName": "shellcheck",
+      "parseJson": {
+        "line": "line",
+        "column": "column",
+        "endLine": "endLine",
+        "endColumn": "endColumn",
+        "message": "${message} [${code}]",
+        "security": "level"
+      },
+      "securities": {
+        "error": "error",
+        "warning": "warning",
+        "info": "info",
+        "style": "hint"
+      }
+    },
+    "zsh": {
+      "command": "zsh",
+      "args": ["-n", "%file"],
+      "isStdout": false,
+      "isStderr": true,
+      "sourceName": "zsh",
+      "formatLines": 1,
+      "formatPattern": [
+        "^[^:]+:(\\d+):\\s+(.*)$",
+        {
+          "line": 1,
+          "message": 2
+        }
       ]
     }
   },
