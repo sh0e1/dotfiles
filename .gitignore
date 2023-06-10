@@ -1,4 +1,5 @@
 .config/nvim/plugin/*
+.config/tmux/plugins/*
 .vim/undo/*
 .vim/bundle/*
 .vim/sessions/*
