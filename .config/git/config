@@ -1,5 +1,5 @@
 [core]
-	excludesfile = ~/.config/git/.gitignore
+	excludesfile = ~/.config/git/ignore
 	editor = nvim
 
 [filter "lfs"]
@@ -35,7 +35,8 @@
 	patterns = private_key_id
 
 [commit]
-	template = ~/.config/git/.gitmessage
+	template = ~/.config/git/message
+	verbose = true
 
 [diff]
 	tool = vimdiff
