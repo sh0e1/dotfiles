@@ -444,7 +444,7 @@ function! s:init_fern() abort
   nmap <buffer> c     <Plug>(fern-action-clipboard-copy)
   nmap <buffer> p     <Plug>(fern-action-clipboard-paste)
   nmap <buffer> m     <Plug>(fern-action-move)
-  nmap <buffer> E     <Plug>(fern-action-open:side)
+  nmap <buffer> v     <Plug>(fern-action-open:side)
   nmap <buffer> t     <Plug>(fern-action-open:tabedit)
   nmap <buffer> s     <Plug>(fern-action-open:select)
   nmap <buffer> o     <Plug>(fern-action-expand)
@@ -459,6 +459,7 @@ function! s:init_fern() abort
   nmap <buffer> ;     <Plug>(fern-action-repeat)
   nmap <buffer> ~     <Plug>(fern-action-cd)
   nmap <buffer> a     <Plug>(fern-action-choice)
+  nmap <buffer> R     <Plug>(fern-action-reload:all)
   nmap <buffer> <C-h> <C-w>h
   nmap <buffer> <C-l> <C-w>l
 endfunction
