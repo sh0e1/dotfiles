@@ -1,39 +1,30 @@
-export ZPLUG_HOME=$(brew --prefix)/opt/zplug
-source $ZPLUG_HOME/init.zsh
+# zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'zsh-users/zsh-history-substring-search'
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-completions'
-zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-zplug 'plugins/docker', from:oh-my-zsh
-zplug 'b4b4r07/enhancd', use:init.sh
-zplug 'wfxr/forgit'
-zplug 'git/git', use:'contrib/completion/git-prompt.sh'
+zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light zdharma-continuum/fast-syntax-highlighting
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+zinit ice pick"init.sh"
+zinit light b4b4r07/enhancd
 
-# Then, source plugins and add commands to $PATH
-zplug load
+zinit ice pick"contrib/completion/git-prompt.sh"
+zinit light git/git
 
-# Lines configured by zsh-newuser-install
+# history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
-# End of lines configured by zsh-newuser-install
 
-# The following lines were added by compinstall
+# completion
 zstyle :compinstall filename '$HOME/.zshrc'
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
