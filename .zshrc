@@ -13,6 +13,10 @@ zinit light b4b4r07/enhancd
 zinit ice pick"contrib/completion/git-prompt.sh"
 zinit light git/git
 
+# Apply fast-syntax-highlighting theme overlay
+# https://github.com/zdharma-continuum/fast-syntax-highlighting/blob/master/THEME_GUIDE.md
+fast-theme XDG:overlay
+
 # history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
