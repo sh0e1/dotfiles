@@ -189,25 +189,6 @@ if [ -e $(brew --prefix)/bin/pyenv ]; then
     export PATH=$(pyenv root)/shims:$PATH
 fi
 
-# spaceship-prompt
-SPACESHIP_PROMPT_ORDER=(
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  char          # Prompt character
-)
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_CHAR_SYMBOL='> '
-SPACESHIP_CHAR_COLOR_SUCCESS=white
-SPACESHIP_DIR_COLOR=blue
-SPACESHIP_GIT_PREFIX='git:'
-SPACESHIP_GIT_BRANCH_PREFIX='('
-SPACESHIP_GIT_BRANCH_SUFFIX=')'
-SPACESHIP_GIT_BRANCH_COLOR=cyan
-SPACESHIP_GIT_STATUS_PREFIX=''
-SPACESHIP_GIT_STATUS_SUFFIX=''
-SPACESHIP_PROMPT_ASYNC=false
-
 _fzf_alias() {
   selected=$(alias | fzf --height=40 | awk -F "=" '{print $1}' | sed -e "s/'//g")
   if [ -n $selected ]; then
