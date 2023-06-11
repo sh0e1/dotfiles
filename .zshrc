@@ -100,7 +100,7 @@ bindkey '^S' history-incremental-search-forward
 export FZF_TMUX=1
 export FZF_TMUX_HEIGHT=50%
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTS="--layout=reverse --info=inline --border=none"
+export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 export FZF_CTRL_T_OPTS="
     --preview 'bat -n --color=always {}'
