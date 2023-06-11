@@ -1,48 +1,38 @@
-export ZPLUG_HOME=$(brew --prefix)/opt/zplug
-source $ZPLUG_HOME/init.zsh
+# zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'zsh-users/zsh-history-substring-search'
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'zsh-users/zsh-completions'
-zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-zplug 'plugins/docker', from:oh-my-zsh
-zplug 'b4b4r07/enhancd', use:init.sh
-zplug 'wfxr/forgit'
-zplug 'git/git', use:'contrib/completion/git-prompt.sh'
+zinit light zsh-users/zsh-history-substring-search
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit ice pick"init.sh"
+zinit light b4b4r07/enhancd
+zinit ice pick"contrib/completion/git-prompt.sh"
+zinit light git/git
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+# Apply fast-syntax-highlighting theme overlay
+# https://github.com/zdharma-continuum/fast-syntax-highlighting/blob/master/THEME_GUIDE.md
+fast-theme XDG:overlay 1>/dev/null
 
-# Then, source plugins and add commands to $PATH
-zplug load
-
-# Lines configured by zsh-newuser-install
+# history
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=100000
-# End of lines configured by zsh-newuser-install
 
-# The following lines were added by compinstall
+# completion
 zstyle :compinstall filename '$HOME/.zshrc'
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 zstyle ':completion::complete:*' use-cache true
-
-# lang
-export LANG=ja_JP.UTF-8
 
 # color
 autoload -Uz colors
@@ -135,7 +125,6 @@ if [ -d ${HOME}/.krew/bin ]; then
 fi
 
 # direnv
-export EDITOR=nvim
 eval "$(direnv hook zsh)"
 
 # tmux
@@ -200,25 +189,6 @@ if [ -e $(brew --prefix)/bin/pyenv ]; then
     export PATH=$(pyenv root)/shims:$PATH
 fi
 
-# spaceship-prompt
-SPACESHIP_PROMPT_ORDER=(
-  dir           # Current directory section
-  git           # Git section (git_branch + git_status)
-  char          # Prompt character
-)
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_PROMPT_SEPARATE_LINE=false
-SPACESHIP_CHAR_SYMBOL='> '
-SPACESHIP_CHAR_COLOR_SUCCESS=white
-SPACESHIP_DIR_COLOR=blue
-SPACESHIP_GIT_PREFIX='git:'
-SPACESHIP_GIT_BRANCH_PREFIX='('
-SPACESHIP_GIT_BRANCH_SUFFIX=')'
-SPACESHIP_GIT_BRANCH_COLOR=cyan
-SPACESHIP_GIT_STATUS_PREFIX=''
-SPACESHIP_GIT_STATUS_SUFFIX=''
-SPACESHIP_PROMPT_ASYNC=false
-
 _fzf_alias() {
   selected=$(alias | fzf --height=40 | awk -F "=" '{print $1}' | sed -e "s/'//g")
   if [ -n $selected ]; then
@@ -252,3 +222,6 @@ gh::pr() {
   fi
 }
 alias ghp='gh::pr'
+
+# Load split zsh files
+[ -f $XDG_CONFIG_HOME/zsh/local.zsh ] && source $XDG_CONFIG_HOME/zsh/local.zsh
