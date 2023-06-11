@@ -9,71 +9,62 @@ snippets:
     keyword: d
     snippet: docker
 
-  - name: docker ps
-    keyword: p
-    snippet: ps
-    context:
-      lbuffer: '^docker\s+'
-
-  - name: docker ps -a
-    keyword: pa
-    snippet: ps -a
+  - name: docker container
+    keyword: c
+    snippet: container
     context:
       lbuffer: '^docker\s+'
 
   - name: docker images
     keyword: i
-    snippet: images
+    snippet: image
     context:
       lbuffer: '^docker\s+'
 
-  - name: docker logs
+  - name: docker container logs
     keyword: l
     snippet: logs -f --tail 100
     context:
-      lbuffer: '^docker\s+'
+      lbuffer: '^docker\s+(container\s+)?'
 
 .default-options: &default-options
   --no-sort: true
   --info: inline
 
+.multi-options: &multi-options
+  <<: *multi-options
+  --multi: true
+
 completions:
   # docker
-  - name: docker logs
+  - name: docker container logs
     patterns:
-      - "^docker logs.*"
-    sourceCommand: "docker ps | sed 1d"
+      - '^docker\s+(container\s+)?logs\s+'
+    sourceCommand: "docker container ls | sed 1d"
     options:
       <<: *default-options
-      --prompt: "'Container > '"
+    callback: awk '{print $1}'
+
+  - name: docker container stop
+    patterns:
+      - '^docker\s+(container\+)?stop\s+'
+    sourceCommand: "docker container ls | sed 1d"
+    options:
+      <<: *multi-options
     callback: "awk '{print $1}'"
 
-  - name: docker stop
+  - name: docker container rm
     patterns:
-      - "^docker stop.*"
-    sourceCommand: "docker ps | sed 1d"
+      - '^docker\s+(container\+)?rm\s+'
+    sourceCommand: "docker container -a | sed 1d"
     options:
-      <<: *default-options
-      --prompt: "'Containers > '"
-      --multi: true
+      <<: *multi-options
     callback: "awk '{print $1}'"
 
-  - name: docker rm
+  - name: docker image rm
     patterns:
-      - "^docker rm.*"
-    sourceCommand: "docker ps -a | sed 1d"
+      - '^docker\s+(rmi|image\s+rm)\s+'
+    sourceCommand: "docker image ls | sed 1d"
     options:
-      <<: *default-options
-      --prompt: "'Containers > '"
-      --multi: true
-    callback: "awk '{print $1}'"
-
-  - name: docker rmi
-    patterns:
-      - "^docker rmi.*"
-    sourceCommand: "docker images | sed 1d"
-    options:
-      <<: *default-options
-      --prompt: "'Images > '"
-      --multi: true
-    callback: "awk '{print $1}'"
+      <<: *multi-options
+    callback: "awk '{print $3}'"
