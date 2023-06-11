@@ -226,4 +226,5 @@ gh::pr() {
 alias ghp='gh::pr'
 
 # Load split zsh files
+[ -f $XDG_CONFIG_HOME/zsh/zeno.zsh ]  && source $XDG_CONFIG_HOME/zsh/zeno.zsh
 [ -f $XDG_CONFIG_HOME/zsh/local.zsh ] && source $XDG_CONFIG_HOME/zsh/local.zsh
