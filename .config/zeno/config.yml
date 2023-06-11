@@ -35,11 +35,11 @@ snippets:
 
 .default-options: &default-options
   --no-sort: true
-  --height: "40%"
+  --info: inline
 
 completions:
   # docker
-  - name: docker ps
+  - name: docker logs
     patterns:
       - "^docker logs.*"
     sourceCommand: "docker ps | sed 1d"
@@ -48,7 +48,7 @@ completions:
       --prompt: "'Container > '"
     callback: "awk '{print $1}'"
 
-  - name: docker ps multi
+  - name: docker stop
     patterns:
       - "^docker stop.*"
     sourceCommand: "docker ps | sed 1d"
@@ -58,12 +58,22 @@ completions:
       --multi: true
     callback: "awk '{print $1}'"
 
-  - name: docker ps -a
+  - name: docker rm
     patterns:
       - "^docker rm.*"
     sourceCommand: "docker ps -a | sed 1d"
     options:
       <<: *default-options
       --prompt: "'Containers > '"
+      --multi: true
+    callback: "awk '{print $1}'"
+
+  - name: docker rmi
+    patterns:
+      - "^docker rmi.*"
+    sourceCommand: "docker images | sed 1d"
+    options:
+      <<: *default-options
+      --prompt: "'Images > '"
       --multi: true
     callback: "awk '{print $1}'"
