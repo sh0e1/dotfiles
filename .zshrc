@@ -12,6 +12,8 @@ zinit ice pick"init.sh"
 zinit light b4b4r07/enhancd
 zinit ice pick"contrib/completion/git-prompt.sh"
 zinit light git/git
+zinit ice lucid depth"1" blockf
+zinit light yuki-yano/zeno.zsh
 
 # Apply fast-syntax-highlighting theme overlay
 # https://github.com/zdharma-continuum/fast-syntax-highlighting/blob/master/THEME_GUIDE.md
