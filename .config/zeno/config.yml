@@ -1,0 +1,69 @@
+snippets:
+  # git
+  - name: git
+    keyword: g
+    snippet: git
+
+  # docker
+  - name: docker
+    keyword: d
+    snippet: docker
+
+  - name: docker ps
+    keyword: p
+    snippet: ps
+    context:
+      lbuffer: '^docker\s+'
+
+  - name: docker ps -a
+    keyword: pa
+    snippet: ps -a
+    context:
+      lbuffer: '^docker\s+'
+
+  - name: docker images
+    keyword: i
+    snippet: images
+    context:
+      lbuffer: '^docker\s+'
+
+  - name: docker logs
+    keyword: l
+    snippet: logs -f --tail 100
+    context:
+      lbuffer: '^docker\s+'
+
+.default-options: &default-options
+  --no-sort: true
+  --height: "40%"
+
+completions:
+  # docker
+  - name: docker ps
+    patterns:
+      - "^docker logs.*"
+    sourceCommand: "docker ps | sed 1d"
+    options:
+      <<: *default-options
+      --prompt: "'Container > '"
+    callback: "awk '{print $1}'"
+
+  - name: docker ps multi
+    patterns:
+      - "^docker stop.*"
+    sourceCommand: "docker ps | sed 1d"
+    options:
+      <<: *default-options
+      --prompt: "'Containers > '"
+      --multi: true
+    callback: "awk '{print $1}'"
+
+  - name: docker ps -a
+    patterns:
+      - "^docker rm.*"
+    sourceCommand: "docker ps -a | sed 1d"
+    options:
+      <<: *default-options
+      --prompt: "'Containers > '"
+      --multi: true
+    callback: "awk '{print $1}'"

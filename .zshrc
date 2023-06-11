@@ -12,6 +12,8 @@ zinit ice pick"init.sh"
 zinit light b4b4r07/enhancd
 zinit ice pick"contrib/completion/git-prompt.sh"
 zinit light git/git
+zinit ice lucid depth"1" blockf
+zinit light yuki-yano/zeno.zsh
 
 # Apply fast-syntax-highlighting theme overlay
 # https://github.com/zdharma-continuum/fast-syntax-highlighting/blob/master/THEME_GUIDE.md
@@ -97,11 +99,18 @@ bindkey '^S' history-incremental-search-forward
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_TMUX=1
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
-export FZF_DEFAULT_OPTS="--reverse --inline-info"
+export FZF_DEFAULT_OPTS="--layout=reverse --info=inline"
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always {} | head -500'"
-export FZF_CTRL_R_OPTS="--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
-export FZF_ALT_C_OPTS="--preview 'tree -C {} | head -200'"
+export FZF_CTRL_T_OPTS="
+    --preview 'bat -n --color=always {}'
+    --bind '?:change-preview-window(down|hidden|)'"
+export FZF_CTRL_R_OPTS="
+    --preview 'echo {}' --preview-window up:3:hidden:wrap
+    --bind '?:toggle-preview'
+    --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+    --color header:italic
+    --header 'Press CTRL-Y to copy command into clipboard'"
+export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 bindkey '^D' fzf-cd-widget
 
 # Go
@@ -224,4 +233,5 @@ gh::pr() {
 alias ghp='gh::pr'
 
 # Load split zsh files
+[ -f $XDG_CONFIG_HOME/zsh/zeno.zsh ]  && source $XDG_CONFIG_HOME/zsh/zeno.zsh
 [ -f $XDG_CONFIG_HOME/zsh/local.zsh ] && source $XDG_CONFIG_HOME/zsh/local.zsh
