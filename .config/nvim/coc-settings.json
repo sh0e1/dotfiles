@@ -28,11 +28,6 @@
       "initializationOptions": {},
       "settings": {}
     },
-    "efm": {
-      "command": "efm-langserver",
-      "args": [],
-      "filetypes": ["markdown"]
-    },
     "bash": {
       "command": "bash-language-server",
       "args": ["start"],
