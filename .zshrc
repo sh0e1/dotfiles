@@ -86,6 +86,7 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias vimdiff='nvim -d'
+alias sed='gsed'
 
 # key bind
 bindkey -v
