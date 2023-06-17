@@ -8,8 +8,6 @@ dir=$(
 )
 
 # ${dir}/brew.sh
-# ${dir}/nvim.sh
-# ${dir}/tmux.sh
 
 for f in .??*; do
     [[ "$f" == ".git" ]] && continue
@@ -18,6 +16,12 @@ for f in .??*; do
     [[ "$f" == ".config" ]] && continue
     ln -snfv "${dir}/${f}" "${HOME}/${f}"
 done
+
+XDG_CONFIG_HOME="$HOME/.config"
+if [ ! -d "$XDG_CONFIG_HOME" ]; then
+    mkdir "$XDG_CONFIG_HOME"
+    echo "Created $XDG_CONFIG_HOME directory."
+fi
 
 for f in .config/??*; do
     ln -snfv "${dir}/${f}" "${HOME}/${f}"
