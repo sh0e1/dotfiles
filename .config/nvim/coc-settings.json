@@ -111,6 +111,9 @@
     "terraform": {
       "command": "terraform",
       "args": ["fmt", "-"]
+    },
+    "goimports": {
+      "command": "goimports"
     }
   }
 }
