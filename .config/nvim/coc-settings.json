@@ -102,7 +102,8 @@
   },
   "diagnostic-languageserver.formatFiletypes": {
     "sh": "shfmt",
-    "terraform": "terraform"
+    "terraform": "terraform",
+    "go": "goimports"
   },
   "diagnostic-languageserver.formatters": {
     "shfmt": {
