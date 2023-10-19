@@ -49,6 +49,7 @@ return require('packer').startup(function(use)
       require('nvim-test').setup()
     end
   }
+  use 'github/copilot.vim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
