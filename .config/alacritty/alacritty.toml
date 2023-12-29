@@ -1,0 +1,60 @@
+[colors.bright]
+black = "#676965"
+blue = "#83afd8"
+cyan = "#37e5e7"
+green = "#98e342"
+magenta = "#bc93b6"
+red = "#f44135"
+white = "#f1f1ef"
+yellow = "#fcea60"
+
+[colors.cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[colors.normal]
+black = "#000000"
+blue = "#417ab3"
+cyan = "#00a7aa"
+green = "#5da602"
+magenta = "#88658d"
+red = "#d71e00"
+white = "#dbded8"
+yellow = "#cfad00"
+
+[colors.primary]
+background = "#000000"
+foreground = "#feffff"
+
+[colors.vi_mode_cursor]
+cursor = "CellForeground"
+text = "CellBackground"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10.5
+
+[font.bold]
+family = "Ricty"
+
+[font.bold_italic]
+family = "Ricty"
+
+[font.italic]
+family = "Ricty"
+
+[font.normal]
+family = "Ricty"
+
+[font.offset]
+x = 1
+y = 1
+
+[shell]
+args = ["--login"]
+program = "/opt/homebrew/bin/zsh"
+
+[window]
+startup_mode = "Maximized"
