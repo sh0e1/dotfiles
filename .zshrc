@@ -12,8 +12,10 @@ zinit ice pick"init.sh"
 zinit light b4b4r07/enhancd
 zinit ice pick"contrib/completion/git-prompt.sh"
 zinit light git/git
-zinit ice lucid depth"1" blockf
-zinit light yuki-yano/zeno.zsh
+#zinit ice lucid depth"1" blockf
+#zinit light yuki-yano/zeno.zsh
+zinit ice as"completion"
+zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
 # Apply fast-syntax-highlighting theme overlay
 # https://github.com/zdharma-continuum/fast-syntax-highlighting/blob/master/THEME_GUIDE.md
@@ -29,9 +31,6 @@ zstyle :compinstall filename '$HOME/.zshrc'
 fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
-
-# https://github.com/b4b4r07/enhancd/issues/172#issuecomment-1492250042
-zinit cdreplay -q
 
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
@@ -238,5 +237,5 @@ gh::pr() {
 alias ghp='gh::pr'
 
 # Load split zsh files
-[ -f $XDG_CONFIG_HOME/zsh/zeno.zsh ]  && source $XDG_CONFIG_HOME/zsh/zeno.zsh
+#[ -f $XDG_CONFIG_HOME/zsh/zeno.zsh ]  && source $XDG_CONFIG_HOME/zsh/zeno.zsh
 [ -f $XDG_CONFIG_HOME/zsh/local.zsh ] && source $XDG_CONFIG_HOME/zsh/local.zsh
