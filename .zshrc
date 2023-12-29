@@ -32,9 +32,6 @@ fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 autoload -Uz compinit
 compinit
 
-# https://github.com/b4b4r07/enhancd/issues/172#issuecomment-1492250042
-#zinit cdreplay -q
-
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
