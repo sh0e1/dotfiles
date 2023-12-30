@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
   use 'ray-x/go.nvim'
   use 'github/copilot.vim'
   use 'mfussenegger/nvim-treehopper'
+  use 'projekt0n/github-nvim-theme'
 
   use({
     'phaazon/hop.nvim',
@@ -50,15 +51,6 @@ return require('packer').startup(function(use)
     "klen/nvim-test",
     config = function()
       require('nvim-test').setup()
-    end
-  })
-
-  use({
-    'projekt0n/github-nvim-theme',
-    config = function()
-      require('github-theme').setup({})
-
-      vim.cmd('colorscheme github_dark_dimmed')
     end
   })
 

@@ -89,6 +89,18 @@ require('nvim-treesitter.configs').setup {
 }
 EOF
 
+" color scheme
+lua << EOF
+require('github-theme').setup({
+  groups = {
+    github_dark_dimmed = {
+      Directory = { fg = 'palette.blue' },
+    },
+  },
+})
+vim.cmd('colorscheme github_dark_dimmed')
+EOF
+
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
