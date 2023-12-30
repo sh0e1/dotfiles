@@ -89,16 +89,6 @@ require('nvim-treesitter.configs').setup {
 }
 EOF
 
-" highlight
-lua << EOF
-vim.api.nvim_set_hl(0, "@function.builtin", { link = "@function" })
-vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "@text" })
-vim.api.nvim_set_hl(0, "@text.diff.add", { link = "DiffAdd" })
-vim.api.nvim_set_hl(0, "@text.diff.change", { link = "DiffChange" })
-vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffDelete" })
-vim.api.nvim_set_hl(0, "@text.diff.text", { link = "DiffText" })
-EOF
-
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
