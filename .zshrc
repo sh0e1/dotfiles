@@ -160,14 +160,14 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
 fi
 
 tmls() {
-  out=$(tmux list-sessions | fzf)
+  out=$(tmux list-sessions | fzf-tmux -d 50%)
   [[ -z $out ]] && return
   sid=$(echo $out | cut -d: -f1)
   tmux switch -t $sid
 }
 
 tmlw() {
-  out=$(tmux list-windows | fzf)
+  out=$(tmux list-windows | fzf-tmux -d 50%)
   [[ -z $out ]] && return
   wid=$(echo $out | cut -d: -f1)
   tmux select-window -t $wid
@@ -203,7 +203,7 @@ if [ -e $(brew --prefix)/bin/pyenv ]; then
 fi
 
 _fzf_alias() {
-  selected=$(alias | fzf --height=40 | awk -F "=" '{print $1}' | sed -e "s/'//g")
+  selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
   if [ -n $selected ]; then
     BUFFER=$selected
     CURSOR=${#BUFFER}
@@ -215,7 +215,7 @@ bindkey '^A' _fzf_alias
 
 # gh
 gh::issue() {
-  out=$(gh issue list --limit 100 | fzf --preview="gh issue view {1}")
+  out=$(gh issue list --limit 100 | fzf-tmux -d 50% --preview="gh issue view {1}")
   [[ -z $out ]] && return
   issue=$(echo $out | awk '{print $1}')
   gh issue view $issue --web
@@ -223,7 +223,7 @@ gh::issue() {
 alias ghi='gh::issue'
 
 gh::pr() {
-  out=$(gh pr list --limit 100 | fzf --preview="gh pr view {1}" --expect=ctrl-o)
+  out=$(gh pr list --limit 100 | fzf-tmux -d 50% --preview="gh pr view {1}" --expect=ctrl-o)
   [[ -z $out ]] && return
   outs=(${(@f)out})
   if [[ $outs[1] == 'ctrl-o' ]]; then
