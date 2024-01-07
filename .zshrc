@@ -117,6 +117,9 @@ export FZF_CTRL_R_OPTS="
 export FZF_ALT_C_OPTS="--preview 'tree -C {}'"
 bindkey '^D' fzf-cd-widget
 
+# enhancd
+export ENHANCD_FILTER="fzf-tmux -d 50% --preview 'tree -C {}'"
+
 # Go
 export GOPATH=$HOME/workspace/gopath
 export GOBIN=$GOPATH/bin
