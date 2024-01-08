@@ -32,6 +32,11 @@
       "command": "bash-language-server",
       "args": ["start"],
       "filetypes": ["sh"]
+    },
+    "lua": {
+      "command": "lua-language-server",
+      "filetypes": ["lua"],
+      "rootPatterns": [".git/"]
     }
   },
   // eslint
