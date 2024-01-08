@@ -48,7 +48,9 @@ return require('packer').startup(function(use)
         "klen/nvim-test",
         config = function()
             require('nvim-test').setup()
-        end
+        end,
+        setup = [[require('config.nvim-test')]],
+        cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit", "TestEdit", "TestInfo" }
     }
     use 'github/copilot.vim'
 

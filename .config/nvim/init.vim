@@ -533,12 +533,3 @@ lua << EOF
 vim.keymap.set('o', 'm', ':<C-U>lua require("tsht").nodes()<CR>', { silent = true })
 vim.keymap.set('x', 'm', ':lua require("tsht").nodes()<CR>', { noremap = true, silent = true })
 EOF
-
-" klen/nvim-test
-lua << EOF
-vim.keymap.set('n', '<Leader>t', ':TestNearest<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>T', ':TestFile<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>a', ':TestSuite<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>l', ':TestLast<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>g', ':TestVisit<CR>', { silent = true })
-EOF
