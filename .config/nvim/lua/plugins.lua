@@ -31,6 +31,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-rhubarb'
     use 'airblade/vim-gitgutter'
     use 'ray-x/go.nvim'
+    use 'github/copilot.vim'
     use {
         'smoka7/hop.nvim',
         tag = '*',
@@ -39,20 +40,22 @@ return require('packer').startup(function(use)
         end
     }
     use 'mfussenegger/nvim-treehopper'
+
     -- install without yarn or npm
     use({
         "iamcco/markdown-preview.nvim",
         run = function() vim.fn["mkdp#util#install"]() end,
+        ft = { 'markdown' },
     })
+
     use {
         "klen/nvim-test",
         config = function()
             require('nvim-test').setup()
         end,
         setup = [[require('config.nvim-test')]],
-        cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit", "TestEdit", "TestInfo" }
+        cmd = { "TestNearest", "TestFile", "TestSuite", "TestLast", "TestVisit", "TestEdit", "TestInfo" },
     }
-    use 'github/copilot.vim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
