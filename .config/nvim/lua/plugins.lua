@@ -7,7 +7,6 @@ end
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  use {'projekt0n/github-nvim-theme', tag = 'v0.0.7'}
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'nvim-treesitter/playground'
@@ -30,26 +29,30 @@ return require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'airblade/vim-gitgutter'
   use 'ray-x/go.nvim'
-  use {
+  use 'github/copilot.vim'
+  use 'mfussenegger/nvim-treehopper'
+  use 'projekt0n/github-nvim-theme'
+
+  use({
     'phaazon/hop.nvim',
     branch = 'v2',
     config = function()
       require'hop'.setup {}
     end
-  }
-  use 'mfussenegger/nvim-treehopper'
+  })
+
   -- install without yarn or npm
   use({
     "iamcco/markdown-preview.nvim",
     run = function() vim.fn["mkdp#util#install"]() end,
   })
-  use {
+
+  use({
     "klen/nvim-test",
     config = function()
       require('nvim-test').setup()
     end
-  }
-  use 'github/copilot.vim'
+  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

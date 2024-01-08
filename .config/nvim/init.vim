@@ -89,35 +89,16 @@ require('nvim-treesitter.configs').setup {
 }
 EOF
 
-" highlight
-lua << EOF
-vim.api.nvim_set_hl(0, "@function.builtin", { link = "@function" })
-vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "@text" })
-vim.api.nvim_set_hl(0, "@text.diff.add", { link = "DiffAdd" })
-vim.api.nvim_set_hl(0, "@text.diff.change", { link = "DiffChange" })
-vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffDelete" })
-vim.api.nvim_set_hl(0, "@text.diff.text", { link = "DiffText" })
-EOF
-
 " color scheme
 lua << EOF
-require("github-theme").setup({
-  theme_style = "dimmed",
-  keyword_style = "NONE",
-  dark_float = true,
-  overrides = function(c)
-    return {
-      Type = { fg = c.fg },
-      SpellBad = {},
-      SpellCap = { link = SpellBad },
-      ['@type'] = { link = 'Type' },
-      ['@field'] = { fg = c.bright_blue },
-      ['@property'] = { fg = c.bright_blue },
-      ['@operator'] = { fg = c.bright_blue },
-      ['@string.escape'] = { fg = c.syntax.string },
-    }
-  end
+require('github-theme').setup({
+  groups = {
+    github_dark_dimmed = {
+      Directory = { fg = 'palette.blue' },
+    },
+  },
 })
+vim.cmd('colorscheme github_dark_dimmed')
 EOF
 
 " this enables us to undo files even if you exit Vim.
