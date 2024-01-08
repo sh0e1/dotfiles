@@ -31,8 +31,8 @@ return require('packer').startup(function(use)
   use 'airblade/vim-gitgutter'
   use 'ray-x/go.nvim'
   use {
-    'phaazon/hop.nvim',
-    branch = 'v2',
+    'smoka7/hop.nvim',
+    tag = '*',
     config = function()
       require'hop'.setup {}
     end
