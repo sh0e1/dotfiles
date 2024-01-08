@@ -32,7 +32,7 @@ return require('packer').startup(function(use)
   use 'ray-x/go.nvim'
   use {
     'smoka7/hop.nvim',
-    branch = 'v2',
+    tag = '*',
     config = function()
       require'hop'.setup {}
     end
