@@ -48,54 +48,6 @@ set completeopt-=preview
 set sh=zsh
 set cmdheight=2
 
-" nvim-treesitter
-lua << EOF
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true,
-      goto_next_start = {
-        ["]]"] = "@function.outer",
-      },
-      goto_previous_start = {
-        ["[["] = "@function.outer",
-      }
-    },
-  },
-  playground = {
-    enable = true,
-  },
-}
-EOF
-
-" highlight
-lua << EOF
-vim.api.nvim_set_hl(0, "@function.builtin", { link = "@function" })
-vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "@text" })
-vim.api.nvim_set_hl(0, "@text.diff.add", { link = "DiffAdd" })
-vim.api.nvim_set_hl(0, "@text.diff.change", { link = "DiffChange" })
-vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffDelete" })
-vim.api.nvim_set_hl(0, "@text.diff.text", { link = "DiffText" })
-EOF
-
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
