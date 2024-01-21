@@ -1,4 +1,4 @@
-lua require('plugins')
+lua require('lazy-nvim')
 
 " neoterm
 let &runtimepath.=',~/.local/share/nvim/site/pack/packer/start/neoterm'
@@ -127,7 +127,6 @@ if has('persistent_undo')
 endif
 
 " key mapping
-let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
 noremap j gj
 noremap k gk
