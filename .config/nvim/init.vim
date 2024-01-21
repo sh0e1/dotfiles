@@ -281,22 +281,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
 let g:neosnippet#snippets_directory = '~/.local/share/nvim/lazy/snippets/snippets'
 
-lua << EOF
-require('lualine').setup {
-  options = {
-    theme = "auto",
-    icons_enabled = false,
-    section_separators = '',
-    component_separators = '',
-  },
-  extensions = {
-    'fern',
-    'fzf',
-    'fugitive',
-  }
-}
-EOF
-
 " fzf.vim
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS = '--reverse --inline-info'
