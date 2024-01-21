@@ -96,27 +96,6 @@ vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffDelete" })
 vim.api.nvim_set_hl(0, "@text.diff.text", { link = "DiffText" })
 EOF
 
-" color scheme
-lua << EOF
-require("github-theme").setup({
-  theme_style = "dimmed",
-  keyword_style = "NONE",
-  dark_float = true,
-  overrides = function(c)
-    return {
-      Type = { fg = c.fg },
-      SpellBad = {},
-      SpellCap = { link = SpellBad },
-      ['@type'] = { link = 'Type' },
-      ['@field'] = { fg = c.bright_blue },
-      ['@property'] = { fg = c.bright_blue },
-      ['@operator'] = { fg = c.bright_blue },
-      ['@string.escape'] = { fg = c.syntax.string },
-    }
-  end
-})
-EOF
-
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
