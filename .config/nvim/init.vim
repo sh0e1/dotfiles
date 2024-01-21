@@ -401,18 +401,3 @@ let g:fern#renderer#default#expanded_symbol  = '- '
 let g:fern#renderer#default#leaf_symbol      = '| '
 let g:fern#renderer#default#root_symbol      = '~ '
 let g:fern#default_exclude = '^\%(\.git\)$'
-
-" ray-x/go.nvim
-lua << EOF
-require('go').setup({
-  disable_defaults = true,
-  goimport = 'gopls',
-  fillstruct = 'gopls',
-  gofmt = 'gopls',
-  lsp_cfg = false,
-  gopls_remote_auto = true,
-  textobjects = true,
-  test_runner = 'go',
-  verbose_tests = true,
-})
-EOF
