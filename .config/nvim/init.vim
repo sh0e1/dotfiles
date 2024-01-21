@@ -1,7 +1,4 @@
-lua require('plugins')
-
-" neoterm
-let &runtimepath.=',~/.local/share/nvim/site/pack/packer/start/neoterm'
+lua require('lazy-nvim')
 
 filetype plugin indent on
 syntax enable
@@ -51,75 +48,6 @@ set completeopt-=preview
 set sh=zsh
 set cmdheight=2
 
-" nvim-treesitter
-lua << EOF
-require('nvim-treesitter.configs').setup {
-  ensure_installed = "all",
-  highlight = {
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      lookahead = true,
-      keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner",
-      },
-    },
-    move = {
-      enable = true,
-      set_jumps = true,
-      goto_next_start = {
-        ["]]"] = "@function.outer",
-      },
-      goto_previous_start = {
-        ["[["] = "@function.outer",
-      }
-    },
-  },
-  playground = {
-    enable = true,
-  },
-}
-EOF
-
-" highlight
-lua << EOF
-vim.api.nvim_set_hl(0, "@function.builtin", { link = "@function" })
-vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "@text" })
-vim.api.nvim_set_hl(0, "@text.diff.add", { link = "DiffAdd" })
-vim.api.nvim_set_hl(0, "@text.diff.change", { link = "DiffChange" })
-vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffDelete" })
-vim.api.nvim_set_hl(0, "@text.diff.text", { link = "DiffText" })
-EOF
-
-" color scheme
-lua << EOF
-require("github-theme").setup({
-  theme_style = "dimmed",
-  keyword_style = "NONE",
-  dark_float = true,
-  overrides = function(c)
-    return {
-      Type = { fg = c.fg },
-      SpellBad = {},
-      SpellCap = { link = SpellBad },
-      ['@type'] = { link = 'Type' },
-      ['@field'] = { fg = c.bright_blue },
-      ['@property'] = { fg = c.bright_blue },
-      ['@operator'] = { fg = c.bright_blue },
-      ['@string.escape'] = { fg = c.syntax.string },
-    }
-  end
-})
-EOF
-
 " this enables us to undo files even if you exit Vim.
 if has('persistent_undo')
   set undofile
@@ -127,7 +55,6 @@ if has('persistent_undo')
 endif
 
 " key mapping
-let mapleader = "\<Space>"
 inoremap <silent> jj <ESC>
 noremap j gj
 noremap k gk
@@ -352,27 +279,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " endif
 
 let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
-let g:neosnippet#snippets_directory = '~/.local/share/nvim/site/pack/packer/start/snippets/snippets'
-
-lua << EOF
-require('lualine').setup {
-  options = {
-    theme = "auto",
-    icons_enabled = false,
-    section_separators = '',
-    component_separators = '',
-  },
-  extensions = {
-    'fern',
-    'fzf',
-    'fugitive',
-  }
-}
-EOF
+let g:neosnippet#snippets_directory = '~/.local/share/nvim/lazy/snippets/snippets'
 
 " fzf.vim
-set rtp+=$HOMEBREW_PREFIX/opt/fzf
-
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS = '--reverse --inline-info'
 let g:fzf_action = {
@@ -476,69 +385,3 @@ let g:fern#renderer#default#expanded_symbol  = '- '
 let g:fern#renderer#default#leaf_symbol      = '| '
 let g:fern#renderer#default#root_symbol      = '~ '
 let g:fern#default_exclude = '^\%(\.git\)$'
-
-" ray-x/go.nvim
-lua << EOF
-require('go').setup({
-  disable_defaults = true,
-  goimport = 'gopls',
-  fillstruct = 'gopls',
-  gofmt = 'gopls',
-  lsp_cfg = false,
-  gopls_remote_auto = true,
-  textobjects = true,
-  test_runner = 'go',
-  verbose_tests = true,
-})
-EOF
-
-" phaazon/hop.nvim
-lua << EOF
-local hop = require('hop')
-local directions = require('hop.hint').HintDirection
-vim.keymap.set('', 'f', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true })
-end, { remap=true })
-vim.keymap.set('', 'F', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true })
-end, { remap=true })
-vim.keymap.set('', 't', function()
-  hop.hint_char1({ direction = directions.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
-end, { remap=true })
-vim.keymap.set('', 'T', function()
-  hop.hint_char1({ direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
-end, { remap=true })
-vim.keymap.set('n', 's', function()
-  hop.hint_char2({ multi_windows = true })
-end, { remap=true })
-vim.keymap.set('v', 's', function()
-  hop.hint_char2()
-end, { remap=true })
-vim.keymap.set('', '<Leader>L', function()
-  hop.hint_lines()
-end, { remap=true })
-vim.keymap.set('n', '<Leader>L', function()
-  hop.hint_lines({ multi_windows = true })
-end, { remap=true })
-vim.keymap.set('', '<Leader>w', function()
-  hop.hint_words()
-end, { remap=true })
-vim.keymap.set('n', '<Leader>w', function()
-  hop.hint_words({ multi_windows = true })
-end, { remap=true })
-EOF
-
-" mfussenegger/nvim-treehopper
-lua << EOF
-vim.keymap.set('o', 'm', ':<C-U>lua require("tsht").nodes()<CR>', { silent = true })
-vim.keymap.set('x', 'm', ':lua require("tsht").nodes()<CR>', { noremap = true, silent = true })
-EOF
-
-" klen/nvim-test
-lua << EOF
-vim.keymap.set('n', '<Leader>t', ':TestNearest<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>T', ':TestFile<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>a', ':TestSuite<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>l', ':TestLast<CR>', { silent = true })
-vim.keymap.set('n', '<Leader>g', ':TestVisit<CR>', { silent = true })
-EOF
