@@ -1,3 +1,3 @@
 return {
-    "bfredl/nvim-miniyank"
+  "bfredl/nvim-miniyank"
 }

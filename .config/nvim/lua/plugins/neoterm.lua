@@ -1,3 +1,3 @@
 return {
-    "kassio/neoterm"
+  "kassio/neoterm"
 }

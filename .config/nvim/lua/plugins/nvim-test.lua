@@ -1,3 +1,3 @@
 return {
-    "klen/nvim-test",
+  "klen/nvim-test",
 }
