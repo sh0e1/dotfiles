@@ -1,8 +1,5 @@
 lua require('lazy-nvim')
 
-" neoterm
-let &runtimepath.=',~/.local/share/nvim/site/pack/packer/start/neoterm'
-
 filetype plugin indent on
 syntax enable
 
@@ -351,7 +348,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " endif
 
 let g:neosnippet#disable_runtime_snippets = { 'go' : 1 }
-let g:neosnippet#snippets_directory = '~/.local/share/nvim/site/pack/packer/start/snippets/snippets'
+let g:neosnippet#snippets_directory = '~/.local/share/nvim/lazy/snippets/snippets'
 
 lua << EOF
 require('lualine').setup {
@@ -370,8 +367,6 @@ require('lualine').setup {
 EOF
 
 " fzf.vim
-set rtp+=$HOMEBREW_PREFIX/opt/fzf
-
 let $FZF_DEFAULT_COMMAND = 'rg --files --hidden --follow --glob "!.git/*"'
 let $FZF_DEFAULT_OPTS = '--reverse --inline-info'
 let g:fzf_action = {
