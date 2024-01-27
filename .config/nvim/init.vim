@@ -60,10 +60,6 @@ noremap j gj
 noremap k gk
 vnoremap j gj
 vnoremap k gk
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
