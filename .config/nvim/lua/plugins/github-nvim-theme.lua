@@ -20,5 +20,8 @@ return {
         }
       end
     })
+
+    -- (nvim >= 0.10) the column separating vertically split windows
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#444c56" })
   end
 }
