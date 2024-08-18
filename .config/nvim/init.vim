@@ -1,4 +1,4 @@
-lua require('lazy-nvim')
+lua require('config.lazy')
 
 filetype plugin indent on
 syntax enable
