@@ -1,10 +1,10 @@
 return {
   "ray-x/go.nvim",
-  ft = { "go" },
+  ft = { "go", "gomod" },
+  event = { "CmdlineEnter" },
   config = function()
     require("go").setup({
-      disable_defaults = true,
-      goimport = 'gopls',
+      goimports = 'gopls',
       fillstruct = 'gopls',
       gofmt = 'gopls',
       lsp_cfg = false,
