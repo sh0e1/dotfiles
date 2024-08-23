@@ -4,7 +4,7 @@
   "copilot.vim": { "branch": "release", "commit": "a9fa7946d7307ceb138bfe2706ba75febf6450da" },
   "fern.vim": { "branch": "main", "commit": "a675dff495a0a0fd15663ebbae585c19825a64c5" },
   "fzf.vim": { "branch": "master", "commit": "6f28c8c7bb551161a0315a76488522204f39c1f4" },
-  "github-nvim-theme": { "branch": "main", "commit": "24c8706c9ad26b944f5a76dea999dca8708f252e" },
+  "github-nvim-theme": { "branch": "main", "commit": "6b461635230ccb5d0037f378fbe05a27c4ccf7cd" },
   "go.nvim": { "branch": "master", "commit": "81d8d0d90d3f6bcb44181800da3ed43356a26c1b" },
   "hop.nvim": { "branch": "master", "commit": "8f51ef02700bb3cdcce94e92eff16170a6343c4f" },
   "lazy.nvim": { "branch": "main", "commit": "077102c5bfc578693f12377846d427f49bc50076" },
