@@ -52,7 +52,7 @@ family = "Ricty"
 x = 1
 y = 1
 
-[shell]
+[terminal.shell]
 args = ["--login"]
 program = "/opt/homebrew/bin/zsh"
 
