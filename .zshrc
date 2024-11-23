@@ -81,7 +81,6 @@ setopt inc_append_history
 setopt share_history
 
 # alias
-alias lst='ls -ltrFG'
 alias ls='ls -FG'
 alias la='ls -laFG'
 alias ll='ls -lFG'
@@ -91,7 +90,6 @@ alias rm='rm -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
 alias vimdiff='nvim -d'
-alias sed='gsed'
 
 # key bind
 bindkey -v
@@ -143,8 +141,28 @@ if [ -d ${HOME}/.krew/bin ]; then
     export PATH="${PATH}:${HOME}/.krew/bin"
 fi
 
+# gawk
+if [ -d $(brew --prefix)/opt/gnu-sed/libexec/gnubin ]; then
+    export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
+fi
+
+# gnu-sed
+if [ -d $(brew --prefix)/opt/gawk/libexec/gnubin ]; then
+    export PATH="$(brew --prefix)/opt/gawk/libexec/gnubin:$PATH"
+fi
+
+# coreutils
+if [ -d $(brew --prefix)/opt/coreutils/libexec/gnubin ]; then
+    export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+    alias ls='ls -F --color=auto'
+    alias la='ls -laF --color=auto'
+    alias ll='ls -lF --color=auto'
+fi
+
 # direnv
-eval "$(direnv hook zsh)"
+if [ -x $(brew --prefix)/bin/direnv ]; then
+    eval "$(direnv hook zsh)"
+fi
 
 # tmux
 if [[ ! -n $TMUX && $- == *l* ]]; then
@@ -191,7 +209,7 @@ if [ -d $HOME/.cargo ]; then
 fi
 
 # rbenv
-if [ -e $(brew --prefix)/bin/rbenv ]; then
+if [ -x $(brew --prefix)/bin/rbenv ]; then
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
     eval "$(rbenv init -)"
 fi
@@ -204,7 +222,7 @@ if [ -d $HOME/.nvm ]; then
 fi
 
 # pyenv
-if [ -e $(brew --prefix)/bin/pyenv ]; then
+if [ -x $(brew --prefix)/bin/pyenv ]; then
     export PATH=$(pyenv root)/shims:$PATH
 fi
 
