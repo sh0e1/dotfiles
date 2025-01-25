@@ -3,18 +3,13 @@ return {
   dependencies = {
     {
       "theHamsta/nvim-dap-virtual-text",
-      config = function()
-        require("nvim-dap-virtual-text").setup({
-          commented = true,
-        })
-      end
+      opts = {
+        commented = true,
+      },
     },
     {
       "leoluz/nvim-dap-go",
-      ft = { "go", "gomod" },
-      config = function()
-        require("dap-go").setup()
-      end
+      opts = {},
     }
   },
   config = function()
