@@ -1,4 +1,6 @@
 lua require('config.lazy')
+lua require('config.keymaps')
+lua require('config.terminal')
 
 filetype plugin indent on
 syntax enable
@@ -53,26 +55,6 @@ if has('persistent_undo')
   set undofile
   set undodir=~/.vim/undo//
 endif
-
-" key mapping
-inoremap <silent> jj <ESC>
-noremap j gj
-noremap k gk
-vnoremap j gj
-vnoremap k gk
-nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-nnoremap [b :bprevious<CR>
-nnoremap ]b :bnext<CR>
-
-tnoremap <silent> <ESC> <C-\><C-n>
-nnoremap <Leader>tt :Ttoggle<CR>
-nnoremap <Leader>to :Topen<CR>
-nnoremap <Leader>tc :Tclose!<CR>
-let g:neoterm_autoinsert = 1
 
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
