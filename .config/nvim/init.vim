@@ -342,7 +342,7 @@ function! GitGutterNextHunkCycle()
 endfunction
 
 " fern.vim
-nnoremap <Leader>d :Fern . -reveal=%<CR>
+nnoremap <Leader>e :Fern . -reveal=%<CR>
 
 function! s:init_fern() abort
   nmap <buffer> C     <Plug>(fern-action-copy)
