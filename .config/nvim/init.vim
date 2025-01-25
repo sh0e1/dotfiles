@@ -69,10 +69,6 @@ nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 
 tnoremap <silent> <ESC> <C-\><C-n>
-nnoremap <Leader>tt :Ttoggle<CR>
-nnoremap <Leader>to :Topen<CR>
-nnoremap <Leader>tc :Tclose!<CR>
-let g:neoterm_autoinsert = 1
 
 " nvim-miniyank
 map p <Plug>(miniyank-autoput)
