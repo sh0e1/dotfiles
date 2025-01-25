@@ -1,5 +1,5 @@
 lua require('config.lazy')
-lua require('config.keymap')
+lua require('config.keymaps')
 
 filetype plugin indent on
 syntax enable

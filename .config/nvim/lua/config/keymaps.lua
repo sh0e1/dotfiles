@@ -10,5 +10,3 @@ vim.keymap.set('n', 'k', 'gk', { noremap = true })
 vim.keymap.set('v', 'j', 'gj', { noremap = true })
 vim.keymap.set('v', 'k', 'gk', { noremap = true })
 vim.keymap.set('n', '<silent><Esc><Esc>', ':<C-u>set nohlsearch!<CR>', { silent = true, noremap = true })
-
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true, noremap = true })
