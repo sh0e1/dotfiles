@@ -6,6 +6,7 @@
   "fzf.vim": { "branch": "master", "commit": "556f45e79ae5e3970054fee4c4373472604a1b4e" },
   "github-nvim-theme": { "branch": "main", "commit": "24c8706c9ad26b944f5a76dea999dca8708f252e" },
   "go.nvim": { "branch": "master", "commit": "6e5a74b866aa4a112ed85a1169befff2ef82c027" },
+  "guihua.lua": { "branch": "master", "commit": "d783191eaa75215beae0c80319fcce5e6b3beeda" },
   "hop.nvim": { "branch": "master", "commit": "08ddca799089ab96a6d1763db0b8adc5320bf050" },
   "lazy.nvim": { "branch": "main", "commit": "d8f26efd456190241afd1b0f5235fe6fdba13d4a" },
   "lexima.vim": { "branch": "master", "commit": "f851b232505766aff7bed7d20100ad31c9c0b33b" },
