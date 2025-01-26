@@ -9,6 +9,11 @@ return {
       "andythigpen/nvim-coverage",
       opts = {
         auto_reload = true,
+        lang = {
+          go = {
+            coverage_file = vim.fn.getcwd() .. '/cover.out',
+          }
+        }
       }
     }
   },
@@ -17,6 +22,8 @@ return {
       "<Leader>tt",
       function()
         require("neotest").run.run()
+        require("coverage").load()
+        require("coverage").show()
       end,
       desc = "Run the nearest test"
     },
@@ -24,6 +31,8 @@ return {
       "<Leader>T",
       function()
         require("neotest").run.run(vim.fn.expand("%"))
+        require("coverage").load()
+        require("coverage").show()
       end,
       desc = "Run the current file"
     },
@@ -31,30 +40,52 @@ return {
       "<Leader>tl",
       function()
         require("neotest").run.run_last()
+        require("coverage").load()
+        require("coverage").show()
       end,
       desc = "Re-run the last test that was run."
     },
     {
       "<Leader>td",
-      function() require("neotest").run.run({ strategy = "dap" }) end,
+      function()
+        require("neotest").run.run({ strategy = "dap" })
+      end,
       desc = "Debug the nearest test with dap"
     },
     {
       "<Leader>ts",
-      function() require("neotest").summary.toggle() end,
+      function()
+        require("neotest").summary.toggle()
+      end,
       desc = "Toggle the test summary window"
     },
     {
       "<Leader>to",
-      function() require("neotest").output_panel.toggle() end,
+      function()
+        require("neotest").output_panel.toggle()
+      end,
       desc = "Toggle the test output panel"
+    },
+    {
+      "<Leader>tc",
+      function()
+        require("coverage").toggle()
+      end,
+      desc = "Toggle test coverage"
+    },
+    {
+      "<Leader>tC",
+      function()
+        require("coverage").summary()
+      end,
+      desc = "Toggle test coverage"
     },
   },
   config = function()
     require("neotest").setup({
       adapters = {
         require("neotest-go")({
-          args = { "-count=1", "-race" }
+          args = { "-count=1", "-race", "-coverprofile=" .. vim.fn.getcwd() .. "/cover.out" },
         })
       },
       icons = {
