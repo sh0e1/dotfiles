@@ -5,6 +5,12 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-neotest/neotest-go",
+    {
+      "andythigpen/nvim-coverage",
+      opts = {
+        auto_reload = true,
+      }
+    }
   },
   keys = {
     {
