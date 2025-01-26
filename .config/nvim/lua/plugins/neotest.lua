@@ -1,3 +1,10 @@
+local show_coverage = false
+local function toggle_coverage()
+  local coverage = require("coverage")
+  show_coverage = not show_coverage
+  coverage.load(show_coverage)
+end
+
 return {
   "nvim-neotest/neotest",
   dependencies = {
@@ -17,13 +24,21 @@ return {
       }
     }
   },
+  cmd = {
+    "Neotest",
+    "Coverage",
+    "CoverageClear",
+    "CoverageHide",
+    "CoverageLoad",
+    "CoverageShow",
+    "CoverageSummary",
+    "CoverageToggle",
+  },
   keys = {
     {
       "<Leader>tt",
       function()
         require("neotest").run.run()
-        require("coverage").load()
-        require("coverage").show()
       end,
       desc = "Run the nearest test"
     },
@@ -31,8 +46,6 @@ return {
       "<Leader>T",
       function()
         require("neotest").run.run(vim.fn.expand("%"))
-        require("coverage").load()
-        require("coverage").show()
       end,
       desc = "Run the current file"
     },
@@ -40,8 +53,6 @@ return {
       "<Leader>tl",
       function()
         require("neotest").run.run_last()
-        require("coverage").load()
-        require("coverage").show()
       end,
       desc = "Re-run the last test that was run."
     },
@@ -69,13 +80,14 @@ return {
     {
       "<Leader>tc",
       function()
-        require("coverage").toggle()
+        toggle_coverage()
       end,
       desc = "Toggle test coverage"
     },
     {
       "<Leader>tC",
       function()
+        require("coverage").load()
         require("coverage").summary()
       end,
       desc = "Toggle test coverage"
