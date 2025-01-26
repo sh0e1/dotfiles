@@ -1,4 +1,4 @@
-vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { silent = true, noremap = true })
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { silent = true, noremap = true })
 vim.api.nvim_create_autocmd({ 'TermOpen' }, {
   pattern = '*',
   callback = function()
