@@ -34,22 +34,26 @@ text = "CellBackground"
 TERM = "xterm-256color"
 
 [font]
-size = 10.5
+size = 10
 
 [font.bold]
-family = "Ricty"
+family = "PlemolJP Console NF"
+style = "SemiBold"
 
 [font.bold_italic]
-family = "Ricty"
+family = "PlemolJP Console NF"
+style = "SemiBold Italic"
 
 [font.italic]
-family = "Ricty"
+family = "PlemolJP Console NF"
+style = "Italic"
 
 [font.normal]
-family = "Ricty"
+family = "PlemolJP Console NF"
+style = "Regular"
 
 [font.offset]
-x = 1
+x = 3
 y = 1
 
 [terminal.shell]
