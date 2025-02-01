@@ -3,6 +3,7 @@
   "coc-fzf": { "branch": "release", "commit": "60828294b9ba846c78893389d4772021043d2fa1" },
   "coc.nvim": { "branch": "release", "commit": "b45563656be26e518992ffede778f918dc443012" },
   "copilot.vim": { "branch": "release", "commit": "87038123804796ca7af20d1b71c3428d858a9124" },
+  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fern.vim": { "branch": "main", "commit": "cb5be74e4a343c8187be91b6be4475b2d73755a2" },
   "fzf.vim": { "branch": "master", "commit": "b3a49d7993801a0cd4fbac200154f1c6142c34a8" },
   "github-nvim-theme": { "branch": "main", "commit": "24c8706c9ad26b944f5a76dea999dca8708f252e" },
