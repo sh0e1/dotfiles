@@ -54,7 +54,7 @@ style = "Regular"
 
 [font.offset]
 x = 3
-y = 1
+y = 2
 
 [terminal.shell]
 args = ["--login"]
