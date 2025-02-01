@@ -53,8 +53,8 @@ family = "PlemolJP Console NF"
 style = "Regular"
 
 [font.offset]
-x = 3
-y = 2
+x = 2
+y = 1
 
 [terminal.shell]
 args = ["--login"]
