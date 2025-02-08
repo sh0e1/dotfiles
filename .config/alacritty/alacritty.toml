@@ -37,23 +37,23 @@ TERM = "xterm-256color"
 size = 10
 
 [font.bold]
-family = "PlemolJP Console NF"
-style = "SemiBold"
+family = "UDEV Gothic 35NF"
+style = "Bold"
 
 [font.bold_italic]
-family = "PlemolJP Console NF"
-style = "SemiBold Italic"
+family = "UDEV Gothic 35NF"
+style = "BoldItalic"
 
 [font.italic]
-family = "PlemolJP Console NF"
+family = "UDEV Gothic NF"
 style = "Italic"
 
 [font.normal]
-family = "PlemolJP Console NF"
+family = "UDEV Gothic 35NF"
 style = "Regular"
 
 [font.offset]
-x = 2
+x = 1
 y = 1
 
 [terminal.shell]
