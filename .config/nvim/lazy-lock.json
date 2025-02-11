@@ -18,6 +18,7 @@
   "neosnippet.vim": { "branch": "master", "commit": "efb2a615df2e6df9364087686dacca223fcfa16a" },
   "neotest": { "branch": "master", "commit": "d66cf4e05a116957f0d3a7755a24291c7d1e1f72" },
   "neotest-go": { "branch": "main", "commit": "92950ad7be2ca02a41abca5c6600ff6ffaf5b5d6" },
+  "neotest-jest": { "branch": "main", "commit": "514fd4eae7da15fd409133086bb8e029b65ac43f" },
   "nvim-coverage": { "branch": "main", "commit": "a939e425e363319d952a6c35fb3f38b34041ded2" },
   "nvim-dap": { "branch": "master", "commit": "52302f02fea3a490e55475de52fa4deb8af2eb11" },
   "nvim-dap-go": { "branch": "main", "commit": "07739481317d36ddb3e3e8fbdfcd8f90b4167d73" },

@@ -12,6 +12,7 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-neotest/neotest-go",
+    "nvim-neotest/neotest-jest",
     {
       "andythigpen/nvim-coverage",
       opts = {
@@ -98,7 +99,10 @@ return {
       adapters = {
         require("neotest-go")({
           args = { "-count=1", "-race", "-coverprofile=" .. vim.fn.getcwd() .. "/cover.out" },
-        })
+        }),
+        require("neotest-jest")({
+          jestCommand = "npm test --",
+        }),
       },
       icons = {
         child_indent = "|",
