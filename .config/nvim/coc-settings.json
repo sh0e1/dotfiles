@@ -41,6 +41,7 @@
   },
   // eslint
   "eslint.autoFixOnSave": true,
+  "eslint.experimental.useFlatConfig": true,
   // diagnostic-languageserver
   "diagnostic-languageserver.filetypes": {
     "go": "golangci-lint",
