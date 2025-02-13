@@ -3,7 +3,13 @@ return {
   lazy = false,
   priority = 1000,
   config = function()
-    require("github-theme").setup({})
+    require("github-theme").setup({
+      groups = {
+        github_dark_dimmed = {
+          Directory = { fg = 'palette.blue' }
+        }
+      }
+    })
 
     vim.cmd('colorscheme github_dark_dimmed')
   end
