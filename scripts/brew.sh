@@ -2,12 +2,15 @@
 
 set -e
 
-dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+dir=$(
+    cd "$(dirname "${BASH_SOURCE:-$0}")"
+    pwd
+)
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+echo "Installing Homebrew..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo "Homebrew has been installed."
 
-brew bundle --file=${dir}/../Brewfile
-
-# Install Ricty
-cp -f /usr/local/opt/ricty/share/fonts/Ricty*.ttf ~/Library/Fonts/
-fc-cache -vf
+echo "Installing Homebrew packages..."
+brew bundle --file="${dir}/../Brewfile"
+echo "Homebrew packages have been installed."
