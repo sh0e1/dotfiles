@@ -55,10 +55,6 @@ if has('persistent_undo')
   set undodir=~/.vim/undo//
 endif
 
-" nvim-miniyank
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-
 " coc.nvim
 " Some servers have issues with backup files, see #649.
 set nobackup
