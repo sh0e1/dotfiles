@@ -16,7 +16,6 @@ set noerrorbells
 set noshowmatch
 set laststatus=2
 set title
-set spell
 set confirm
 set hidden
 set autoread
