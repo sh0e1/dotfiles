@@ -40,14 +40,5 @@ return {
         enable = true,
       },
     }
-
-    vim.api.nvim_set_hl(0, "@function.builtin", { link = "@function" })
-    vim.api.nvim_set_hl(0, "@punctuation.bracket", { link = "@text" })
-    vim.api.nvim_set_hl(0, "@text.diff.add", { link = "DiffAdd" })
-    vim.api.nvim_set_hl(0, "@text.diff.change", { link = "DiffChange" })
-    vim.api.nvim_set_hl(0, "@text.diff.delete", { link = "DiffDelete" })
-    vim.api.nvim_set_hl(0, "@text.diff.text", { link = "DiffText" })
-    vim.api.nvim_set_hl(0, "@diff.plus", { link = "DiffAdd" })
-    vim.api.nvim_set_hl(0, "@diff.minus", { link = "DiffDelete" })
   end
 }
