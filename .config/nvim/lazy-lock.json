@@ -36,6 +36,5 @@
   "vim-matchup": { "branch": "master", "commit": "aca23ce53ebfe34e02c4fe07e29e9133a2026481" },
   "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "vim-rhubarb": { "branch": "master", "commit": "386daa2e9d98e23e27ad089afcbe5c5a903e488d" },
-  "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-tmux-navigator": { "branch": "master", "commit": "d847ea942a5bb4d4fab6efebc9f30d787fd96e65" }
 }
