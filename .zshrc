@@ -141,12 +141,12 @@ if [ -d ${HOME}/.krew/bin ]; then
     export PATH="${PATH}:${HOME}/.krew/bin"
 fi
 
-# gawk
+# gnu-sed
 if [ -d $(brew --prefix)/opt/gnu-sed/libexec/gnubin ]; then
     export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
-# gnu-sed
+# gawk
 if [ -d $(brew --prefix)/opt/gawk/libexec/gnubin ]; then
     export PATH="$(brew --prefix)/opt/gawk/libexec/gnubin:$PATH"
 fi
