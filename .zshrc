@@ -133,7 +133,7 @@ if [ -e $(brew --prefix)/bin/gcloud ]; then
 fi
 
 if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
+    source <(kubectl completion zsh)
 fi
 
 # krew
@@ -141,12 +141,12 @@ if [ -d ${HOME}/.krew/bin ]; then
     export PATH="${PATH}:${HOME}/.krew/bin"
 fi
 
-# gawk
+# gnu-sed
 if [ -d $(brew --prefix)/opt/gnu-sed/libexec/gnubin ]; then
     export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
 fi
 
-# gnu-sed
+# gawk
 if [ -d $(brew --prefix)/opt/gawk/libexec/gnubin ]; then
     export PATH="$(brew --prefix)/opt/gawk/libexec/gnubin:$PATH"
 fi
@@ -183,19 +183,21 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
     fi
 fi
 
-tmls() {
-  out=$(tmux list-sessions | fzf-tmux -d 50%)
-  [[ -z $out ]] && return
-  sid=$(echo $out | cut -d: -f1)
-  tmux switch -t $sid
+_tmux_list_sessions() {
+    out=$(tmux list-sessions | fzf-tmux -d 50%)
+    [[ -z $out ]] && return
+    sid=$(echo $out | cut -d: -f1)
+    tmux switch -t $sid
 }
+alias tmls='_tmux_list_sessions'
 
-tmlw() {
-  out=$(tmux list-windows | fzf-tmux -d 50%)
-  [[ -z $out ]] && return
-  wid=$(echo $out | cut -d: -f1)
-  tmux select-window -t $wid
+_tmux_list_windows() {
+    out=$(tmux list-windows | fzf-tmux -d 50%)
+    [[ -z $out ]] && return
+    wid=$(echo $out | cut -d: -f1)
+    tmux select-window -t $wid
 }
+alias tmlw='_tmux_list_windows'
 
 # openjdk
 if [ -d $(brew --prefix)/opt/openjdk/bin ]; then
@@ -227,12 +229,12 @@ if [ -x $(brew --prefix)/bin/pyenv ]; then
 fi
 
 _fzf_alias() {
-  selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
-  if [ -n $selected ]; then
-    BUFFER=$selected
-    CURSOR=${#BUFFER}
-  fi
-  zle redisplay
+    selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
+    if [ -n $selected ]; then
+        BUFFER=$selected
+        CURSOR=${#BUFFER}
+    fi
+    zle redisplay
 }
 zle -N _fzf_alias
 bindkey '^A' _fzf_alias
