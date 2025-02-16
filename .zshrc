@@ -183,19 +183,21 @@ if [[ ! -n $TMUX && $- == *l* ]]; then
     fi
 fi
 
-tmls() {
-  out=$(tmux list-sessions | fzf-tmux -d 50%)
-  [[ -z $out ]] && return
-  sid=$(echo $out | cut -d: -f1)
-  tmux switch -t $sid
+_tmux_list_sessions() {
+    out=$(tmux list-sessions | fzf-tmux -d 50%)
+    [[ -z $out ]] && return
+    sid=$(echo $out | cut -d: -f1)
+    tmux switch -t $sid
 }
+alias tmls='_tmux_list_sessions'
 
-tmlw() {
-  out=$(tmux list-windows | fzf-tmux -d 50%)
-  [[ -z $out ]] && return
-  wid=$(echo $out | cut -d: -f1)
-  tmux select-window -t $wid
+_tmux_list_windows() {
+    out=$(tmux list-windows | fzf-tmux -d 50%)
+    [[ -z $out ]] && return
+    wid=$(echo $out | cut -d: -f1)
+    tmux select-window -t $wid
 }
+alias tmlw='_tmux_list_windows'
 
 # openjdk
 if [ -d $(brew --prefix)/opt/openjdk/bin ]; then
