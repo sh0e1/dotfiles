@@ -133,7 +133,7 @@ if [ -e $(brew --prefix)/bin/gcloud ]; then
 fi
 
 if [ $commands[kubectl] ]; then
-  source <(kubectl completion zsh)
+    source <(kubectl completion zsh)
 fi
 
 # krew
@@ -229,12 +229,12 @@ if [ -x $(brew --prefix)/bin/pyenv ]; then
 fi
 
 _fzf_alias() {
-  selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
-  if [ -n $selected ]; then
-    BUFFER=$selected
-    CURSOR=${#BUFFER}
-  fi
-  zle redisplay
+    selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
+    if [ -n $selected ]; then
+        BUFFER=$selected
+        CURSOR=${#BUFFER}
+    fi
+    zle redisplay
 }
 zle -N _fzf_alias
 bindkey '^A' _fzf_alias
