@@ -55,16 +55,6 @@ if has('persistent_undo')
   set undodir=~/.vim/undo//
 endif
 
-" nvim-miniyank
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-
-" lexima.vim
-" https://github.com/cohama/lexima.vim/issues/65
-let g:lexima_no_default_rules = 1
-call lexima#set_default_rules()
-call lexima#insmode#map_hook('before', '<CR>', '')
-
 " coc.nvim
 " Some servers have issues with backup files, see #649.
 set nobackup
@@ -299,28 +289,6 @@ function! RipgrepFzf(query, fullscreen)
 endfunction
 
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
-
-" vim-gitgutter
-let g:gitgutter_preview_win_floating = 0
-
-nmap [h  <Plug>(GitGutterPrevHunk)
-nmap ]h  <Plug>(GitGutterNextHunk)
-nmap ghs <Plug>(GitGutterStageHunk)
-nmap ghu <Plug>(GitGutterUndoHunk)
-nmap ghp <Plug>(GitGutterPreviewHunk)
-omap ih  <Plug>(GitGutterTextObjectInnerPending)
-omap ah  <Plug>(GitGutterTextObjectOuterPending)
-xmap ih  <Plug>(GitGutterTextObjectInnerVisual)
-xmap ah  <Plug>(GitGutterTextObjectOuterVisual)
-
-function! GitGutterNextHunkCycle()
-  let line = line('.')
-  silent! GitGutterNextHunk
-  if line('.') == line
-    1
-    GitGutterNextHunk
-  endif
-endfunction
 
 " fern.vim
 nnoremap <Leader>e :Fern . -reveal=%<CR>
