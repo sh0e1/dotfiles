@@ -1,59 +1,7 @@
 lua require('config.lazy')
+lua require('config.options')
 lua require('config.keymaps')
 lua require('config.terminal')
-
-filetype plugin indent on
-syntax enable
-
-set encoding=utf-8
-scriptencoding utf-8
-set fileencoding=utf-8
-set fileencodings=ucs-boms,utf-8,euc-jp,cp932
-set fileformats=unix,dos,mac
-set ambiwidth=double
-set number
-set noerrorbells
-set noshowmatch
-set laststatus=2
-set title
-set confirm
-set hidden
-set autoread
-set nobackup
-set noswapfile
-set wildmode=list:longest,full
-set showcmd
-set autowrite
-set backspace=indent,eol,start
-set helplang=ja
-set linespace=2
-set cursorline
-set showtabline=2
-set noshowmode
-set hlsearch
-set ignorecase
-set smartcase
-set wrapscan
-set incsearch
-set list
-set listchars=tab:>_,trail:_,extends:>,precedes:<,nbsp:%
-set clipboard+=unnamedplus
-set expandtab
-set tabstop=4
-set softtabstop=4
-set autoindent
-set smartindent
-set shiftwidth=4
-set mouse=a
-set completeopt-=preview
-set sh=zsh
-set cmdheight=2
-
-" this enables us to undo files even if you exit Vim.
-if has('persistent_undo')
-  set undofile
-  set undodir=~/.vim/undo//
-endif
 
 " coc-fzf
 let g:coc_fzf_preview = 'right:50%'
