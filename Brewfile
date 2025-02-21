@@ -53,6 +53,7 @@ brew "aquaproj/aqua/aqua"
 brew "hashicorp/tap/terraform"
 brew "kayac/tap/ecspresso"
 brew "oven-sh/bun/bun"
+brew "git-delta"
 
 cask "1password"
 cask "1password-cli"
