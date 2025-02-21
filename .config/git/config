@@ -1,6 +1,10 @@
 [core]
 	excludesfile = ~/.config/git/ignore
 	editor = nvim
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f
@@ -47,6 +51,7 @@
 [merge]
 	tool = vimdiff
 	ff = false
+	conflictstyle = zdiff3
 
 [mergetool]
 	prompt = false
@@ -64,3 +69,6 @@
 [rebase]
 	autostash = true
 	autosquash = true
+
+[include]
+	path = ~/.config/delta/config
