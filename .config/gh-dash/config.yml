@@ -78,6 +78,6 @@ theme:
       compact: false
 
 pager:
-  diff: ""
+  diff: "delta"
 
 confirmQuit: false
