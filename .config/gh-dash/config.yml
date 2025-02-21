@@ -1,13 +1,10 @@
 prSections:
   - title: My Pull Requests
     filters: is:open author:@me
-    type: null
   - title: Needs My Review
     filters: is:open review-requested:@me
-    type: null
   - title: Involved
     filters: is:open involves:@me -author:@me
-    type: null
 
 issuesSections:
   - title: My Issues
