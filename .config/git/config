@@ -1,74 +1,74 @@
 [core]
-	excludesfile = ~/.config/git/ignore
-	editor = nvim
-	pager = delta
+    excludesfile = ~/.config/git/ignore
+    editor = nvim
+    pager = delta
 
 [interactive]
-	diffFilter = delta --color-only
+    diffFilter = delta --color-only
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [user]
-	name = sh0e1
-	email = sh0e1@users.noreply.github.com
+    name = sh0e1
+    email = sh0e1@users.noreply.github.com
 
 [alias]
-	syncmain = !git checkout main && git pull origin main && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v staging | grep -v develop)
-	syncmaster = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v staging | grep -v develop)
-	syncstaging = !git checkout staging && git pull origin staging && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v develop)
-	synctest = !git checkout test && git pull origin test && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v develop)
-	syncdevelop = !git checkout develop && git pull origin develop && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v staging)
+    syncmain = !git checkout main && git pull origin main && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v staging | grep -v develop)
+    syncmaster = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v staging | grep -v develop)
+    syncstaging = !git checkout staging && git pull origin staging && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v develop)
+    synctest = !git checkout test && git pull origin test && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v develop)
+    syncdevelop = !git checkout develop && git pull origin develop && git fetch -p origin && git branch -d $(git branch --merged | grep -v '*' | grep -v master | grep -v staging)
 
 [init]
-	templatedir = ~/.git-templates/git-secrets
-	defaultBranch = main
+    templatedir = ~/.git-templates/git-secrets
+    defaultBranch = main
 
 [secrets]
-	providers = git secrets --aws-provider
-	patterns = [A-Z0-9]{20}
-	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
-	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
-	allowed = AKIAIOSFODNN7EXAMPLE
-	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    providers = git secrets --aws-provider
+    patterns = [A-Z0-9]{20}
+    patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+    patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+    allowed = AKIAIOSFODNN7EXAMPLE
+    allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     # For GCP. See https://cloud.google.com/blog/ja/products/gcp/help-keep-your-google-cloud-service-account-keys-safe
-	patterns = private_key
-	patterns = private_key_id
+    patterns = private_key
+    patterns = private_key_id
 
 [commit]
-	template = ~/.config/git/message
-	verbose = true
+    template = ~/.config/git/message
+    verbose = true
 
 [diff]
-	tool = vimdiff
+    tool = vimdiff
 
 [difftool]
-	prompt = false
+    prompt = false
 
 [merge]
-	tool = vimdiff
-	ff = false
-	conflictstyle = zdiff3
+    tool = vimdiff
+    ff = false
+    conflictstyle = zdiff3
 
 [mergetool]
-	prompt = false
+    prompt = false
 
 [pull]
-	rebase = false
-	ff = only
+    rebase = false
+    ff = only
 
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+    insteadOf = https://github.com/
 
 [fetch]
-	prune = true
+     prune = true
 
 [rebase]
-	autostash = true
-	autosquash = true
+    autostash = true
+    autosquash = true
 
 [include]
-	path = ~/.config/delta/delta.gitconfig
+    path = ~/.config/delta/delta.gitconfig
