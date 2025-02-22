@@ -2,4 +2,6 @@
     navigate = true
     dark = true
     line-numbers = true
-    side-by-side = true
+
+[include]
+    path = ~/.config/delta/themes.gitconfig

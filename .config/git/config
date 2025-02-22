@@ -71,4 +71,4 @@
 	autosquash = true
 
 [include]
-	path = ~/.config/delta/config
+	path = ~/.config/delta/delta.gitconfig
