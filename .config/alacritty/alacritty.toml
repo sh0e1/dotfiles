@@ -45,7 +45,7 @@ family = "UDEV Gothic 35NF"
 style = "BoldItalic"
 
 [font.italic]
-family = "UDEV Gothic NF"
+family = "UDEV Gothic 35NF"
 style = "Italic"
 
 [font.normal]
