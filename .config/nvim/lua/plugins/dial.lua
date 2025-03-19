@@ -30,31 +30,31 @@ return {
     },
     {
       "<C-a>",
-      mode = 'v',
       function()
         require("dial.map").manipulate("increment", "visual")
       end,
+      mode = 'v',
     },
     {
       "<C-x>",
-      mode = 'v',
       function()
         require("dial.map").manipulate("decrement", "visual")
       end,
+      mode = 'v',
     },
     {
       "g<C-a>",
-      mode = 'v',
       function()
         require("dial.map").manipulate("increment", "gvisual")
       end,
+      mode = 'v',
     },
     {
       "g<C-x>",
-      mode = 'v',
       function()
         require("dial.map").manipulate("decrement", "gvisual")
       end,
+      mode = 'v',
     },
   },
   config = function()
