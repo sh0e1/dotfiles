@@ -3,6 +3,7 @@
   "coc-fzf": { "branch": "release", "commit": "60828294b9ba846c78893389d4772021043d2fa1" },
   "coc.nvim": { "branch": "release", "commit": "0772e70f2e23c8f243e962011ddd1bb8c2d03210" },
   "copilot.vim": { "branch": "release", "commit": "5015939f131627a6a332c9e3ecad9a7cb4c2e549" },
+  "dial.nvim": { "branch": "master", "commit": "34bbd9c387c358190e61ce71017faad3dffa7a74" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fern.vim": { "branch": "main", "commit": "60d9a56380123198fe318c250d29a4a44bb952e9" },
   "fzf.vim": { "branch": "master", "commit": "245eaf8e50fe440729056ce8d4e7e2bb5b1ff9c9" },
