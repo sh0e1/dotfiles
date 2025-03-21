@@ -8,12 +8,12 @@ return {
     build = "make tiktoken",
     cmd = { "CopilotChat", "CopilotChatToggle" },
     keys = {
-      { "<leader>ca", "<cmd>CopilotChat<cr>" },
+      { "<leader>ca", "<cmd>CopilotChatToggle<cr>", mode = 'n' },
+      { "<leader>ca", "<cmd>CopilotChat<cr>",       mode = 'v' },
+      { "<leader>cx", "<cmd>CopilotChatReset<cr>" },
     },
     opts = {
-      window = {
-        layout = 'float',
-      },
+      insert_at_end = true,
       prompts = {
         Explain = {
           mapping = '<leader>ce',
@@ -47,6 +47,10 @@ return {
         }
       },
       mappings = {
+        reset = {
+          normal = 'gx',
+          insert = 'gx',
+        },
         show_help = {
           normal = 'g?',
         },
