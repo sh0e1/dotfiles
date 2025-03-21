@@ -3,37 +3,54 @@ return {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
       { "github/copilot.vim" },
-      { "nvim-lua/plenary.nvim", branch = "master" },
+      { "nvim-lua/plenary.nvim" },
     },
     build = "make tiktoken",
+    cmd = { "CopilotChat", "CopilotChatToggle" },
+    keys = {
+      { "<leader>ca", "<cmd>CopilotChat<cr>" },
+    },
     opts = {
+      window = {
+        layout = 'float',
+      },
       prompts = {
         Explain = {
-          prompt = '/COPILOT_EXPLAIN 選択したコードの説明を段落をつけて書いてください。',
+          mapping = '<leader>ce',
+          prompt = '選択したコードの説明を段落をつけて書いてください。',
+          system_prompt = 'COPILOT_EXPLAIN'
+        },
+        Review = {
+          mapping = '<leader>cr',
+          prompt = '選択したコードを日本語でレビューしてください。',
+          system_prompt = 'COPILOT_REVIEW'
         },
         Fix = {
-          prompt = '/COPILOT_FIX このコードには問題があります。バグを修正したコードに書き換えてください。',
+          mapping = '<leader>cf',
+          prompt = 'このコードには問題があります。問題を特定し、修正してコードを書き直してください。何が問題で、どのように変更したのかを説明してください。',
         },
         Optimize = {
-          prompt = '/COPILOT_OPTIMIZE 選択したコードを最適化し、パフォーマンスと可読性を向上させてください。',
+          mapping = '<leader>co',
+          prompt = '選択したコードを最適化し、パフォーマンスと可読性を向上させてください。最適化戦略と変更内容を説明してください。',
         },
         Docs = {
-          prompt =
-          '/COPILOT_DOCS 選択したコードのドキュメントを書いてください。ドキュメントをコメントとして追加した元のコードを含むコードブロックで回答してください。使用するプログラミング言語に最も適したドキュメントスタイルを使用してください（例：JavaScriptのJSDoc、Pythonのdocstringsなど）',
+          mapping = '<leader>cd',
+          prompt = '選択したコードにドキュメントコメントを追加してください。',
         },
         Tests = {
-          prompt = '/COPILOT_TESTS 選択したコードの詳細な単体テスト関数を書いてください。',
-        },
-        FixDiagnostic = {
-          prompt = '/COPILOT_FIXDIAGNOSTIC ファイル内の次のような診断上の問題を解決してください：',
+          mapping = '<leader>ct',
+          prompt = '選択したコードのテストを書いてください。',
         },
         Commit = {
-          prompt = '/COPILOT_COMMIT この変更をコミットしてください。',
+          mapping = '<leader>cc',
+          prompt = 'コミットメッセージをタイトルのみ記述してください。',
+        }
+      },
+      mappings = {
+        show_help = {
+          normal = 'g?',
         },
-        CommitStaged = {
-          prompt = '/COPILOT_COMMITSTAGED ステージングされた変更をコミットしてください。',
-        },
-      }
-    }
+      },
+    },
   },
 }

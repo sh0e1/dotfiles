@@ -1,4 +1,5 @@
 {
+  "CopilotChat.nvim": { "branch": "main", "commit": "0b0838e31fda8a52e792a5fb6b79ab68e711bc10" },
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
   "coc-fzf": { "branch": "release", "commit": "60828294b9ba846c78893389d4772021043d2fa1" },
   "coc.nvim": { "branch": "release", "commit": "3660d653bf24ed9555fb1ccb59b7504e7f152440" },
