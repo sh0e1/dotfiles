@@ -1,5 +1,11 @@
 return {
   "williamboman/mason.nvim",
   version = "*",
-  opts = {},
+  opts = {
+    ui = {
+      keymaps = {
+        uninstall_package = "x"
+      },
+    },
+  },
 }
