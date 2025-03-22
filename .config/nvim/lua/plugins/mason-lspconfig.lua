@@ -4,7 +4,7 @@ return {
   opts = {
     ensure_installed = {
       "bashls",
-      "bufls",
+      "buf_ls",
       "dockerls",
       "gopls",
       "jsonls",
