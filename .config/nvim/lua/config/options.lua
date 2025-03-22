@@ -44,6 +44,10 @@ vim.opt.mouse = "a"
 vim.opt.cmdheight = 2
 vim.opt.completeopt:remove("preview")
 vim.opt.shell = "zsh"
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.updatetime = 300
+vim.opt.signcolumn = "yes"
 
 -- this enables us to undo files even if you exit Vim.
 if vim.fn.has("persistent_undo") == 1 then
