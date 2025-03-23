@@ -55,6 +55,11 @@ return {
           normal = 'g?',
         },
       },
+      -- Configuration options for rendering Markdown
+      -- https://github.com/CopilotC-Nvim/CopilotChat.nvim/wiki/Examples-and-Tips#markdown-rendering
+      highlight_headers = false,
+      separator = '---',
+      error_header = '> [!ERROR] Error',
     },
   },
 }
