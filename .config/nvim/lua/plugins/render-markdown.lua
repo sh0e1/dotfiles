@@ -7,5 +7,6 @@ return {
   ft = { 'markdown', 'copilot-chat' },
   opts = {
     completions = { lsp = { enabled = true } },
+    sign = { enabled = false },
   },
 }
