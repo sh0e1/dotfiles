@@ -1,5 +1,6 @@
 return {
   'windwp/nvim-autopairs',
+  enabled = false,
   event = "InsertEnter",
   config = function()
     local remap = vim.api.nvim_set_keymap

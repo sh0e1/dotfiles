@@ -1,5 +1,6 @@
 return {
   "neoclide/coc.nvim",
+  enabled = false,
   branch = "release",
   dependencies = {
     { "antoinemadec/coc-fzf", branch = "release" },
