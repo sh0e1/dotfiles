@@ -2,6 +2,7 @@ lua require('config.lazy')
 lua require('config.options')
 lua require('config.keymaps')
 lua require('config.terminal')
+lua require('config.lsp')
 
 " coc-fzf
 let g:coc_fzf_preview = 'right:50%'
