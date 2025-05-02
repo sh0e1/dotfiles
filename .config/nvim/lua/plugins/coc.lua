@@ -163,6 +163,7 @@ return {
       'coc-tsserver',
       'coc-prettier',
       'coc-diagnostic',
+      'coc-rust-analyzer',
     }
 
     -- goimport
