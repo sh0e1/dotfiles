@@ -28,9 +28,13 @@ SAVEHIST=100000
 
 # completion
 zstyle :compinstall filename '$HOME/.zshrc'
-fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
-autoload -Uz compinit
-compinit
+fpath=(
+  $(brew --prefix)/share/zsh/site-functions
+  $fpath
+)
+[[ -d $(brew --prefix rustup)/share/zsh/site-functions ]] && fpath+=($(brew --prefix rustup)/share/zsh/site-functions)
+[[ -d ~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions ]] && fpath+=(~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions)
+autoload -Uz compinit && compinit
 
 # https://github.com/b4b4r07/enhancd/issues/172#issuecomment-1492250042
 zinit cdreplay -q
@@ -205,10 +209,7 @@ if [ -d $(brew --prefix)/opt/openjdk/bin ]; then
 fi
 
 # Rust
-if [ -d $HOME/.cargo ]; then
-    export PATH="$PATH:$HOME/.cargo/bin"
-    source $HOME/.cargo/env
-fi
+#[[ -d $(brew --prefix rustup)/bin ]] && export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 
 # rbenv
 if [ -x $(brew --prefix)/bin/rbenv ]; then
