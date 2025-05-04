@@ -209,7 +209,7 @@ if [ -d $(brew --prefix)/opt/openjdk/bin ]; then
 fi
 
 # Rust
-[[ -d $(brew --prefix rustup)/bin ]] && export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+[[ -d $(brew --prefix rustup)/bin ]] && export PATH="$PATH:/opt/homebrew/opt/rustup/bin"
 
 # rbenv
 if [ -x $(brew --prefix)/bin/rbenv ]; then
