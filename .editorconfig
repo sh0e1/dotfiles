@@ -13,7 +13,7 @@ insert_final_newline = true
 [{*.go,Makefile}]
 indent_style = tab
 
-[*.{js,ts,json,yaml,yml,tf,prisma,proto,lua}]
+[*.{js,ts,tsx,json,yaml,yml,tf,prisma,proto,lua}]
 indent_size = 2
 
 [*.md]
