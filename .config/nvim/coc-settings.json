@@ -4,6 +4,9 @@
   "diagnostic.virtualText": true,
   "signature.target": "echo",
   "coc.preferences.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
   // languageserver
   "languageserver": {
     "golang": {
@@ -39,9 +42,6 @@
       "rootPatterns": [".git/"]
     }
   },
-  // eslint
-  "eslint.autoFixOnSave": true,
-  "eslint.experimental.useFlatConfig": true,
   // diagnostic-languageserver
   "diagnostic-languageserver.filetypes": {
     "go": "golangci-lint",
