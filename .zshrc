@@ -232,6 +232,11 @@ if [ -x $(brew --prefix)/bin/pyenv ]; then
     export PATH=$(pyenv root)/shims:$PATH
 fi
 
+# claude
+if [ -x /Users/shoei/.claude/local/claude ]; then
+    alias claude="/Users/shoei/.claude/local/claude"
+fi
+
 _fzf_alias() {
     selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
     if [ -n $selected ]; then
