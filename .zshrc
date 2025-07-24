@@ -229,6 +229,11 @@ if [ -x $(brew --prefix)/bin/pyenv ]; then
     export PATH=$(pyenv root)/shims:$PATH
 fi
 
+# $XDG_BIN_HOME
+if [ -d $XDG_BIN_HOME ]; then
+    export PATH="$XDG_BIN_HOME:$PATH"
+fi
+
 _fzf_alias() {
     selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
     if [ -n $selected ]; then
