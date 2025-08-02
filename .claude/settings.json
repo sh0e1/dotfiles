@@ -1,1 +1,14 @@
-{}
+{
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/notification-handler.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
