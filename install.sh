@@ -18,13 +18,15 @@ for f in .??*; do
     ln -snfv "${dir}/${f}" "${HOME}/${f}"
 done
 
+# Handle .config directory
 XDG_CONFIG_HOME="$HOME/.config"
 if [ ! -d "$XDG_CONFIG_HOME" ]; then
     mkdir "$XDG_CONFIG_HOME"
     echo "Created $XDG_CONFIG_HOME directory."
 fi
 
-for f in .config/??*; do
+for f in .config/*; do
+    [ -e "$f" ] || continue
     ln -snfv "${dir}/${f}" "${HOME}/${f}"
 done
 
@@ -35,13 +37,9 @@ if [ ! -d "$CLAUDE_DIR" ]; then
     echo "Created $CLAUDE_DIR directory."
 fi
 
-# Create symlinks for .claude files
-if [ -f "${dir}/.claude/CLAUDE.md" ]; then
-    ln -snfv "${dir}/.claude/CLAUDE.md" "${CLAUDE_DIR}/CLAUDE.md"
-fi
-
-if [ -f "${dir}/.claude/settings.json" ]; then
-    ln -snfv "${dir}/.claude/settings.json" "${CLAUDE_DIR}/settings.json"
-fi
+for f in .claude/*; do
+    [ -e "$f" ] || continue
+    ln -snfv "${dir}/${f}" "${HOME}/${f}"
+done
 
 echo "The dotfiles have been copied."
