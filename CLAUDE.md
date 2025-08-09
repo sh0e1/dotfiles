@@ -24,7 +24,7 @@ brew bundle --file=Brewfile
 ### Core Structure
 - **Root dotfiles** (`.zshrc`, `.zshenv`, `.editorconfig`) - Shell and editor configurations
 - **`.config/`** - XDG Base Directory compliant configurations for tools like tmux, git, tig, etc.
-- **`.claude/`** - Claude Code specific configurations including hooks and commands
+- **`.claude/`** - Claude Code specific configurations including hooks, commands, and agents
 - **`scripts/`** - Installation and setup scripts
 - **`Brewfile`** - Homebrew package definitions
 
@@ -49,6 +49,14 @@ brew bundle --file=Brewfile
 - **Neovim**: Set as default editor via aliases
 - **FZF**: Extensively configured for file/command/history search
 - **Direnv**: Environment management per directory
+
+#### Claude Code Agents (`.claude/agents/`)
+Custom agents extend Claude Code's capabilities with specialized behaviors:
+- **branch-code-reviewer**: Performs comprehensive code reviews of git branch changes
+  - Compares current branch against base branch (default: origin/main)
+  - Reviews committed changes for code quality, security, and best practices
+  - Outputs structured review in Japanese with severity classifications
+  - Triggered by `/review-current-branch` command or manual agent invocation
 
 ## Common Development Workflows
 
