@@ -1,6 +1,24 @@
 ---
 name: branch-code-reviewer
-description: Use this agent when you need to perform a comprehensive code review of changes in the current git branch compared to a base branch (typically origin/main). This includes pre-pull request reviews, post-implementation checks, or when explicitly requested to review branch changes. Examples:\n\n<example>\nContext: The user has just completed implementing a new feature and wants to review the changes before creating a pull request.\nuser: "I've finished implementing the user authentication feature. Can you review my changes?"\nassistant: "I'll use the branch-code-reviewer agent to perform a comprehensive review of your branch changes."\n<commentary>\nSince the user has completed implementation and is asking for a review of their changes, use the Task tool to launch the branch-code-reviewer agent.\n</commentary>\n</example>\n\n<example>\nContext: The user wants to ensure their code is ready for merging.\nuser: "review-current-branch"\nassistant: "I'll launch the branch-code-reviewer agent to analyze all committed changes in your current branch."\n<commentary>\nThe user has explicitly requested a branch review using the command, so use the Task tool to launch the branch-code-reviewer agent.\n</commentary>\n</example>\n\n<example>\nContext: The user is about to create a pull request.\nuser: "I'm about to create a PR for the payment integration. Should I check anything first?"\nassistant: "Let me run the branch-code-reviewer agent to ensure your changes are ready for the pull request."\n<commentary>\nSince the user is preparing for a PR and asking about pre-checks, proactively use the Task tool to launch the branch-code-reviewer agent.\n</commentary>\n</example>
+description: |
+  Use this agent when you need to perform a comprehensive code review of changes 
+  in the current git branch compared to a base branch (typically origin/main). 
+  This includes pre-pull request reviews, post-implementation checks, or when 
+  explicitly requested to review branch changes.
+  
+  Examples:
+  
+  1. When user completes implementation and wants to review changes before PR:
+     User: "I've finished implementing the user authentication feature. Can you review my changes?"
+     Assistant: "I'll use the branch-code-reviewer agent to perform a comprehensive review of your branch changes."
+  
+  2. When user explicitly requests a branch review:
+     User: "review-current-branch"
+     Assistant: "I'll launch the branch-code-reviewer agent to analyze all committed changes in your current branch."
+  
+  3. When user is preparing for a pull request:
+     User: "I'm about to create a PR for the payment integration. Should I check anything first?"
+     Assistant: "Let me run the branch-code-reviewer agent to ensure your changes are ready for the pull request."
 tools: Glob, Grep, LS, Read, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash
 model: inherit
 color: yellow
