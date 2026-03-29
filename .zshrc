@@ -246,27 +246,27 @@ zle -N _fzf_alias
 bindkey '^A' _fzf_alias
 
 # gh
-gh::issue() {
-  out=$(gh issue list --limit 100 | fzf-tmux -d 50% --preview="gh issue view {1}")
-  [[ -z $out ]] && return
-  issue=$(echo $out | awk '{print $1}')
-  gh issue view $issue --web
+_gh_review_requested_prs() {
+    gh api graphql --paginate -f query='
+      query {
+        search(query: "is:open is:pr review-requested:@me sort:author-date-desc", type: ISSUE, first: 100) {
+          nodes {
+            ... on PullRequest {
+              number
+              title
+              headRefName
+              mergeStateStatus
+              createdAt
+              repository {
+                nameWithOwner
+              }
+            }
+          }
+        }
+    }' \
+    --template='{{range .data.search.nodes}}{{tablerow (.repository.nameWithOwner) (printf "#%v" .number | autocolor "green") .title (.headRefName | autocolor "blue") (timeago .createdAt | autocolor "black+h")}}{{end}}' \
+    | fzf-tmux -d 50% --preview="gh pr view {2} --repo {1}"
 }
-alias ghi='gh::issue'
-
-gh::pr() {
-  out=$(gh pr list --limit 100 | fzf-tmux -d 50% --preview="gh pr view {1}" --expect=ctrl-o)
-  [[ -z $out ]] && return
-  outs=(${(@f)out})
-  if [[ $outs[1] == 'ctrl-o' ]]; then
-    pr=$(echo $outs[2] | awk '{print $1}')
-    gh pr checkout $pr
-  else
-    pr=$(echo $outs[1] | awk '{print $1}')
-    gh pr view $pr --web
-  fi
-}
-alias ghp='gh::pr'
 
 # Load split zsh files
 #[ -f $XDG_CONFIG_HOME/zsh/zeno.zsh ]  && source $XDG_CONFIG_HOME/zsh/zeno.zsh
