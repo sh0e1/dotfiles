@@ -24,7 +24,7 @@ brew bundle --file=Brewfile
 ### Core Structure
 - **Root dotfiles** (`.zshrc`, `.zshenv`, `.editorconfig`) - Shell and editor configurations
 - **`.config/`** - XDG Base Directory compliant configurations for tools like tmux, git, tig, etc.
-- **`.claude/`** - Claude Code specific configurations including hooks, commands, and agents
+- **`.claude/`** - Claude Code configuration: `settings.json` (plugins/hooks/preferences), `hooks/` (event scripts), `CLAUDE.md` (global instructions)
 - **`scripts/`** - Installation and setup scripts
 - **`Brewfile`** - Homebrew package definitions
 
@@ -61,6 +61,11 @@ Plugins from the official marketplace extend Claude Code's capabilities:
 - **feature-dev**: Guided feature development workflow
 - **pr-review-toolkit**: Comprehensive PR review with specialized agents
 - **skill-creator**: Skill creation and optimization
+
+#### Claude Code Hooks (`.claude/hooks/`)
+Event-driven scripts wired up via `.claude/settings.json`:
+- **notification-handler.sh**: Fires a macOS notification on Notification events
+- **langfuse_hook.py**: Sends session traces to Langfuse on Stop events
 
 ## Common Development Workflows
 
@@ -114,13 +119,3 @@ The install script creates symbolic links from the repository to the home direct
 - XDG config directory structure
 - Claude Code configurations
 - Exclusion of repository metadata
-
-### Plugin Ecosystem
-- **Zsh**: Managed by zinit with lazy loading for performance
-- **Tmux**: Managed by TPM with automatic installation
-- **Development tools**: Configured via Homebrew with consistent CLI experience
-
-### Environment Integration
-- Supports multiple development environments (Go, Node.js via nvm, Python via pyenv, Ruby via rbenv)
-- GNU tools preferred over BSD variants on macOS
-- XDG Base Directory specification compliance where possible
