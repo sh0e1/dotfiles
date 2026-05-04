@@ -42,4 +42,23 @@ for f in .claude/*; do
     ln -snfv "${dir}/${f}" "${HOME}/${f}"
 done
 
+# Remove broken symlinks left behind by files deleted from the repo
+cleanup_broken_symlinks() {
+    local target_dir="$1"
+    [ -d "$target_dir" ] || return 0
+    while IFS= read -r -d '' link; do
+        local link_target
+        link_target=$(readlink "$link")
+        case "$link_target" in
+            "${dir}"/*|"${dir}")
+                rm -v "$link"
+                ;;
+        esac
+    done < <(find "$target_dir" -maxdepth 1 -type l ! -exec test -e {} \; -print0 2>/dev/null)
+}
+
+cleanup_broken_symlinks "$HOME"
+cleanup_broken_symlinks "$XDG_CONFIG_HOME"
+cleanup_broken_symlinks "$CLAUDE_DIR"
+
 echo "The dotfiles have been copied."
