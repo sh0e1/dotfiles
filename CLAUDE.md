@@ -50,13 +50,17 @@ brew bundle --file=Brewfile
 - **FZF**: Extensively configured for file/command/history search
 - **Direnv**: Environment management per directory
 
-#### Claude Code Agents (`.claude/agents/`)
-Custom agents extend Claude Code's capabilities with specialized behaviors:
-- **branch-code-reviewer**: Performs comprehensive code reviews of git branch changes
-  - Compares current branch against base branch (default: origin/main)
-  - Reviews committed changes for code quality, security, and best practices
-  - Outputs structured review in Japanese with severity classifications
-  - Triggered by `/review-current-branch` command or manual agent invocation
+#### Claude Code Plugins (`.claude/settings.json`)
+Plugins from the official marketplace extend Claude Code's capabilities:
+- **typescript-lsp**: TypeScript language server integration
+- **code-review**: Pull request code review
+- **github**: GitHub integration enhancements
+- **claude-md-management**: CLAUDE.md auditing and improvement
+- **claude-code-setup**: Claude Code automation recommendations
+- **commit-commands**: Commit, push, and PR helpers
+- **feature-dev**: Guided feature development workflow
+- **pr-review-toolkit**: Comprehensive PR review with specialized agents
+- **skill-creator**: Skill creation and optimization
 
 ## Common Development Workflows
 
