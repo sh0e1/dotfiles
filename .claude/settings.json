@@ -9,6 +9,19 @@
           }
         ]
       }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/langfuse_hook.py"
+          }
+        ]
+      }
     ]
-  }
+  },
+  "language": "japanese",
+  "alwaysThinkingEnabled": true,
+  "editorMode": "vim"
 }
