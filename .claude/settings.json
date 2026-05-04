@@ -20,5 +20,8 @@
         ]
       }
     ]
-  }
+  },
+  "language": "japanese",
+  "alwaysThinkingEnabled": true,
+  "editorMode": "vim"
 }
