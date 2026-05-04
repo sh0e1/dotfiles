@@ -13,4 +13,4 @@
 
 ## General Development Rules
 - Follow existing project patterns and conventions
-- Always use TodoWrite tool for task planning
+- Use the task tracking tools (TaskCreate/TaskUpdate) for multi-step work
