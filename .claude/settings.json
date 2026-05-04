@@ -1,40 +1,4 @@
 {
-  "hooks": {
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "$HOME/.claude/hooks/notification-handler.sh"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "python3 ~/.claude/hooks/langfuse_hook.py"
-          }
-        ]
-      }
-    ]
-  },
-  "enabledPlugins": {
-    "typescript-lsp@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
-    "claude-code-setup@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true
-  },
-  "language": "japanese",
-  "alwaysThinkingEnabled": true,
-  "editorMode": "vim",
   "permissions": {
     "allow": [
       "Bash(git status*)",
@@ -135,10 +99,44 @@
       "Read(**/.env.*)"
     ]
   },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$HOME/.claude/hooks/notification-handler.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hooks/langfuse_hook.py"
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "context7@claude-plugins-official": true
+  },
+  "language": "japanese",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
-    "excludedCommands": ["git", "ssh", "gh"],
     "network": {
       "allowedDomains": [
         "github.com",
@@ -161,6 +159,10 @@
       "allowLocalBinding": true
     },
     "filesystem": {
+      "allowWrite": [
+        "~/.cache/**",
+        "~/Library/Caches/**"
+      ],
       "denyRead": [
         "~/.ssh/**",
         "~/.aws/**",
@@ -173,8 +175,14 @@
         "~/Library/Keychains/**",
         "**/.env",
         "**/.env.*"
-      ],
-      "allowWrite": ["~/.cache/**", "~/Library/Caches/**"]
-    }
-  }
+      ]
+    },
+    "excludedCommands": [
+      "git",
+      "ssh",
+      "gh"
+    ]
+  },
+  "alwaysThinkingEnabled": true,
+  "editorMode": "vim"
 }
