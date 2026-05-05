@@ -10,11 +10,14 @@ return {
     },
   },
   config = function()
-    require("nvim-treesitter").setup({
-      install_dir = vim.fn.stdpath("data") .. "/site",
-    })
-
-    require("nvim-treesitter").install("stable")
+    if vim.fn.executable("tree-sitter") == 1 then
+      require("nvim-treesitter").install("stable")
+    else
+      vim.notify(
+        "nvim-treesitter: `tree-sitter` CLI not on PATH; parsers will not install",
+        vim.log.levels.WARN
+      )
+    end
 
     vim.api.nvim_create_autocmd("FileType", {
       callback = function(args)
@@ -22,8 +25,8 @@ return {
         if not lang then return end
         local ok = pcall(vim.treesitter.start, args.buf, lang)
         if not ok then return end
-        vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-        vim.wo.foldmethod = "expr"
+        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo[0][0].foldmethod = "expr"
         vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
       end,
     })
