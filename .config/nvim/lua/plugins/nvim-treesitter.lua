@@ -11,7 +11,7 @@ return {
   },
   config = function()
     if vim.fn.executable("tree-sitter") == 1 then
-      require("nvim-treesitter").install("stable")
+      require("nvim-treesitter").install("all")
     else
       vim.notify(
         "nvim-treesitter: `tree-sitter` CLI not on PATH; parsers will not install",
