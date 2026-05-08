@@ -1,3 +1,10 @@
+# Homebrew prefix (cached to avoid repeated subshell calls)
+if command -v brew >/dev/null 2>&1; then
+    BREW_PREFIX="$(brew --prefix)"
+else
+    BREW_PREFIX=""
+fi
+
 # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -12,8 +19,6 @@ zinit ice pick"init.sh"
 zinit light b4b4r07/enhancd
 zinit ice pick"contrib/completion/git-prompt.sh"
 zinit light git/git
-#zinit ice lucid depth"1" blockf
-#zinit light yuki-yano/zeno.zsh
 zinit ice as"completion"
 zinit snippet https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker
 
@@ -28,11 +33,8 @@ SAVEHIST=100000
 
 # completion
 zstyle :compinstall filename '$HOME/.zshrc'
-fpath=(
-  $(brew --prefix)/share/zsh/site-functions
-  $fpath
-)
-[[ -d $(brew --prefix rustup)/share/zsh/site-functions ]] && fpath+=($(brew --prefix rustup)/share/zsh/site-functions)
+[[ -n $BREW_PREFIX ]] && fpath=("$BREW_PREFIX/share/zsh/site-functions" $fpath)
+[[ -n $BREW_PREFIX && -d $BREW_PREFIX/opt/rustup/share/zsh/site-functions ]] && fpath+=("$BREW_PREFIX/opt/rustup/share/zsh/site-functions")
 [[ -d ~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions ]] && fpath+=(~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions)
 autoload -Uz compinit && compinit
 
@@ -130,64 +132,72 @@ export GOPATH=$HOME/workspace/gopath
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH:$GOBIN
 
-# google-cloud-sdk
-if [ -e $(brew --prefix)/bin/gcloud ]; then
-    source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-    source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
-fi
+# PATH (brew-managed tools and user bins)
+[ -d ${HOME}/.krew/bin ] && export PATH="${PATH}:${HOME}/.krew/bin"
+[ -d $BREW_PREFIX/opt/gnu-sed/libexec/gnubin ] && export PATH="$BREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
+[ -d $BREW_PREFIX/opt/gawk/libexec/gnubin ] && export PATH="$BREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
+[ -d $BREW_PREFIX/opt/openjdk/bin ] && export PATH="$BREW_PREFIX/opt/openjdk/bin:$PATH"
+[ -d $BREW_PREFIX/opt/rustup/bin ] && export PATH="$PATH:$BREW_PREFIX/opt/rustup/bin"
+[ -d $XDG_BIN_HOME ] && export PATH="$XDG_BIN_HOME:$PATH"
 
-if [ $commands[kubectl] ]; then
-    source <(kubectl completion zsh)
-fi
-
-# krew
-if [ -d ${HOME}/.krew/bin ]; then
-    export PATH="${PATH}:${HOME}/.krew/bin"
-fi
-
-# gnu-sed
-if [ -d $(brew --prefix)/opt/gnu-sed/libexec/gnubin ]; then
-    export PATH="$(brew --prefix)/opt/gnu-sed/libexec/gnubin:$PATH"
-fi
-
-# gawk
-if [ -d $(brew --prefix)/opt/gawk/libexec/gnubin ]; then
-    export PATH="$(brew --prefix)/opt/gawk/libexec/gnubin:$PATH"
-fi
-
-# coreutils
-if [ -d $(brew --prefix)/opt/coreutils/libexec/gnubin ]; then
-    export PATH="$(brew --prefix)/opt/coreutils/libexec/gnubin:$PATH"
+# coreutils (replaces the BSD-flag ls aliases defined above)
+if [ -d $BREW_PREFIX/opt/coreutils/libexec/gnubin ]; then
+    export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
     alias ls='ls -F --color=auto'
     alias la='ls -laF --color=auto'
     alias ll='ls -lF --color=auto'
 fi
 
-# direnv
-if [ -x $(brew --prefix)/bin/direnv ]; then
-    eval "$(direnv hook zsh)"
+# gcloud
+if [ -e $BREW_PREFIX/bin/gcloud ]; then
+    source "$BREW_PREFIX/share/google-cloud-sdk/path.zsh.inc"
+    source "$BREW_PREFIX/share/google-cloud-sdk/completion.zsh.inc"
 fi
 
-# tmux
-if [[ ! -n $TMUX && $- == *l* ]]; then
-    # get the IDs
-    ID="`tmux list-sessions`"
-    if [[ -z "$ID" ]]; then
+# kubectl
+[ $commands[kubectl] ] && source <(kubectl completion zsh)
+
+# direnv
+[ -x $BREW_PREFIX/bin/direnv ] && eval "$(direnv hook zsh)"
+
+# rbenv
+if [ -x $BREW_PREFIX/bin/rbenv ]; then
+    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+    eval "$(rbenv init -)"
+fi
+
+# nvm
+if [ -d $HOME/.nvm ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh"
+    [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
+fi
+
+# pyenv
+[ -x $BREW_PREFIX/bin/pyenv ] && export PATH=$(pyenv root)/shims:$PATH
+
+# tmux auto-attach (uses a function to avoid leaking locals into the shell)
+_tmux_auto_attach() {
+    [[ -n $TMUX || $- != *l* ]] && return
+    local sessions create_new_session selected
+    sessions="$(tmux list-sessions 2>/dev/null)"
+    if [[ -z "$sessions" ]]; then
         tmux new-session
+        return
     fi
     create_new_session="Create New Session"
-    ID="$ID\n${create_new_session}:"
-    ID="`echo $ID | fzf | cut -d: -f1`"
-    if [[ "$ID" = "${create_new_session}" ]]; then
+    selected="$(printf '%s\n%s:' "$sessions" "$create_new_session" | fzf | cut -d: -f1)"
+    if [[ "$selected" = "$create_new_session" ]]; then
         tmux new-session
-    elif [[ -n "$ID" ]]; then
-        tmux attach-session -t "$ID"
-    else
-        :  # Start terminal normally
+    elif [[ -n "$selected" ]]; then
+        tmux attach-session -t "$selected"
     fi
-fi
+}
+_tmux_auto_attach
 
+# fzf-powered helpers (tmux/alias/gh)
 _tmux_list_sessions() {
+    local out sid
     out=$(tmux list-sessions | fzf-tmux -d 50%)
     [[ -z $out ]] && return
     sid=$(echo $out | cut -d: -f1)
@@ -196,6 +206,7 @@ _tmux_list_sessions() {
 alias tmls='_tmux_list_sessions'
 
 _tmux_list_windows() {
+    local out wid
     out=$(tmux list-windows | fzf-tmux -d 50%)
     [[ -z $out ]] && return
     wid=$(echo $out | cut -d: -f1)
@@ -203,40 +214,10 @@ _tmux_list_windows() {
 }
 alias tmlw='_tmux_list_windows'
 
-# openjdk
-if [ -d $(brew --prefix)/opt/openjdk/bin ]; then
-    export PATH="/usr/local/opt/openjdk/bin:$PATH"
-fi
-
-# Rust
-[[ -d $(brew --prefix rustup)/bin ]] && export PATH="$PATH:/opt/homebrew/opt/rustup/bin"
-
-# rbenv
-if [ -x $(brew --prefix)/bin/rbenv ]; then
-    export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-    eval "$(rbenv init -)"
-fi
-
-# nvm
-if [ -d $HOME/.nvm ]; then
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-fi
-
-# pyenv
-if [ -x $(brew --prefix)/bin/pyenv ]; then
-    export PATH=$(pyenv root)/shims:$PATH
-fi
-
-# $XDG_BIN_HOME
-if [ -d $XDG_BIN_HOME ]; then
-    export PATH="$XDG_BIN_HOME:$PATH"
-fi
-
 _fzf_alias() {
+    local selected
     selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
-    if [ -n $selected ]; then
+    if [[ -n $selected ]]; then
         BUFFER=$selected
         CURSOR=${#BUFFER}
     fi
@@ -245,29 +226,29 @@ _fzf_alias() {
 zle -N _fzf_alias
 bindkey '^A' _fzf_alias
 
-# gh
 gh::issue() {
-  out=$(gh issue list --limit 100 | fzf-tmux -d 50% --preview="gh issue view {1}")
-  [[ -z $out ]] && return
-  issue=$(echo $out | awk '{print $1}')
-  gh issue view $issue --web
+    local out issue
+    out=$(gh issue list --limit 100 | fzf-tmux -d 50% --preview="gh issue view {1}")
+    [[ -z $out ]] && return
+    issue=$(echo $out | awk '{print $1}')
+    gh issue view $issue --web
 }
 alias ghi='gh::issue'
 
 gh::pr() {
-  out=$(gh pr list --limit 100 | fzf-tmux -d 50% --preview="gh pr view {1}" --expect=ctrl-o)
-  [[ -z $out ]] && return
-  outs=(${(@f)out})
-  if [[ $outs[1] == 'ctrl-o' ]]; then
-    pr=$(echo $outs[2] | awk '{print $1}')
-    gh pr checkout $pr
-  else
-    pr=$(echo $outs[1] | awk '{print $1}')
-    gh pr view $pr --web
-  fi
+    local out outs pr
+    out=$(gh pr list --limit 100 | fzf-tmux -d 50% --preview="gh pr view {1}" --expect=ctrl-o)
+    [[ -z $out ]] && return
+    outs=(${(@f)out})
+    if [[ $outs[1] == 'ctrl-o' ]]; then
+        pr=$(echo $outs[2] | awk '{print $1}')
+        gh pr checkout $pr
+    else
+        pr=$(echo $outs[1] | awk '{print $1}')
+        gh pr view $pr --web
+    fi
 }
 alias ghp='gh::pr'
 
 # Load split zsh files
-#[ -f $XDG_CONFIG_HOME/zsh/zeno.zsh ]  && source $XDG_CONFIG_HOME/zsh/zeno.zsh
 [ -f $XDG_CONFIG_HOME/zsh/local.zsh ] && source $XDG_CONFIG_HOME/zsh/local.zsh
