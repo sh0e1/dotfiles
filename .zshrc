@@ -1,5 +1,9 @@
 # Homebrew prefix (cached to avoid repeated subshell calls)
-BREW_PREFIX="$(brew --prefix)"
+if command -v brew >/dev/null 2>&1; then
+    BREW_PREFIX="$(brew --prefix)"
+else
+    BREW_PREFIX=""
+fi
 
 # zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -29,8 +33,8 @@ SAVEHIST=100000
 
 # completion
 zstyle :compinstall filename '$HOME/.zshrc'
-fpath=("$BREW_PREFIX/share/zsh/site-functions" $fpath)
-[[ -d $BREW_PREFIX/opt/rustup/share/zsh/site-functions ]] && fpath+=("$BREW_PREFIX/opt/rustup/share/zsh/site-functions")
+[[ -n $BREW_PREFIX ]] && fpath=("$BREW_PREFIX/share/zsh/site-functions" $fpath)
+[[ -n $BREW_PREFIX && -d $BREW_PREFIX/opt/rustup/share/zsh/site-functions ]] && fpath+=("$BREW_PREFIX/opt/rustup/share/zsh/site-functions")
 [[ -d ~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions ]] && fpath+=(~/.rustup/toolchains/stable-aarch64-apple-darwin/share/zsh/site-functions)
 autoload -Uz compinit && compinit
 
@@ -123,10 +127,12 @@ bindkey '^D' fzf-cd-widget
 # enhancd
 export ENHANCD_FILTER="fzf-tmux -d 50% --preview 'tree -C {}'"
 
-# PATH
+# Go
 export GOPATH=$HOME/workspace/gopath
 export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH:$GOBIN
+
+# PATH (brew-managed tools and user bins)
 [ -d ${HOME}/.krew/bin ] && export PATH="${PATH}:${HOME}/.krew/bin"
 [ -d $BREW_PREFIX/opt/gnu-sed/libexec/gnubin ] && export PATH="$BREW_PREFIX/opt/gnu-sed/libexec/gnubin:$PATH"
 [ -d $BREW_PREFIX/opt/gawk/libexec/gnubin ] && export PATH="$BREW_PREFIX/opt/gawk/libexec/gnubin:$PATH"
@@ -134,7 +140,7 @@ export PATH=$PATH:$GOPATH:$GOBIN
 [ -d $BREW_PREFIX/opt/rustup/bin ] && export PATH="$PATH:$BREW_PREFIX/opt/rustup/bin"
 [ -d $XDG_BIN_HOME ] && export PATH="$XDG_BIN_HOME:$PATH"
 
-# coreutils (overrides BSD ls aliases when GNU coreutils is installed)
+# coreutils (replaces the BSD-flag ls aliases defined above)
 if [ -d $BREW_PREFIX/opt/coreutils/libexec/gnubin ]; then
     export PATH="$BREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
     alias ls='ls -F --color=auto'
@@ -142,22 +148,32 @@ if [ -d $BREW_PREFIX/opt/coreutils/libexec/gnubin ]; then
     alias ll='ls -lF --color=auto'
 fi
 
-# tool initializers
+# gcloud
 if [ -e $BREW_PREFIX/bin/gcloud ]; then
     source "$BREW_PREFIX/share/google-cloud-sdk/path.zsh.inc"
     source "$BREW_PREFIX/share/google-cloud-sdk/completion.zsh.inc"
 fi
+
+# kubectl
 [ $commands[kubectl] ] && source <(kubectl completion zsh)
+
+# direnv
 [ -x $BREW_PREFIX/bin/direnv ] && eval "$(direnv hook zsh)"
+
+# rbenv
 if [ -x $BREW_PREFIX/bin/rbenv ]; then
     export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
     eval "$(rbenv init -)"
 fi
+
+# nvm
 if [ -d $HOME/.nvm ]; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$BREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$BREW_PREFIX/opt/nvm/nvm.sh"
     [ -s "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$BREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm"
 fi
+
+# pyenv
 [ -x $BREW_PREFIX/bin/pyenv ] && export PATH=$(pyenv root)/shims:$PATH
 
 # tmux auto-attach (uses a function to avoid leaking locals into the shell)
@@ -179,7 +195,7 @@ _tmux_auto_attach() {
 }
 _tmux_auto_attach
 
-# functions
+# fzf-powered helpers (tmux/alias/gh)
 _tmux_list_sessions() {
     local out sid
     out=$(tmux list-sessions | fzf-tmux -d 50%)
@@ -201,7 +217,7 @@ alias tmlw='_tmux_list_windows'
 _fzf_alias() {
     local selected
     selected=$(alias | fzf-tmux -d 50% | awk -F "=" '{print $1}' | sed -e "s/'//g")
-    if [ -n $selected ]; then
+    if [[ -n $selected ]]; then
         BUFFER=$selected
         CURSOR=${#BUFFER}
     fi
