@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(git status*)",
@@ -131,7 +134,8 @@
     "feature-dev@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
-    "context7@claude-plugins-official": true
+    "context7@claude-plugins-official": true,
+    "terraform@claude-plugins-official": true
   },
   "language": "japanese",
   "sandbox": {
@@ -185,8 +189,5 @@
     ]
   },
   "alwaysThinkingEnabled": true,
-  "editorMode": "vim",
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  }
+  "editorMode": "vim"
 }
